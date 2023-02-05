@@ -14,9 +14,9 @@ import com.realityexpander.translator_kmm.android.R
 import com.realityexpander.translator_kmm.android.di.AppModule
 import com.realityexpander.translator_kmm.android.voice_to_text.di.VoiceToTextModule
 import com.realityexpander.translator_kmm.translate.data.remote.FakeTranslateClient
-import com.realityexpander.translator_kmm.translate.domain.translate.TranslateClient
+import com.realityexpander.translator_kmm.translate.domain.translate.ITranslateClient
 import com.realityexpander.translator_kmm.voice_to_text.data.FakeVoiceToTextParser
-import com.realityexpander.translator_kmm.voice_to_text.domain.VoiceToTextParser
+import com.realityexpander.translator_kmm.voice_to_text.domain.IVoiceToTextParser
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
 import dagger.hilt.android.testing.UninstallModules
@@ -42,10 +42,10 @@ class VoiceToTextE2E {
     )
 
     @Inject
-    lateinit var fakeVoiceParser: VoiceToTextParser
+    lateinit var fakeVoiceParser: IVoiceToTextParser
 
     @Inject
-    lateinit var fakeClient: TranslateClient
+    lateinit var fakeClient: ITranslateClient
 
     @Before
     fun setUp() {

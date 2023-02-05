@@ -2,7 +2,7 @@ package com.realityexpander.translator_kmm.translate.data.translate
 
 import com.realityexpander.translator_kmm.NetworkConstants
 import com.realityexpander.translator_kmm.core.domain.language.Language
-import com.realityexpander.translator_kmm.translate.domain.translate.TranslateClient
+import com.realityexpander.translator_kmm.translate.domain.translate.ITranslateClient
 import com.realityexpander.translator_kmm.translate.domain.translate.TranslateError
 import com.realityexpander.translator_kmm.translate.domain.translate.TranslateException
 import io.ktor.client.*
@@ -11,9 +11,9 @@ import io.ktor.client.request.*
 import io.ktor.http.*
 import io.ktor.utils.io.errors.*
 
-class KtorTranslateClient(
+class TranslateClientKtorImpl(  // was KtorTranslateClient
     private val httpClient: HttpClient
-): TranslateClient {
+): ITranslateClient {
 
     override suspend fun translate(
         fromLanguage: Language,
@@ -25,7 +25,7 @@ class KtorTranslateClient(
                 url(NetworkConstants.BASE_URL + "/translate")
                 contentType(ContentType.Application.Json)
                 setBody(
-                    TranslateDto(
+                    TranslateRequestDto(
                         textToTranslate = fromText,
                         sourceLanguageCode = fromLanguage.langCode,
                         targetLanguageCode = toLanguage.langCode
@@ -44,7 +44,7 @@ class KtorTranslateClient(
         }
 
         return try {
-            result.body<TranslatedDto>().translatedText
+            result.body<TranslateResponseDto>().translatedText
         } catch(e: Exception) {
             throw TranslateException(TranslateError.SERVER_ERROR)
         }

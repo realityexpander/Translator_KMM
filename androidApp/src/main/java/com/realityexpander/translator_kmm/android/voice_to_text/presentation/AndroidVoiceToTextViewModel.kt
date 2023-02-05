@@ -2,7 +2,7 @@ package com.realityexpander.translator_kmm.android.voice_to_text.presentation
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.realityexpander.translator_kmm.voice_to_text.domain.VoiceToTextParser
+import com.realityexpander.translator_kmm.voice_to_text.domain.IVoiceToTextParser
 import com.realityexpander.translator_kmm.voice_to_text.presentation.VoiceToTextEvent
 import com.realityexpander.translator_kmm.voice_to_text.presentation.VoiceToTextViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -10,7 +10,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class AndroidVoiceToTextViewModel @Inject constructor(
-    private val parser: VoiceToTextParser
+    private val parser: IVoiceToTextParser
 ): ViewModel() {
 
     private val viewModel by lazy {

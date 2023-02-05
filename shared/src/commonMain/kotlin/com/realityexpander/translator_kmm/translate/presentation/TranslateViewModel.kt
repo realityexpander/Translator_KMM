@@ -3,8 +3,8 @@ package com.realityexpander.translator_kmm.translate.presentation
 import com.realityexpander.translator_kmm.core.domain.util.Resource
 import com.realityexpander.translator_kmm.core.domain.util.toCommonStateFlow
 import com.realityexpander.translator_kmm.core.presentation.UiLanguage
-import com.realityexpander.translator_kmm.translate.domain.history.HistoryDataSource
-import com.realityexpander.translator_kmm.translate.domain.translate.Translate
+import com.realityexpander.translator_kmm.translate.domain.history.IHistoryDataSource
+import com.realityexpander.translator_kmm.translate.domain.translate.TranslateUseCase
 import com.realityexpander.translator_kmm.translate.domain.translate.TranslateException
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -13,8 +13,8 @@ import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 
 class TranslateViewModel(
-    private val translate: Translate,
-    private val historyDataSource: HistoryDataSource,
+    private val translate: TranslateUseCase,
+    private val historyDataSource: IHistoryDataSource,
     private val coroutineScope: CoroutineScope?
 ) {
 

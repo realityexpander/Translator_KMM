@@ -2,13 +2,13 @@ package com.realityexpander.translator_kmm.android.di
 
 import android.app.Application
 import com.realityexpander.translator_kmm.database.TranslateDatabase
-import com.realityexpander.translator_kmm.translate.data.history.SqlDelightHistoryDataSource
+import com.realityexpander.translator_kmm.translate.data.history.HistoryDataSourceSqlDelightImpl
 import com.realityexpander.translator_kmm.translate.data.local.DatabaseDriverFactory
 import com.realityexpander.translator_kmm.translate.data.remote.HttpClientFactory
-import com.realityexpander.translator_kmm.translate.data.translate.KtorTranslateClient
-import com.realityexpander.translator_kmm.translate.domain.history.HistoryDataSource
-import com.realityexpander.translator_kmm.translate.domain.translate.Translate
-import com.realityexpander.translator_kmm.translate.domain.translate.TranslateClient
+import com.realityexpander.translator_kmm.translate.data.translate.TranslateClientKtorImpl
+import com.realityexpander.translator_kmm.translate.domain.history.IHistoryDataSource
+import com.realityexpander.translator_kmm.translate.domain.translate.TranslateUseCase
+import com.realityexpander.translator_kmm.translate.domain.translate.ITranslateClient
 import com.squareup.sqldelight.db.SqlDriver
 import dagger.Module
 import dagger.Provides
@@ -29,8 +29,8 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideTranslateClient(httpClient: HttpClient): TranslateClient {
-        return KtorTranslateClient(httpClient)
+    fun provideTranslateClient(httpClient: HttpClient): ITranslateClient {
+        return TranslateClientKtorImpl(httpClient)
     }
 
     @Provides
@@ -41,16 +41,16 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideHistoryDataSource(driver: SqlDriver): HistoryDataSource {
-        return SqlDelightHistoryDataSource(TranslateDatabase(driver))
+    fun provideHistoryDataSource(driver: SqlDriver): IHistoryDataSource {
+        return HistoryDataSourceSqlDelightImpl(TranslateDatabase(driver))
     }
 
     @Provides
     @Singleton
     fun provideTranslateUseCase(
-        client: TranslateClient,
-        dataSource: HistoryDataSource
-    ): Translate {
-        return Translate(client, dataSource)
+        client: ITranslateClient,
+        dataSource: IHistoryDataSource
+    ): TranslateUseCase {
+        return TranslateUseCase(client, dataSource)
     }
 }

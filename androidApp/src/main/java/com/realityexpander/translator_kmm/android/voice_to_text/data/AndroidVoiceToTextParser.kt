@@ -10,14 +10,14 @@ import android.speech.SpeechRecognizer.*
 import com.realityexpander.translator_kmm.android.R
 import com.realityexpander.translator_kmm.core.domain.util.CommonStateFlow
 import com.realityexpander.translator_kmm.core.domain.util.toCommonStateFlow
-import com.realityexpander.translator_kmm.voice_to_text.domain.VoiceToTextParser
+import com.realityexpander.translator_kmm.voice_to_text.domain.IVoiceToTextParser
 import com.realityexpander.translator_kmm.voice_to_text.domain.VoiceToTextParserState
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.update
 
 class AndroidVoiceToTextParser(
     private val app: Application
-): VoiceToTextParser, RecognitionListener {
+): IVoiceToTextParser, RecognitionListener {
 
     private val recognizer = SpeechRecognizer.createSpeechRecognizer(app)
 

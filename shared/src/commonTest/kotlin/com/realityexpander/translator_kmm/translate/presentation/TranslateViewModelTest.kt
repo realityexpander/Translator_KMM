@@ -9,7 +9,7 @@ import com.realityexpander.translator_kmm.core.presentation.UiLanguage
 import com.realityexpander.translator_kmm.translate.data.local.FakeHistoryDataSource
 import com.realityexpander.translator_kmm.translate.data.remote.FakeTranslateClient
 import com.realityexpander.translator_kmm.translate.domain.history.HistoryItem
-import com.realityexpander.translator_kmm.translate.domain.translate.Translate
+import com.realityexpander.translator_kmm.translate.domain.translate.TranslateUseCase
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.runBlocking
@@ -26,7 +26,7 @@ class TranslateViewModelTest {
     fun setUp() {
         client = FakeTranslateClient()
         dataSource = FakeHistoryDataSource()
-        val translate = Translate(
+        val translate = TranslateUseCase(
             client = client,
             historyDataSource = dataSource
         )

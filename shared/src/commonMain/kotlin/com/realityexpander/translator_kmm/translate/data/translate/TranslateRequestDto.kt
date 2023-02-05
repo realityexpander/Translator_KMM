@@ -1,9 +1,10 @@
 package com.realityexpander.translator_kmm.translate.data.translate
 
 import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
-@kotlinx.serialization.Serializable
-data class TranslateDto(
+@Serializable
+data class TranslateRequestDto(
     @SerialName("q") val textToTranslate: String,
     @SerialName("source") val sourceLanguageCode: String,
     @SerialName("target") val targetLanguageCode: String

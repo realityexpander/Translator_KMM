@@ -2,12 +2,12 @@ package com.realityexpander.translator_kmm.testing
 
 import com.realityexpander.translator_kmm.core.domain.util.CommonStateFlow
 import com.realityexpander.translator_kmm.core.domain.util.toCommonStateFlow
-import com.realityexpander.translator_kmm.voice_to_text.domain.VoiceToTextParser
+import com.realityexpander.translator_kmm.voice_to_text.domain.IVoiceToTextParser
 import com.realityexpander.translator_kmm.voice_to_text.domain.VoiceToTextParserState
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.update
 
-class FakeVoiceToTextParser: VoiceToTextParser {
+class FakeVoiceToTextParserImpl: IVoiceToTextParser {
 
     private val _state = MutableStateFlow(VoiceToTextParserState())
     override val state: CommonStateFlow<VoiceToTextParserState>

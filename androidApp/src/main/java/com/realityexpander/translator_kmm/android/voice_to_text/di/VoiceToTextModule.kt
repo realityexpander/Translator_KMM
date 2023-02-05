@@ -2,7 +2,7 @@ package com.realityexpander.translator_kmm.android.voice_to_text.di
 
 import android.app.Application
 import com.realityexpander.translator_kmm.android.voice_to_text.data.AndroidVoiceToTextParser
-import com.realityexpander.translator_kmm.voice_to_text.domain.VoiceToTextParser
+import com.realityexpander.translator_kmm.voice_to_text.domain.IVoiceToTextParser
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -15,7 +15,7 @@ object VoiceToTextModule {
 
     @Provides
     @ViewModelScoped
-    fun provideVoiceToTextParser(app: Application): VoiceToTextParser {
+    fun provideVoiceToTextParser(app: Application): IVoiceToTextParser {
         return AndroidVoiceToTextParser(app)
     }
 }

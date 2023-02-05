@@ -1,7 +1,7 @@
 package com.realityexpander.translator_kmm.voice_to_text.presentation
 
 import com.realityexpander.translator_kmm.core.domain.util.toCommonStateFlow
-import com.realityexpander.translator_kmm.voice_to_text.domain.VoiceToTextParser
+import com.realityexpander.translator_kmm.voice_to_text.domain.IVoiceToTextParser
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
@@ -9,7 +9,7 @@ import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 
 class VoiceToTextViewModel(
-    private val parser: VoiceToTextParser,
+    private val parser: IVoiceToTextParser,
     coroutineScope: CoroutineScope? = null
 ) {
     private val viewModelScope = coroutineScope ?: CoroutineScope(Dispatchers.Main)
