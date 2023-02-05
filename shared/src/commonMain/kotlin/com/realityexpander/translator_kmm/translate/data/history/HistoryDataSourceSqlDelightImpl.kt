@@ -22,7 +22,7 @@ class HistoryDataSourceSqlDelightImpl(  // was SqlDelightHistoryDataSource
             .asFlow()
             .mapToList()
             .map { history ->
-                history.map { it.toHistoryItem() }
+                history.map { it.toHistoryItem() }  // Change from HistoryEntity to HistoryItem
             }
             .toCommonFlow()
     }

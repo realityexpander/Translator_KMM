@@ -5,7 +5,7 @@ import com.realityexpander.translator_kmm.core.domain.util.Resource
 import com.realityexpander.translator_kmm.translate.domain.history.IHistoryDataSource
 import com.realityexpander.translator_kmm.translate.domain.history.HistoryItem
 
-class TranslateUseCase(
+class TranslateUseCase(  // Translate
     private val client: ITranslateClient,
     private val historyDataSource: IHistoryDataSource
 ) {
