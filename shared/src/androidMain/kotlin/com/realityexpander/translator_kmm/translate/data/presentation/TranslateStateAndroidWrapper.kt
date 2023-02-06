@@ -14,21 +14,22 @@ data class TranslateStateAndroidWrapper(
 ) : Parcelable {
 
     // Called when app is returning from the background from process death.
-    constructor(parcel: Parcel) : this(data = TranslateState(
-        fromText = parcel.readString() ?: "",
-        toText = parcel.readString(),
-        isTranslating = parcel.readByte() != 0.toByte(),
-        fromLanguage = UiLanguage.byCode(parcel.readString() ?: "en"),
-        toLanguage = UiLanguage.byCode(parcel.readString() ?: "de"),
-        isChoosingFromLanguage = parcel.readByte() != 0.toByte(),
-        isChoosingToLanguage = parcel.readByte() != 0.toByte(),
-        error = when(val err= parcel.readString()) { null -> null; else -> TranslateErrorEnum.valueOf(err) },
+    constructor(parcel: Parcel) : this(
+        data = TranslateState(
+            fromText = parcel.readString() ?: "",
+            toText = parcel.readString(),
+            isTranslating = parcel.readByte() != 0.toByte(),
+            fromLanguage = UiLanguage.byCode(parcel.readString() ?: "en"),
+            toLanguage = UiLanguage.byCode(parcel.readString() ?: "de"),
+            isChoosingFromLanguage = parcel.readByte() != 0.toByte(),
+            isChoosingToLanguage = parcel.readByte() != 0.toByte(),
+            error = when(val err= parcel.readString()) { null -> null; else -> TranslateErrorEnum.valueOf(err) },
 
-        // Instead of using JSON.parse, custom parse the string to UiHistoryItem using an extension func.
-        history = parcel.createStringArray()?.map {
+            // Instead of using JSON.parse, custom parse the string to UiHistoryItem using an extension func.
+            history = parcel.createStringArray()?.map {
                 it.convertParceledStringToUiHistoryItem()
             } ?: emptyList()
-    )
+        )
     )
 
     override fun describeContents(): Int {
