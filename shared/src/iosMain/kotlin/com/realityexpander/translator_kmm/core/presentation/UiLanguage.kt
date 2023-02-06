@@ -4,7 +4,7 @@ import com.realityexpander.translator_kmm.core.domain.language.Language
 
 actual class UiLanguage(
     actual val language: Language,
-    val imageName: String
+    val imageName: String  // Only implemented on iOS (not part of the common code)
 ) {
     actual companion object {
         actual fun byCode(langCode: String): UiLanguage {
@@ -16,7 +16,7 @@ actual class UiLanguage(
             get() = Language.values().map { language ->
                 UiLanguage(
                     language = language,
-                    imageName = language.langName.lowercase()
+                    imageName = language.langName.lowercase() // similar to the Android code getting XML drawable names
                 )
             }
     }

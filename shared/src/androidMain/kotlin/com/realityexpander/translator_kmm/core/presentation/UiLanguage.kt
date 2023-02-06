@@ -6,8 +6,8 @@ import com.realityexpander.translator_kmm.core.domain.language.Language
 import java.util.Locale
 
 actual data class UiLanguage(
-    @DrawableRes val drawableRes: Int,
-    actual val language: Language
+    actual val language: Language,
+    @DrawableRes val drawableRes: Int  // only implemented on Android (not part of the common code)
 ) {
     fun toLocale(): Locale? {
         return when(language) {
