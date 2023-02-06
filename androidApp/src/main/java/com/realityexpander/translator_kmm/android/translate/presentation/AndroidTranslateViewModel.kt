@@ -40,7 +40,7 @@ class AndroidTranslateViewModel @Inject constructor(
         }
     }
 
-    fun onEvent(event: TranslateEvent) {pro
+    fun onEvent(event: TranslateEvent) {
         viewModel.onEvent(event)
     }
 }
