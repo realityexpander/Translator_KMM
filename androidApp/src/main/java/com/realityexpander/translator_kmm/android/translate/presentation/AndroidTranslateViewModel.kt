@@ -31,7 +31,6 @@ class AndroidTranslateViewModel @Inject constructor(
     val state = viewModel.state
 
     init {
-
         // We collect state here for savedStateHandle to support process death.
         viewModelScope.launch {
             viewModel.state.collect { translateState ->
