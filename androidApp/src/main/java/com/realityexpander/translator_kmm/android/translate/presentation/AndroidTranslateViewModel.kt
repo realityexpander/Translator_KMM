@@ -32,7 +32,7 @@ class AndroidTranslateViewModel @Inject constructor(
 
     init {
 
-        // collect here for savedStateHandle (support process death)
+        // We collect state here for savedStateHandle to support process death.
         viewModelScope.launch {
             viewModel.state.collect { translateState ->
                 savedStateHandle.set("state", TranslateStateAndroidWrapper(translateState))
@@ -40,7 +40,7 @@ class AndroidTranslateViewModel @Inject constructor(
         }
     }
 
-    fun onEvent(event: TranslateEvent) {
+    fun onEvent(event: TranslateEvent) {pro
         viewModel.onEvent(event)
     }
 }

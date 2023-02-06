@@ -48,8 +48,6 @@ class MainActivity : ComponentActivity() {
             android.os.Debug.waitForDebugger()
         }
 
-        println("SavedInstanceState: $savedInstanceState")
-
         setContent {
             TranslatorTheme {
                 Surface(
