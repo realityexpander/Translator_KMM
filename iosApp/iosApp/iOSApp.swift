@@ -4,7 +4,7 @@ import shared
 @main
 struct iOSApp: App {
     
-    private var appModule: any AppModule = AppModuleImpl(parser: IOSVoiceToTextParser())
+    private var appModule: any AppModule = AppModuleImpl(parser: VoiceToTextParserIOSImpl())
     
     #if DEBUG
     init() {

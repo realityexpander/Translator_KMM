@@ -3,7 +3,7 @@ package com.realityexpander.translator_kmm.android.translate.presentation
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.realityexpander.translator_kmm.translate.data.presentation.TranslateStateAndroidWrapper
+import com.realityexpander.translator_kmm.translate.presentation.TranslateStateAndroidWrapper
 import com.realityexpander.translator_kmm.translate.domain.history.IHistoryDataSource
 import com.realityexpander.translator_kmm.translate.domain.translate.TranslateUseCase
 import com.realityexpander.translator_kmm.translate.presentation.TranslateEvent

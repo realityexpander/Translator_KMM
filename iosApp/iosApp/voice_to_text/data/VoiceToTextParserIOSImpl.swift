@@ -1,9 +1,7 @@
 //
-//  IOSVoiceToTextParser.swift
+//  VoiceToTextParserIOSImpl.swift
 //  iosApp
 //
-//  Created by Philipp Lackner on 09.12.22.
-//  Copyright © 2022 orgName. All rights reserved.
 //
 
 import Foundation
@@ -11,7 +9,7 @@ import shared
 import Speech
 import Combine
 
-class IOSVoiceToTextParser: VoiceToTextParser, ObservableObject {
+class VoiceToTextParserIOSImpl: IVoiceToTextParser, ObservableObject {
     
     private let _state = IOSMutableStateFlow(
         initialValue: VoiceToTextParserState(result: "", error: nil, powerRatio: 0.0, isSpeaking: false)

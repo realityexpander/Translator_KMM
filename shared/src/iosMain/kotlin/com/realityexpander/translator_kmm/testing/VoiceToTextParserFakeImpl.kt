@@ -7,7 +7,7 @@ import com.realityexpander.translator_kmm.voice_to_text.domain.VoiceToTextParser
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.update
 
-class FakeVoiceToTextParserImpl: IVoiceToTextParser {
+class VoiceToTextParserFakeImpl: IVoiceToTextParser {
 
     private val _state = MutableStateFlow(VoiceToTextParserState())
     override val state: CommonStateFlow<VoiceToTextParserState>

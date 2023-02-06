@@ -1,10 +1,9 @@
-package com.realityexpander.translator_kmm.translate.data.presentation
+package com.realityexpander.translator_kmm.translate.presentation
 
 import android.os.Parcel
 import android.os.Parcelable
 import com.realityexpander.translator_kmm.core.presentation.UiLanguage
 import com.realityexpander.translator_kmm.translate.domain.translate.TranslateErrorEnum
-import com.realityexpander.translator_kmm.translate.presentation.TranslateState
 import com.realityexpander.translator_kmm.translate.presentation.UiHistoryItem.Companion.convertParceledStringToUiHistoryItem
 import kotlinx.parcelize.RawValue
 

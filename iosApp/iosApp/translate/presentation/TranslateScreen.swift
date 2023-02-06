@@ -2,8 +2,6 @@
 //  TranslateScreen.swift
 //  iosApp
 //
-//  Created by Philipp Lackner on 08.12.22.
-//  Copyright © 2022 orgName. All rights reserved.
 //
 
 import SwiftUI
@@ -13,9 +11,9 @@ struct TranslateScreen: View {
     private var historyDataSource: HistoryDataSource
     private var translateUseCase: Translate
     @ObservedObject var viewModel: IOSTranslateViewModel
-    private let parser: any VoiceToTextParser
+    private let parser: any IVoiceToTextParser
     
-    init(historyDataSource: HistoryDataSource, translateUseCase: Translate, parser: VoiceToTextParser) {
+    init(historyDataSource: HistoryDataSource, translateUseCase: Translate, parser: IVoiceToTextParser) {
         self.historyDataSource = historyDataSource
         self.translateUseCase = translateUseCase
         self.parser = parser

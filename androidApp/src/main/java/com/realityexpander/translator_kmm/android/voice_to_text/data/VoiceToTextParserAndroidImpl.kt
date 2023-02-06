@@ -15,7 +15,7 @@ import com.realityexpander.translator_kmm.voice_to_text.domain.VoiceToTextParser
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.update
 
-class AndroidVoiceToTextParser(
+class VoiceToTextParserAndroidImpl(
     private val app: Application
 ): IVoiceToTextParser, RecognitionListener {
 

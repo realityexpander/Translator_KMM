@@ -2,8 +2,6 @@
 //  VoiceRecorderDisplay.swift
 //  iosApp
 //
-//  Created by Philipp Lackner on 09.12.22.
-//  Copyright © 2022 orgName. All rights reserved.
 //
 
 import SwiftUI

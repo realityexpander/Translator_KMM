@@ -2,8 +2,6 @@
 //  VoiceToTextScreen.swift
 //  iosApp
 //
-//  Created by Philipp Lackner on 09.12.22.
-//  Copyright © 2022 orgName. All rights reserved.
 //
 
 import SwiftUI
@@ -13,12 +11,12 @@ struct VoiceToTextScreen: View {
     private let onResult: (String) -> Void
     
     @ObservedObject var viewModel: IOSVoiceToTextViewModel
-    private let parser: any VoiceToTextParser
+    private let parser: any IVoiceToTextParser
     private let languageCode: String
     
     @Environment(\.presentationMode) var presentation
     
-    init(onResult: @escaping (String) -> Void, parser: any VoiceToTextParser, languageCode: String) {
+    init(onResult: @escaping (String) -> Void, parser: any IVoiceToTextParser, languageCode: String) {
         self.onResult = onResult
         self.parser = parser
         self.languageCode = languageCode

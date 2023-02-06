@@ -44,7 +44,7 @@ class MainActivity : ComponentActivity() {
         // system process death: adb shell am kill com.realityexpander.translator_kmm
         // check app running: adb shell ps | grep translator_kmm
         // Wait for debugger
-        if (BuildConfig.DEBUG && true) {
+        if (BuildConfig.DEBUG && false) {
             android.os.Debug.waitForDebugger()
         }
 

@@ -6,7 +6,7 @@ import com.realityexpander.translator_kmm.translate.domain.history.IHistoryDataS
 import com.realityexpander.translator_kmm.translate.domain.history.HistoryItem
 import kotlinx.coroutines.flow.MutableStateFlow
 
-class FakeHistoryDataSourceImpl: IHistoryDataSource {
+class HistoryDataSourceFakeImpl: IHistoryDataSource {
 
     private val _data = MutableStateFlow<List<HistoryItem>>(emptyList())
 
