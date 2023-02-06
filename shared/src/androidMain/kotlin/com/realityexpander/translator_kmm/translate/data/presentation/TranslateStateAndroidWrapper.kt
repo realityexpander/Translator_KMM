@@ -2,6 +2,7 @@ package com.realityexpander.translator_kmm.translate.data.presentation
 
 import android.os.Parcel
 import android.os.Parcelable
+import android.os.Parcelable.CONTENTS_FILE_DESCRIPTOR
 import com.realityexpander.translator_kmm.core.presentation.UiLanguage
 import com.realityexpander.translator_kmm.translate.domain.translate.TranslateErrorEnum
 import com.realityexpander.translator_kmm.translate.presentation.TranslateState
@@ -12,6 +13,8 @@ import kotlinx.parcelize.RawValue
 data class TranslateStateAndroidWrapper(
     val data: @RawValue TranslateState
 ) : Parcelable {
+
+    // Called when app is returning from the background from process death.
     constructor(parcel: Parcel) : this(data = TranslateState(
         fromText = parcel.readString() ?: "",
         toText = parcel.readString(),
@@ -30,9 +33,10 @@ data class TranslateStateAndroidWrapper(
     )
 
     override fun describeContents(): Int {
-        return Parcelable.CONTENTS_FILE_DESCRIPTOR
+        return 0
     }
 
+    // Called when app is sent to the background.
     override fun writeToParcel(dest: Parcel, flags: Int) {
         dest.writeString(data.fromText)
         dest.writeString(data.toText)
