@@ -4,7 +4,6 @@ plugins {
     id("kotlin-kapt")
     id("dagger.hilt.android.plugin")
     kotlin("plugin.serialization") version Deps.kotlinVersion
-    id("kotlin-parcelize")
 }
 
 android {

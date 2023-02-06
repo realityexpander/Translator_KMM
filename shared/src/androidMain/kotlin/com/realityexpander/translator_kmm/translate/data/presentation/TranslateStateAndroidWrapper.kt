@@ -2,7 +2,6 @@ package com.realityexpander.translator_kmm.translate.data.presentation
 
 import android.os.Parcel
 import android.os.Parcelable
-import android.os.Parcelable.CONTENTS_FILE_DESCRIPTOR
 import com.realityexpander.translator_kmm.core.presentation.UiLanguage
 import com.realityexpander.translator_kmm.translate.domain.translate.TranslateErrorEnum
 import com.realityexpander.translator_kmm.translate.presentation.TranslateState
