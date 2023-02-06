@@ -13,11 +13,12 @@ actual class UiLanguage(
         }
 
         actual val allLanguages: List<UiLanguage>
-            get() = Language.values().map { language ->
-                UiLanguage(
-                    language = language,
-                    imageName = language.langName.lowercase() // similar to the Android code getting XML drawable names
-                )
-            }
+            get() = Language.values()
+                .map { language ->
+                    UiLanguage(
+                        language = language,
+                        imageName = language.langName.lowercase() // similar to the Android code getting XML drawable names
+                    )
+                }
     }
 }
