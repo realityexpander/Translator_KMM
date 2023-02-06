@@ -20,7 +20,7 @@ import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.unit.dp
 import com.realityexpander.translator_kmm.android.R
 import com.realityexpander.translator_kmm.android.translate.presentation.components.*
-import com.realityexpander.translator_kmm.translate.domain.translate.TranslateError
+import com.realityexpander.translator_kmm.translate.domain.translate.TranslateErrorEnum
 import com.realityexpander.translator_kmm.translate.presentation.TranslateEvent
 import com.realityexpander.translator_kmm.translate.presentation.TranslateState
 import java.util.*
@@ -38,10 +38,10 @@ fun TranslateScreen(
 
     LaunchedEffect(key1 = state.error) {
         val message = when(state.error) {
-            TranslateError.SERVICE_UNAVAILABLE -> context.getString(R.string.error_service_unavailable)
-            TranslateError.CLIENT_ERROR -> context.getString(R.string.client_error)
-            TranslateError.SERVER_ERROR -> context.getString(R.string.server_error)
-            TranslateError.UNKNOWN_ERROR -> context.getString(R.string.unknown_error)
+            TranslateErrorEnum.SERVICE_UNAVAILABLE -> context.getString(R.string.error_service_unavailable)
+            TranslateErrorEnum.CLIENT_ERROR -> context.getString(R.string.client_error)
+            TranslateErrorEnum.SERVER_ERROR -> context.getString(R.string.server_error)
+            TranslateErrorEnum.UNKNOWN_ERROR -> context.getString(R.string.unknown_error)
             else -> null
         }
         message?.let {

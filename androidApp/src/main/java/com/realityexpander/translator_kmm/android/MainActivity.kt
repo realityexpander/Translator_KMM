@@ -1,6 +1,7 @@
 package com.realityexpander.translator_kmm.android
 
 import android.os.Bundle
+import android.os.Debug.waitForDebugger
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.isSystemInDarkTheme
@@ -30,6 +31,7 @@ import com.realityexpander.translator_kmm.android.translate.presentation.Transla
 import com.realityexpander.translator_kmm.android.voice_to_text.presentation.AndroidVoiceToTextViewModel
 import com.realityexpander.translator_kmm.android.voice_to_text.presentation.VoiceToTextScreen
 import com.realityexpander.translator_kmm.translate.presentation.TranslateEvent
+import com.realityexpander.translator_kmm.translate.presentation.TranslateState
 import com.realityexpander.translator_kmm.voice_to_text.presentation.VoiceToTextEvent
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -102,6 +104,17 @@ fun TranslatorTheme(
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        // user-initiated process death: adb shell am force-stop com.realityexpander.translator_kmm
+        // system process death: adb shell am kill com.realityexpander.translator_kmm
+        // check app running: adb shell ps | grep translator_kmm
+        // Wait for debugger
+        if (BuildConfig.DEBUG && true) {
+            android.os.Debug.waitForDebugger()
+        }
+
+        println("SavedInstanceState: $savedInstanceState")
+
         setContent {
             TranslatorTheme {
                 Surface(
@@ -124,7 +137,7 @@ fun TranslateRoot() {
     ) {
         composable(route = Routes.TRANSLATE) {
             val viewModel = hiltViewModel<AndroidTranslateViewModel>()
-            val state by viewModel.state.collectAsState()
+            val state by viewModel.state.collectAsState(TranslateState())
 
             val voiceResult by it
                 .savedStateHandle

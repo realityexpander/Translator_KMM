@@ -1,7 +1,7 @@
 package com.realityexpander.translator_kmm.translate.presentation
 
 import com.realityexpander.translator_kmm.core.presentation.UiLanguage
-import com.realityexpander.translator_kmm.translate.domain.translate.TranslateError
+import com.realityexpander.translator_kmm.translate.domain.translate.TranslateErrorEnum
 
 data class TranslateState(
     val fromText: String = "",
@@ -11,6 +11,6 @@ data class TranslateState(
     val toLanguage: UiLanguage = UiLanguage.byCode("de"),
     val isChoosingFromLanguage: Boolean = false,
     val isChoosingToLanguage: Boolean = false,
-    val error: TranslateError? = null,
+    val error: TranslateErrorEnum? = null,
     val history: List<UiHistoryItem> = emptyList()
 )

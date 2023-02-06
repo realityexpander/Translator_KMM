@@ -4,6 +4,7 @@ import com.realityexpander.translator_kmm.core.domain.util.Resource
 import com.realityexpander.translator_kmm.core.domain.util.toCommonStateFlow
 import com.realityexpander.translator_kmm.core.presentation.UiLanguage
 import com.realityexpander.translator_kmm.translate.domain.history.IHistoryDataSource
+import com.realityexpander.translator_kmm.translate.domain.translate.TranslateErrorEnum
 import com.realityexpander.translator_kmm.translate.domain.translate.TranslateUseCase
 import com.realityexpander.translator_kmm.translate.domain.translate.TranslateException
 import kotlinx.coroutines.CoroutineScope
@@ -15,31 +16,41 @@ import kotlinx.coroutines.launch
 class TranslateViewModel(
     private val translate: TranslateUseCase,
     private val historyDataSource: IHistoryDataSource,
-    private val coroutineScope: CoroutineScope?
+    private val coroutineScope: CoroutineScope?,
+    private val savedState: TranslateState? = null
 ) {
 
     private val viewModelScope = coroutineScope ?: CoroutineScope(Dispatchers.Main)
 
-    private val _state = MutableStateFlow(TranslateState())
+    private val _state = MutableStateFlow(savedState ?: TranslateState())
     val state = combine(
         _state,
         historyDataSource.getHistory()
     ) { state, history ->
-        if(state.history != history) {
-            state.copy(
-                history = history.mapNotNull { item ->
-                    UiHistoryItem(
-                        id = item.id ?: return@mapNotNull null,
-                        fromText = item.fromText,
-                        toText = item.toText,
-                        fromLanguage = UiLanguage.byCode(item.fromLanguageCode),
-                        toLanguage = UiLanguage.byCode(item.toLanguageCode)
-                    )
-                }
-            )
-        } else state
-    }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), TranslateState())
-        .toCommonStateFlow()
+
+        // Check for new history items
+        // deep check: val isHistoryDifferent = state.history != history.map { UiHistoryItem(it.id?.toLong() ?: 0, it.fromText, it.toText, UiLanguage.byCode(it.fromLanguageCode), UiLanguage.byCode(it.toLanguageCode)) }
+        val hasHistoryChanged = state.history.size != history.size
+        if(hasHistoryChanged) {
+            // Map database history items to UI model
+            _state.update {
+                it.copy(
+                    history = history.mapNotNull { item ->
+                        UiHistoryItem(
+                            id = item.id ?: return@mapNotNull null,
+                            fromText = item.fromText,
+                            toText = item.toText,
+                            fromLanguage = UiLanguage.byCode(item.fromLanguageCode),
+                            toLanguage = UiLanguage.byCode(item.toLanguageCode)
+                        )
+                    }
+                )
+            }
+            state.copy(history = _state.value.history)
+        } else
+            state
+    }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), savedState ?: TranslateState())
+    .toCommonStateFlow()
 
     private var translateJob: Job? = null
 
@@ -145,7 +156,7 @@ class TranslateViewModel(
                 is Resource.Success -> {
                     _state.update { it.copy(
                         isTranslating = false,
-                        toText = result.data
+                        toText = result.data,
                     ) }
                 }
                 is Resource.Error -> {

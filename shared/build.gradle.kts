@@ -4,6 +4,7 @@ plugins {
     id("com.android.library")
     kotlin("plugin.serialization") version Deps.kotlinVersion
     id("com.squareup.sqldelight")
+    id("kotlin-parcelize")
 }
 
 kotlin {

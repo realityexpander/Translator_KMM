@@ -3,7 +3,7 @@ package com.realityexpander.translator_kmm.translate.data.translate
 import com.realityexpander.translator_kmm.NetworkConstants
 import com.realityexpander.translator_kmm.core.domain.language.Language
 import com.realityexpander.translator_kmm.translate.domain.translate.ITranslateClient
-import com.realityexpander.translator_kmm.translate.domain.translate.TranslateError
+import com.realityexpander.translator_kmm.translate.domain.translate.TranslateErrorEnum
 import com.realityexpander.translator_kmm.translate.domain.translate.TranslateException
 import io.ktor.client.*
 import io.ktor.client.call.*
@@ -33,20 +33,20 @@ class TranslateClientKtorImpl(  // was KtorTranslateClient
                 )
             }
         } catch(e: IOException) {
-            throw TranslateException(TranslateError.SERVICE_UNAVAILABLE)
+            throw TranslateException(TranslateErrorEnum.SERVICE_UNAVAILABLE)
         }
 
         when(result.status.value) {
             in 200..299 -> Unit
-            500 -> throw TranslateException(TranslateError.SERVER_ERROR)
-            in 400..499 -> throw TranslateException(TranslateError.CLIENT_ERROR)
-            else -> throw TranslateException(TranslateError.UNKNOWN_ERROR)
+            500 -> throw TranslateException(TranslateErrorEnum.SERVER_ERROR)
+            in 400..499 -> throw TranslateException(TranslateErrorEnum.CLIENT_ERROR)
+            else -> throw TranslateException(TranslateErrorEnum.UNKNOWN_ERROR)
         }
 
         return try {
             result.body<TranslateResponseDto>().translatedText
         } catch(e: Exception) {
-            throw TranslateException(TranslateError.SERVER_ERROR)
+            throw TranslateException(TranslateErrorEnum.SERVER_ERROR)
         }
     }
 }
