@@ -26,6 +26,8 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.realityexpander.translator_kmm.android.core.presentation.Routes
+import com.realityexpander.translator_kmm.android.core.theme.darkColors
+import com.realityexpander.translator_kmm.android.core.theme.lightColors
 import com.realityexpander.translator_kmm.android.translate.presentation.AndroidTranslateViewModel
 import com.realityexpander.translator_kmm.android.translate.presentation.TranslateScreen
 import com.realityexpander.translator_kmm.android.voice_to_text.presentation.AndroidVoiceToTextViewModel
@@ -139,9 +141,9 @@ fun TranslatorTheme(
     content: @Composable () -> Unit
 ) {
     val colors = if (darkTheme) {
-        com.realityexpander.translator_kmm.android.core.theme.darkColors
+        darkColors
     } else {
-        com.realityexpander.translator_kmm.android.core.theme.lightColors
+        lightColors
     }
     val SfProText = FontFamily(
         Font(

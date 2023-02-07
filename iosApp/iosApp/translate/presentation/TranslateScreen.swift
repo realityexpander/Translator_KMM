@@ -8,16 +8,16 @@ import SwiftUI
 import shared
 
 struct TranslateScreen: View {
-    private var historyDataSource: HistoryDataSource
-    private var translateUseCase: Translate
-    @ObservedObject var viewModel: IOSTranslateViewModel
+    private var historyDataSource: IHistoryDataSource
+    private var translateUseCase: TranslateUseCase
+    @ObservedObject var viewModel: TranslateViewModelIOSImpl
     private let parser: any IVoiceToTextParser
     
-    init(historyDataSource: HistoryDataSource, translateUseCase: Translate, parser: IVoiceToTextParser) {
+    init(historyDataSource: IHistoryDataSource, translateUseCase: TranslateUseCase, parser: IVoiceToTextParser) {
         self.historyDataSource = historyDataSource
         self.translateUseCase = translateUseCase
         self.parser = parser
-        self.viewModel = IOSTranslateViewModel(historyDataSource: historyDataSource, translateUseCase: translateUseCase)
+        self.viewModel = TranslateViewModelIOSImpl(historyDataSource: historyDataSource, translateUseCase: translateUseCase)
     }
     
     var body: some View {
