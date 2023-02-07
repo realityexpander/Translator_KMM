@@ -100,6 +100,7 @@ private fun TranslatedTextField(
         Spacer(modifier = Modifier.height(16.dp))
         Text(
             text = fromText,
+            fontSize = MaterialTheme.typography.h2.fontSize,
             color = MaterialTheme.colors.onSurface
         )
         Spacer(modifier = Modifier.height(16.dp))
@@ -130,6 +131,7 @@ private fun TranslatedTextField(
         Spacer(modifier = Modifier.height(16.dp))
         Text(
             text = toText,
+            fontSize = MaterialTheme.typography.h2.fontSize,
             color = MaterialTheme.colors.onSurface
         )
         Spacer(modifier = Modifier.height(16.dp))
@@ -184,6 +186,7 @@ private fun IdleTranslateTextField(
                 text = stringResource(
                     id = com.realityexpander.translator_kmm.android.R.string.enter_a_text_to_translate
                 ),
+                fontSize = MaterialTheme.typography.h3.fontSize,
                 color = LightBlue
             )
         }

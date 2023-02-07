@@ -15,6 +15,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
+import com.realityexpander.translator_kmm.android.R.string.close
+import com.realityexpander.translator_kmm.android.R.string.open
 import com.realityexpander.translator_kmm.android.core.theme.LightBlue
 import com.realityexpander.translator_kmm.core.presentation.UiLanguage
 
@@ -61,9 +63,9 @@ fun LanguageDropDown(
             Icon(
                 imageVector = if(isOpen) Icons.Default.ArrowDropUp else Icons.Default.ArrowDropDown,
                 contentDescription = if(isOpen) {
-                    stringResource(id = com.realityexpander.translator_kmm.android.R.string.close)
+                    stringResource(id = close)
                 } else {
-                    stringResource(id = com.realityexpander.translator_kmm.android.R.string.open)
+                    stringResource(id = open)
                 },
                 tint = LightBlue,
                 modifier = Modifier.size(30.dp)
