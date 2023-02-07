@@ -18,7 +18,7 @@ struct iOSApp: App {
     
 	var body: some Scene {
 		WindowGroup {
-            ZStack {
+//            ZStack {
 //                NavigationView {
 //                    ZStack {
 //                        VStack {
@@ -30,7 +30,8 @@ struct iOSApp: App {
 //                        }
 //                    }.navigationTitle("Translator")
 //                }
-                    
+//            }
+            NavigationView {
                 ContentView(appModule: appModule).frame(maxWidth: 500)
             }
 		}

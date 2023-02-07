@@ -2,12 +2,12 @@ package com.realityexpander.translator_kmm.translate.domain.translate
 
 import com.realityexpander.translator_kmm.core.domain.language.Language
 import com.realityexpander.translator_kmm.core.domain.util.Resource
-import com.realityexpander.translator_kmm.translate.domain.history.IHistoryDataSource
+import com.realityexpander.translator_kmm.translate.domain.history.IHistoryRepository
 import com.realityexpander.translator_kmm.translate.domain.history.HistoryItem
 
 class TranslateUseCase(  // Translate
     private val client: ITranslateClient,
-    private val historyDataSource: IHistoryDataSource
+    private val historyRepo: IHistoryRepository
 ) {
 
     suspend fun execute(
@@ -20,7 +20,7 @@ class TranslateUseCase(  // Translate
                 fromLanguage, fromText, toLanguage
             )
 
-            historyDataSource.insertHistoryItem(
+            historyRepo.insertHistoryItem(
                 HistoryItem(
                     id = null,
                     fromLanguageCode = fromLanguage.langCode,

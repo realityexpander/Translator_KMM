@@ -8,20 +8,24 @@ import SwiftUI
 import shared
 
 struct TranslateScreen: View {
-    private var historyDataSource: IHistoryDataSource
+    private var historyRepo: IHistoryRepository
     private var translateUseCase: TranslateUseCase
     @ObservedObject var viewModel: TranslateViewModelIOSImpl
     private let parser: any IVoiceToTextParser
     
-    init(historyDataSource: IHistoryDataSource, translateUseCase: TranslateUseCase, parser: IVoiceToTextParser) {
-        self.historyDataSource = historyDataSource
+    @State var isLinkActive = true
+    @State var selection: Int? = nil
+    
+    init(historyRepo: IHistoryRepository, translateUseCase: TranslateUseCase, parser: IVoiceToTextParser) {
+        self.historyRepo = historyRepo
         self.translateUseCase = translateUseCase
         self.parser = parser
-        self.viewModel = TranslateViewModelIOSImpl(historyDataSource: historyDataSource, translateUseCase: translateUseCase)
+        self.viewModel = TranslateViewModelIOSImpl(historyRepo: historyRepo, translateUseCase: translateUseCase)
     }
     
     var body: some View {
         ZStack {
+            
             List {
                 HStack(alignment: .center) {
                     LanguageDropDown(
@@ -46,7 +50,7 @@ struct TranslateScreen: View {
                 }
                 .listRowSeparator(.hidden)
                 .listRowBackground(Color.background)
-                
+
                 TranslateTextField(
                     fromText: Binding(get: { viewModel.state.fromText }, set: { value in
                         viewModel.onEvent(event: TranslateEvent.ChangeTranslationText(text: value))
@@ -59,7 +63,7 @@ struct TranslateScreen: View {
                 )
                 .listRowSeparator(.hidden)
                 .listRowBackground(Color.background)
-                
+
                 if !viewModel.state.history.isEmpty {
                     Text("History")
                         .font(.title)
@@ -68,7 +72,7 @@ struct TranslateScreen: View {
                         .listRowSeparator(.hidden)
                         .listRowBackground(Color.background)
                 }
-                
+
                 ForEach(viewModel.state.history, id: \.self.id) { item in
                     TranslateHistoryItem(
                         item: item,
@@ -103,6 +107,7 @@ struct TranslateScreen: View {
                     .frame(maxWidth: 100, maxHeight: 100)
                 }
             }
+            
         }
         .onAppear {
             viewModel.startObserving()
@@ -110,5 +115,6 @@ struct TranslateScreen: View {
         .onDisappear {
             viewModel.dispose()
         }
+    
     }
 }

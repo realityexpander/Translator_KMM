@@ -9,7 +9,7 @@ import shared
 
 extension TranslateScreen {
     @MainActor class TranslateViewModelIOSImpl: ObservableObject {
-        private var historyDataSource: IHistoryDataSource
+        private var historyRepo: IHistoryRepository
         private var translateUseCase: TranslateUseCase
         
         private let viewModel: TranslateViewModel
@@ -27,10 +27,10 @@ extension TranslateScreen {
         )
         private var handle: DisposableHandle?
         
-        init(historyDataSource: IHistoryDataSource, translateUseCase: TranslateUseCase) {
-            self.historyDataSource = historyDataSource
+        init(historyRepo: IHistoryRepository, translateUseCase: TranslateUseCase) {
+            self.historyRepo = historyRepo
             self.translateUseCase = translateUseCase
-            self.viewModel = TranslateViewModel(translate: translateUseCase, historyDataSource: historyDataSource, coroutineScope: nil, savedState: nil)
+            self.viewModel = TranslateViewModel(translate: translateUseCase, historyRepo: historyRepo, coroutineScope: nil, savedState: nil)
         }
         
         func onEvent(event: TranslateEvent) {

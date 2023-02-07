@@ -1,8 +1,8 @@
 package com.realityexpander.translator_kmm.di
 
-import com.realityexpander.translator_kmm.translate.data.local.HistoryDataSourceFakeImpl
+import com.realityexpander.translator_kmm.translate.data.local.HistoryRepositoryFakeImpl
 import com.realityexpander.translator_kmm.translate.data.remote.FakeTranslateClient
-import com.realityexpander.translator_kmm.translate.domain.history.IHistoryDataSource
+import com.realityexpander.translator_kmm.translate.domain.history.IHistoryRepository
 import com.realityexpander.translator_kmm.translate.domain.translate.TranslateUseCase
 import com.realityexpander.translator_kmm.translate.domain.translate.ITranslateClient
 import com.realityexpander.translator_kmm.voice_to_text.data.FakeVoiceToTextParser
@@ -25,15 +25,15 @@ object TestAppModule {
 
     @Provides
     @Singleton
-    fun provideFakeHistoryDataSource(): IHistoryDataSource {
-        return HistoryDataSourceFakeImpl()
+    fun provideFakeHistoryRepository(): IHistoryRepository {
+        return HistoryRepositoryFakeImpl()
     }
 
     @Provides
     @Singleton
     fun provideTranslateUseCase(
         client: ITranslateClient,
-        dataSource: IHistoryDataSource
+        dataSource: IHistoryRepository
     ): TranslateUseCase {
         return TranslateUseCase(client, dataSource)
     }

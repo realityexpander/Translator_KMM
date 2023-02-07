@@ -3,8 +3,7 @@ package com.realityexpander.translator_kmm.translate.presentation
 import com.realityexpander.translator_kmm.core.domain.util.Resource
 import com.realityexpander.translator_kmm.core.domain.util.toCommonStateFlow
 import com.realityexpander.translator_kmm.core.presentation.UiLanguage
-import com.realityexpander.translator_kmm.translate.domain.history.IHistoryDataSource
-import com.realityexpander.translator_kmm.translate.domain.translate.TranslateErrorEnum
+import com.realityexpander.translator_kmm.translate.domain.history.IHistoryRepository
 import com.realityexpander.translator_kmm.translate.domain.translate.TranslateUseCase
 import com.realityexpander.translator_kmm.translate.domain.translate.TranslateException
 import kotlinx.coroutines.CoroutineScope
@@ -15,7 +14,7 @@ import kotlinx.coroutines.launch
 
 class TranslateViewModel(
     private val translate: TranslateUseCase,
-    private val historyDataSource: IHistoryDataSource,
+    private val historyRepo: IHistoryRepository,
     private val coroutineScope: CoroutineScope?,
     private val savedState: TranslateState? = null
 ) {
@@ -25,7 +24,7 @@ class TranslateViewModel(
     private val _state = MutableStateFlow(savedState ?: TranslateState())
     val state = combine(
         _state,
-        historyDataSource.getHistory()
+        historyRepo.getHistory()
     ) { state, history ->
 
         // Check for new history items

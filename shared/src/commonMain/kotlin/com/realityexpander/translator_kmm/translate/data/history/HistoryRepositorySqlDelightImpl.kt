@@ -3,16 +3,16 @@ package com.realityexpander.translator_kmm.translate.data.history
 import com.realityexpander.translator_kmm.core.domain.util.CommonFlow
 import com.realityexpander.translator_kmm.core.domain.util.toCommonFlow
 import com.realityexpander.translator_kmm.database.TranslateDatabase
-import com.realityexpander.translator_kmm.translate.domain.history.IHistoryDataSource
+import com.realityexpander.translator_kmm.translate.domain.history.IHistoryRepository
 import com.realityexpander.translator_kmm.translate.domain.history.HistoryItem
 import com.squareup.sqldelight.runtime.coroutines.asFlow
 import com.squareup.sqldelight.runtime.coroutines.mapToList
 import kotlinx.coroutines.flow.map
 import kotlinx.datetime.Clock
 
-class HistoryDataSourceSqlDelightImpl(  // was SqlDelightHistoryDataSource
+class HistoryRepositorySqlDelightImpl(  // was SqlDelightHistoryDataSource
     db: TranslateDatabase
-): IHistoryDataSource {
+): IHistoryRepository {
 
     private val queries = db.translateQueries
 

@@ -2,11 +2,11 @@ package com.realityexpander.translator_kmm.android.di
 
 import android.app.Application
 import com.realityexpander.translator_kmm.database.TranslateDatabase
-import com.realityexpander.translator_kmm.translate.data.history.HistoryDataSourceSqlDelightImpl
+import com.realityexpander.translator_kmm.translate.data.history.HistoryRepositorySqlDelightImpl
 import com.realityexpander.translator_kmm.translate.data.local.DatabaseDriverFactory
 import com.realityexpander.translator_kmm.translate.data.remote.HttpClientFactory
 import com.realityexpander.translator_kmm.translate.data.translate.TranslateClientKtorImpl
-import com.realityexpander.translator_kmm.translate.domain.history.IHistoryDataSource
+import com.realityexpander.translator_kmm.translate.domain.history.IHistoryRepository
 import com.realityexpander.translator_kmm.translate.domain.translate.TranslateUseCase
 import com.realityexpander.translator_kmm.translate.domain.translate.ITranslateClient
 import com.squareup.sqldelight.db.SqlDriver
@@ -41,16 +41,16 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideHistoryDataSource(driver: SqlDriver): IHistoryDataSource {
-        return HistoryDataSourceSqlDelightImpl(TranslateDatabase(driver))
+    fun provideHistoryRepository(driver: SqlDriver): IHistoryRepository {
+        return HistoryRepositorySqlDelightImpl(TranslateDatabase(driver))
     }
 
     @Provides
     @Singleton
     fun provideTranslateUseCase(
         client: ITranslateClient,
-        dataSource: IHistoryDataSource
+        repository: IHistoryRepository
     ): TranslateUseCase {
-        return TranslateUseCase(client, dataSource)
+        return TranslateUseCase(client, repository)
     }
 }

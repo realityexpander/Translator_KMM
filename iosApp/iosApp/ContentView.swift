@@ -9,8 +9,9 @@ struct ContentView: View {
         ZStack {
             Color.background
                 .ignoresSafeArea()
+            
             TranslateScreen(
-                historyDataSource: appModule.historyDataSource,
+                historyRepo: appModule.historyRepo,
                 translateUseCase: appModule.translateUseCase,
                 parser: appModule.voiceParser
             )
