@@ -1,6 +1,6 @@
 package com.realityexpander.translator_kmm.di
 
-import com.realityexpander.translator_kmm.translate.data.local.FakeHistoryDataSource
+import com.realityexpander.translator_kmm.translate.data.local.HistoryDataSourceFakeImpl
 import com.realityexpander.translator_kmm.translate.data.remote.FakeTranslateClient
 import com.realityexpander.translator_kmm.translate.domain.history.IHistoryDataSource
 import com.realityexpander.translator_kmm.translate.domain.translate.TranslateUseCase
@@ -26,7 +26,7 @@ object TestAppModule {
     @Provides
     @Singleton
     fun provideFakeHistoryDataSource(): IHistoryDataSource {
-        return FakeHistoryDataSource()
+        return HistoryDataSourceFakeImpl()
     }
 
     @Provides

@@ -147,11 +147,13 @@ class TranslateViewModel(
             _state.update { it.copy(
                 isTranslating = true
             ) }
+
             val result = translate.execute(
                 fromLanguage = state.fromLanguage.language,
                 fromText = state.fromText,
                 toLanguage = state.toLanguage.language
             )
+
             when(result) {
                 is Resource.Success -> {
                     _state.update { it.copy(

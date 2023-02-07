@@ -6,7 +6,7 @@ import assertk.assertions.isEqualTo
 import assertk.assertions.isFalse
 import assertk.assertions.isTrue
 import com.realityexpander.translator_kmm.core.presentation.UiLanguage
-import com.realityexpander.translator_kmm.translate.data.local.FakeHistoryDataSource
+import com.realityexpander.translator_kmm.translate.data.local.HistoryDataSourceFakeImpl
 import com.realityexpander.translator_kmm.translate.data.remote.FakeTranslateClient
 import com.realityexpander.translator_kmm.translate.domain.history.HistoryItem
 import com.realityexpander.translator_kmm.translate.domain.translate.TranslateUseCase
@@ -20,12 +20,12 @@ class TranslateViewModelTest {
 
     private lateinit var viewModel: TranslateViewModel
     private lateinit var client: FakeTranslateClient
-    private lateinit var dataSource: FakeHistoryDataSource
+    private lateinit var dataSource: HistoryDataSourceFakeImpl
 
     @BeforeTest
     fun setUp() {
         client = FakeTranslateClient()
-        dataSource = FakeHistoryDataSource()
+        dataSource = HistoryDataSourceFakeImpl()
         val translate = TranslateUseCase(
             client = client,
             historyDataSource = dataSource
