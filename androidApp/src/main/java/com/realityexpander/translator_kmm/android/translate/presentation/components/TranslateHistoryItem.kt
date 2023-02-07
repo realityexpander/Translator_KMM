@@ -41,7 +41,8 @@ fun TranslateHistoryItem(
             Text(
                 text = item.fromText,
                 color = LightBlue,
-                style = MaterialTheme.typography.body2
+                style = MaterialTheme.typography.body2,
+                fontSize = MaterialTheme.typography.h3.fontSize,
             )
         }
         Spacer(modifier = Modifier.height(24.dp))
@@ -55,7 +56,8 @@ fun TranslateHistoryItem(
                 text = item.toText,
                 color = MaterialTheme.colors.onSurface,
                 style = MaterialTheme.typography.body1,
-                fontWeight = FontWeight.Medium
+                fontWeight = FontWeight.Medium,
+                fontSize = MaterialTheme.typography.h3.fontSize,
             )
         }
     }
