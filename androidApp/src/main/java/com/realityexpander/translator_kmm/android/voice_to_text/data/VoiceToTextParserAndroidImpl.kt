@@ -42,7 +42,7 @@ class VoiceToTextParserAndroidImpl(
         recognizer.setRecognitionListener(this)
         recognizer.startListening(intent)
         _state.update { it.copy(
-            isSpeaking = true
+            isRecognizerListening = true
         ) }
     }
 
@@ -74,7 +74,7 @@ class VoiceToTextParserAndroidImpl(
     override fun onBufferReceived(p0: ByteArray?) = Unit
 
     override fun onEndOfSpeech() {
-        _state.update { it.copy(isSpeaking = false) }
+        _state.update { it.copy(isRecognizerListening = false) }
     }
 
     override fun onError(code: Int) {

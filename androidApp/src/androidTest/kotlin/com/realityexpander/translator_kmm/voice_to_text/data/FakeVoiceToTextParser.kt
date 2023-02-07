@@ -18,14 +18,14 @@ class FakeVoiceToTextParser: IVoiceToTextParser {
     override fun startListening(languageCode: String) {
         _state.update { it.copy(
             result = "",
-            isSpeaking = true
+            isRecognizerListening = true
         ) }
     }
 
     override fun stopListening() {
         _state.update { it.copy(
             result =  voiceResult,
-            isSpeaking = false
+            isRecognizerListening = false
         ) }
     }
 

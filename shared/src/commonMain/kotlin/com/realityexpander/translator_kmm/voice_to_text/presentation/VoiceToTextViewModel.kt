@@ -18,7 +18,7 @@ class VoiceToTextViewModel(
     val state = _state.combine(parser.state) { state, voiceResult ->
 
         val isError = !state.isRecordPermissionGranted || voiceResult.error != null
-        val isResultVisible = voiceResult.result.isNotBlank() && !voiceResult.isSpeaking
+        val isResultVisible = voiceResult.result.isNotBlank() && !voiceResult.isRecognizerListening
         state.copy(
             spokenText = voiceResult.result,
             recordError = if (state.isRecordPermissionGranted) {
@@ -31,10 +31,10 @@ class VoiceToTextViewModel(
                     DisplayState.ERROR
                 isResultVisible ->
                     DisplayState.RESULT_VISIBLE
-                voiceResult.isSpeaking ->
-                    DisplayState.SPEAKING
+                voiceResult.isRecognizerListening ->
+                    DisplayState.LISTENING
                 else ->
-                    DisplayState.WAITING_TO_SPEAK
+                    DisplayState.WAITING_TO_LISTEN
             }
         )
     }
@@ -44,7 +44,7 @@ class VoiceToTextViewModel(
     init {
         viewModelScope.launch {
             while (true) {
-                if (state.value.displayState == DisplayState.SPEAKING) {
+                if (state.value.displayState == DisplayState.LISTENING) {
                     _state.update {
                         it.copy(
                             powerRatios = it.powerRatios + parser.state.value.powerRatio
@@ -65,7 +65,8 @@ class VoiceToTextViewModel(
                 parser.reset()
                 _state.update { VoiceToTextState() }
             }
-            is VoiceToTextEvent.ToggleRecording -> toggleRecording(event.languageCode)
+            is VoiceToTextEvent.ToggleRecording ->
+                toggleRecording(event.languageCode)
             else -> Unit
         }
     }
@@ -74,7 +75,7 @@ class VoiceToTextViewModel(
         _state.update { it.copy(powerRatios = emptyList()) }
 
         parser.cancel()
-        if (state.value.displayState == DisplayState.SPEAKING) {
+        if (state.value.displayState == DisplayState.LISTENING) {
             parser.stopListening()
         } else {
             parser.startListening(languageCode)
