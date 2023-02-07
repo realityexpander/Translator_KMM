@@ -16,20 +16,25 @@ class VoiceToTextViewModel(
 
     private val _state = MutableStateFlow(VoiceToTextState())
     val state = _state.combine(parser.state) { state, voiceResult ->
+
+        val isError = !state.isRecordPermissionGranted || voiceResult.error != null
+        val isResultVisible = voiceResult.result.isNotBlank() && !voiceResult.isSpeaking
         state.copy(
             spokenText = voiceResult.result,
-            recordError = if (state.canRecord) {
-                voiceResult.error
-            } else {
-                "Can't record without permission"
-            },
+            recordError = if (state.isRecordPermissionGranted) {
+                    voiceResult.error
+                } else {
+                    "Can't record without permission"
+                },
             displayState = when {
-                !state.canRecord || voiceResult.error != null -> DisplayState.ERROR
-                voiceResult.result.isNotBlank() && !voiceResult.isSpeaking -> {
-                    DisplayState.DISPLAYING_RESULTS
-                }
-                voiceResult.isSpeaking -> DisplayState.SPEAKING
-                else -> DisplayState.WAITING_TO_TALK
+                isError ->
+                    DisplayState.ERROR
+                isResultVisible ->
+                    DisplayState.RESULT_VISIBLE
+                voiceResult.isSpeaking ->
+                    DisplayState.SPEAKING
+                else ->
+                    DisplayState.WAITING_TO_SPEAK
             }
         )
     }
@@ -54,7 +59,7 @@ class VoiceToTextViewModel(
     fun onEvent(event: VoiceToTextEvent) {
         when (event) {
             is VoiceToTextEvent.PermissionResult -> {
-                _state.update { it.copy(canRecord = event.isGranted) }
+                _state.update { it.copy(isRecordPermissionGranted = event.isGranted) }
             }
             VoiceToTextEvent.Reset -> {
                 parser.reset()

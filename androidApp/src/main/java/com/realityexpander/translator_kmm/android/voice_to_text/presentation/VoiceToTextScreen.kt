@@ -65,7 +65,7 @@ fun VoiceToTextScreen(
             ) {
                 FloatingActionButton(
                     onClick = {
-                        if (state.displayState != DisplayState.DISPLAYING_RESULTS) {
+                        if (state.displayState != DisplayState.RESULT_VISIBLE) {
                             onEvent(VoiceToTextEvent.ToggleRecording(languageCode))
                         } else {
                             onResult(state.spokenText)
@@ -85,7 +85,7 @@ fun VoiceToTextScreen(
                                     modifier = Modifier.size(50.dp)
                                 )
                             }
-                            DisplayState.DISPLAYING_RESULTS -> {
+                            DisplayState.RESULT_VISIBLE -> {
                                 Icon(
                                     imageVector = Icons.Rounded.Check,
                                     contentDescription = stringResource(id = R.string.apply),
@@ -102,7 +102,7 @@ fun VoiceToTextScreen(
                         }
                     }
                 }
-                if (state.displayState == DisplayState.DISPLAYING_RESULTS) {
+                if (state.displayState == DisplayState.RESULT_VISIBLE) {
                     IconButton(onClick = {
                         onEvent(VoiceToTextEvent.ToggleRecording(languageCode))
                     }) {
@@ -153,7 +153,7 @@ fun VoiceToTextScreen(
             ) {
                 AnimatedContent(targetState = state.displayState) { displayState ->
                     when(displayState) {
-                        DisplayState.WAITING_TO_TALK -> {
+                        DisplayState.WAITING_TO_SPEAK -> {
                             Text(
                                 text = stringResource(id = R.string.start_talking),
                                 style = MaterialTheme.typography.h2,
@@ -168,7 +168,7 @@ fun VoiceToTextScreen(
                                     .height(100.dp)
                             )
                         }
-                        DisplayState.DISPLAYING_RESULTS -> {
+                        DisplayState.RESULT_VISIBLE -> {
                             Text(
                                 text = state.spokenText,
                                 style = MaterialTheme.typography.h2,

@@ -35,6 +35,9 @@ import com.realityexpander.translator_kmm.translate.presentation.TranslateState
 import com.realityexpander.translator_kmm.voice_to_text.presentation.VoiceToTextEvent
 import dagger.hilt.android.AndroidEntryPoint
 
+// Mind Map
+// https://www.mindmeister.com/map/2590156097
+
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
