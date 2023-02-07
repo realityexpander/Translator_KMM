@@ -13,7 +13,7 @@ import Combine
     private let languageCode: String
     
     private let viewModel: VoiceToTextViewModel
-    @Published var state = VoiceToTextState(powerRatios: [], spokenText: "", canRecord: false, recordError: nil, displayState: nil)
+    @Published var state = VoiceToTextState(powerRatios: [], spokenText: "", isRecordPermissionGranted: false, recordError: nil, displayState: nil)
     private var handle: DisposableHandle?
     
     init(parser: IVoiceToTextParser, languageCode: String) {

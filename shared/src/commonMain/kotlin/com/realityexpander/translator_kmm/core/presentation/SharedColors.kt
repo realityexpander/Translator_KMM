@@ -1,6 +1,6 @@
 package com.realityexpander.translator_kmm.core.presentation
 
-object Colors {
+object SharedColors {
     const val LightBlue = 0xFFA8A5BB
     const val LightBlueGrey = 0xFFF6F4F4
     const val AccentViolet = 0xFF5643C9

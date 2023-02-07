@@ -27,10 +27,10 @@ extension TranslateScreen {
         )
         private var handle: DisposableHandle?
         
-        init(historyDataSource: HistoryDataSource, translateUseCase: Translate) {
+        init(historyDataSource: IHistoryDataSource, translateUseCase: TranslateUseCase) {
             self.historyDataSource = historyDataSource
             self.translateUseCase = translateUseCase
-            self.viewModel = TranslateViewModel(translate: translateUseCase, historyDataSource: historyDataSource, coroutineScope: nil)
+            self.viewModel = TranslateViewModel(translate: translateUseCase, historyDataSource: historyDataSource, coroutineScope: nil, savedState: nil)
         }
         
         func onEvent(event: TranslateEvent) {

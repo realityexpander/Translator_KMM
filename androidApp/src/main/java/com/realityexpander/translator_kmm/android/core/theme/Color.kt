@@ -3,13 +3,13 @@ package com.realityexpander.translator_kmm.android.core.theme
 import androidx.compose.material.darkColors
 import androidx.compose.material.lightColors
 import androidx.compose.ui.graphics.Color
-import com.realityexpander.translator_kmm.core.presentation.Colors
+import com.realityexpander.translator_kmm.core.presentation.SharedColors
 
-val AccentViolet = Color(Colors.AccentViolet)
-val LightBlue = Color(Colors.LightBlue)
-val LightBlueGrey = Color(Colors.LightBlueGrey)
-val TextBlack = Color(Colors.TextBlack)
-val DarkGrey = Color(Colors.DarkGrey)
+val AccentViolet = Color(SharedColors.AccentViolet)
+val LightBlue = Color(SharedColors.LightBlue)
+val LightBlueGrey = Color(SharedColors.LightBlueGrey)
+val TextBlack = Color(SharedColors.TextBlack)
+val DarkGrey = Color(SharedColors.DarkGrey)
 
 val lightColors = lightColors(
     primary = AccentViolet,

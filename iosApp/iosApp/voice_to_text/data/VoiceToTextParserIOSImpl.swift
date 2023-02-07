@@ -12,7 +12,7 @@ import Combine
 class VoiceToTextParserIOSImpl: IVoiceToTextParser, ObservableObject {
     
     private let _state = IOSMutableStateFlow(
-        initialValue: VoiceToTextParserState(result: "", error: nil, powerRatio: 0.0, isSpeaking: false)
+        initialValue: VoiceToTextParserState(result: "", error: nil, powerRatio: 0.0, isRecognizerListening: false)
     )
     var state: CommonStateFlow<VoiceToTextParserState> { _state }
     
@@ -33,7 +33,7 @@ class VoiceToTextParserIOSImpl: IVoiceToTextParser, ObservableObject {
     
     func reset() {
         self.stopListening()
-        _state.value = VoiceToTextParserState(result: "", error: nil, powerRatio: 0.0, isSpeaking: false)
+        _state.value = VoiceToTextParserState(result: "", error: nil, powerRatio: 0.0, isRecognizerListening: false)
     }
     
     func startListening(languageCode: String) {
@@ -86,20 +86,20 @@ class VoiceToTextParserIOSImpl: IVoiceToTextParser, ObservableObject {
                 
                 try self?.audioEngine?.start()
                 
-                self?.updateState(isSpeaking: true)
+                self?.updateState(isRecognizerListening: true)
                 
                 self?.micPowerCancellable = self?.micPowerRatio
                     .sink { [weak self] ratio in
                         self?.updateState(powerRatio: ratio)
                     }
             } catch {
-                self?.updateState(error: error.localizedDescription, isSpeaking: false)
+                self?.updateState(error: error.localizedDescription, isRecognizerListening: false)
             }
         }
     }
     
     func stopListening() {
-        self.updateState(isSpeaking: false)
+        self.updateState(isRecognizerListening: false)
         
         micPowerCancellable = nil
         micObserver.release()
@@ -135,13 +135,13 @@ class VoiceToTextParserIOSImpl: IVoiceToTextParser, ObservableObject {
         }
     }
     
-    private func updateState(result: String? = nil, error: String? = nil, powerRatio: CGFloat? = nil, isSpeaking: Bool? = nil) {
+    private func updateState(result: String? = nil, error: String? = nil, powerRatio: CGFloat? = nil, isRecognizerListening: Bool? = nil) {
         let currentState = _state.value
         _state.value = VoiceToTextParserState(
             result: result ?? currentState?.result ?? "",
             error: error ?? currentState?.error,
             powerRatio: Float(powerRatio ?? CGFloat(currentState?.powerRatio ?? 0.0)),
-            isSpeaking: isSpeaking ?? currentState?.isSpeaking ?? false
+            isRecognizerListening: isRecognizerListening ?? currentState?.isRecognizerListening ?? false
         )
     }
     

@@ -14,10 +14,24 @@ struct iOSApp: App {
     }
     #endif
     
+    @State private var isNavigationViewPresented = true
+    
 	var body: some Scene {
 		WindowGroup {
-            NavigationView {
-                ContentView(appModule: appModule)
+            ZStack {
+//                NavigationView {
+//                    ZStack {
+//                        VStack {
+//                            Button("hello") {
+//                                //nothing
+//                            }.buttonStyle(.bordered)
+//
+//                            Text("yo")
+//                        }
+//                    }.navigationTitle("Translator")
+//                }
+                    
+                ContentView(appModule: appModule).frame(maxWidth: 500)
             }
 		}
 	}

@@ -27,9 +27,9 @@ struct VoiceRecorderButton: View {
     
     var icon: some View {
         switch displayState {
-        case .speaking:
+        case .listening:
             return Image(systemName: "stop.fill")
-        case .displayingResults:
+        case .resultVisible:
             return Image(systemName: "checkmark")
         default:
             return Image(uiImage: UIImage(named: "mic")!)
@@ -40,7 +40,7 @@ struct VoiceRecorderButton: View {
 struct VoiceRecorderButton_Previews: PreviewProvider {
     static var previews: some View {
         VoiceRecorderButton(
-            displayState: .speaking,
+            displayState: .listening,
             onClick: {}
         )
     }

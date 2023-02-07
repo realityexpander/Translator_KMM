@@ -21,7 +21,7 @@ extension Color {
         )
     }
     
-    private static let colors = Colors()
+    private static let colors = SharedColors()
     static let lightBlue = Color(hex: colors.LightBlue)
     static let lightBlueGrey = Color(hex: colors.LightBlueGrey)
     static let accentViolet = Color(hex: colors.AccentViolet)

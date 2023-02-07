@@ -34,9 +34,9 @@ struct VoiceToTextScreen: View {
             HStack {
                 Spacer()
                 VoiceRecorderButton(
-                    displayState: viewModel.state.displayState ?? .waitingToTalk,
+                    displayState: viewModel.state.displayState ?? .waitingToListen,
                     onClick: {
-                        if viewModel.state.displayState != .displayingResults {
+                        if viewModel.state.displayState != .resultVisible {
                             viewModel.onEvent(event: VoiceToTextEvent.ToggleRecording(languageCode: languageCode))
                         } else {
                             onResult(viewModel.state.spokenText)
@@ -44,7 +44,7 @@ struct VoiceToTextScreen: View {
                         }
                     }
                 )
-                if viewModel.state.displayState == .displayingResults {
+                if viewModel.state.displayState == .resultVisible {
                     Button(action: {
                         viewModel.onEvent(event: VoiceToTextEvent.ToggleRecording(languageCode: languageCode))
                     }) {
@@ -67,12 +67,12 @@ struct VoiceToTextScreen: View {
     var mainView: some View {
         if let displayState = viewModel.state.displayState {
             switch displayState {
-            case .waitingToTalk:
+            case .waitingToListen:
                 return AnyView(
                     Text("Click record and start talking.")
                         .font(.title2)
                 )
-            case .displayingResults:
+            case .resultVisible:
                 return AnyView(
                     Text(viewModel.state.spokenText)
                         .font(.title2)
@@ -83,7 +83,7 @@ struct VoiceToTextScreen: View {
                         .font(.title2)
                         .foregroundColor(.red)
                 )
-            case .speaking:
+            case .listening:
                 return AnyView(
                     VoiceRecorderDisplay(
                         powerRatios: viewModel.state.powerRatios.map { Double(truncating: $0) }
