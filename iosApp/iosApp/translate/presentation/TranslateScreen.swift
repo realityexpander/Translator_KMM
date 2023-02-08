@@ -27,6 +27,24 @@ struct TranslateScreen: View {
         ZStack {
             
             List {
+                
+                // Show Text Query field
+                TranslateTextField(
+                    fromText: Binding(
+                        get: { viewModel.state.fromText },
+                        set: { value in
+                            viewModel.onEvent(event: TranslateEvent.ChangeTranslationText(text: value))
+                        }),
+                    toText: viewModel.state.toText,
+                    isTranslating: viewModel.state.isTranslating,
+                    fromLanguage: viewModel.state.fromLanguage,
+                    toLanguage: viewModel.state.toLanguage,
+                    onTranslateEvent: { viewModel.onEvent(event: $0) }
+                )
+                .listRowSeparator(.hidden)
+                .listRowBackground(Color.background)
+                
+                // Show Language translator From/To Pickers
                 HStack(alignment: .center) {
                     LanguageDropDown(
                         language: viewModel.state.fromLanguage,
@@ -51,19 +69,7 @@ struct TranslateScreen: View {
                 .listRowSeparator(.hidden)
                 .listRowBackground(Color.background)
 
-                TranslateTextField(
-                    fromText: Binding(get: { viewModel.state.fromText }, set: { value in
-                        viewModel.onEvent(event: TranslateEvent.ChangeTranslationText(text: value))
-                    }),
-                    toText: viewModel.state.toText,
-                    isTranslating: viewModel.state.isTranslating,
-                    fromLanguage: viewModel.state.fromLanguage,
-                    toLanguage: viewModel.state.toLanguage,
-                    onTranslateEvent: { viewModel.onEvent(event: $0) }
-                )
-                .listRowSeparator(.hidden)
-                .listRowBackground(Color.background)
-
+                // Show History of Translations
                 if !viewModel.state.history.isEmpty {
                     Text("History")
                         .font(.title)
@@ -87,6 +93,7 @@ struct TranslateScreen: View {
             .listStyle(.plain)
             .buttonStyle(.plain)
             
+            // Listen for Speech to Translate
             VStack {
                 Spacer()
                 NavigationLink(

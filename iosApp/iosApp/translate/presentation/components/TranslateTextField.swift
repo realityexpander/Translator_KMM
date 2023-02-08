@@ -17,11 +17,15 @@ struct TranslateTextField: View {
     
     var body: some View {
         if toText == nil || isTranslating {
-            IdleTextField(fromText: $fromText, isTranslating: isTranslating, onTranslateEvent: onTranslateEvent)
-                .gradientSurface()
-                .cornerRadius(15)
-                .animation(.easeInOut, value: isTranslating)
-                .shadow(radius: 4)
+            QueryTextField(
+                fromText: $fromText,
+                isTranslating: isTranslating,
+                onTranslateEvent: onTranslateEvent
+            )
+            .gradientSurface()
+            .cornerRadius(15)
+            .animation(.easeInOut, value: isTranslating)
+            .shadow(radius: 4)
         } else {
             TranslatedTextField(
                 fromText: fromText,
@@ -60,35 +64,42 @@ struct TranslateTextField_Previews: PreviewProvider {
 
 private extension TranslateTextField {
     
-    struct IdleTextField: View {
-        @Binding var fromText: String
+    struct QueryTextField: View {
+        @Binding var fromText: String  // two-way binding (no need for callback fun like kotlin)
         let isTranslating: Bool
         let onTranslateEvent: (TranslateEvent) -> Void
         
+        private let placeHolder: String = "Enter text to translate"
+        
         var body: some View {
-            TextEditor(text: $fromText)
-                .frame(
-                    maxWidth: .infinity,
-                    minHeight: 200,
-                    alignment: .topLeading
-                )
-                .padding()
-                .foregroundColor(Color.onSurface)
-                .overlay(alignment: .bottomTrailing) {
-                    ProgressButton(
-                        text: "Translate",
-                        isLoading: isTranslating,
-                        onClick: {
-                            onTranslateEvent(TranslateEvent.Translate())
-                        }
+            ZStack {
+                Text(fromText=="" ? placeHolder : "")
+                    .foregroundColor(Color.onSurface).opacity(0.5)
+                TextEditor(text: $fromText)
+                    .frame(
+                        maxWidth: .infinity,
+                        minHeight: 200,
+                        alignment: .topLeading
                     )
-                    .padding(.trailing)
-                    .padding(.bottom)
-                }
-                .onAppear {
-                    UITextView.appearance().backgroundColor = .clear
-                }
+                    .padding()
+                    .foregroundColor(Color.onSurface)
+                    .overlay(alignment: .bottomTrailing) {  // sets a layer above the TextEditor
+                        ProgressButton(
+                            text: "Translate",
+                            isLoading: isTranslating,
+                            onClick: {
+                                onTranslateEvent(TranslateEvent.Translate())
+                            }
+                        )
+                        .padding(.trailing)
+                        .padding(.bottom)
+                    }
+                    .onAppear {
+                        UITextView.appearance().backgroundColor = .clear // update the background to remove unwanted color
+                    }
+            }
         }
+            
     }
     
     struct TranslatedTextField: View {
@@ -102,11 +113,16 @@ private extension TranslateTextField {
         
         var body: some View {
             VStack(alignment: .leading) {
+                
+                // Show FROM Language & FROM Translation
                 LanguageDisplay(language: fromLanguage)
                 Text(fromText)
                     .foregroundColor(.onSurface)
+                
                 HStack {
                     Spacer()
+                    
+                    // Copy from Text
                     Button(action: {
                         UIPasteboard.general.setValue(
                             fromText,
@@ -117,6 +133,8 @@ private extension TranslateTextField {
                             .renderingMode(.template)
                             .foregroundColor(.lightBlue)
                     }
+                    
+                    // Close the Translation
                     Button(action: {
                         onTranslateEvent(TranslateEvent.CloseTranslation())
                     }) {
@@ -126,13 +144,17 @@ private extension TranslateTextField {
                 }
                 Divider()
                     .padding()
+                
+                // Show TO Language & TO Translation
                 LanguageDisplay(language: toLanguage)
                     .padding(.bottom)
                 Text(toText)
                     .foregroundColor(.onSurface)
                 
                 HStack {
-                    Spacer()
+                    Spacer()  // use up empty space
+                    
+                    // Copy Text button
                     Button(action: {
                         UIPasteboard.general.setValue(
                             toText,
@@ -143,6 +165,8 @@ private extension TranslateTextField {
                             .renderingMode(.template)
                             .foregroundColor(.lightBlue)
                     }
+                    
+                    // Speak the "To Text"
                     Button(action: {
                         tts.speak(
                             text: toText,
