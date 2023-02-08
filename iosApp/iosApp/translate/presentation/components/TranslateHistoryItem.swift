@@ -2,9 +2,6 @@
 //  TranslateHistoryItem.swift
 //  iosApp
 //
-//  Created by Philipp Lackner on 08.12.22.
-//  Copyright © 2022 orgName. All rights reserved.
-//
 
 import SwiftUI
 import shared
@@ -20,7 +17,7 @@ struct TranslateHistoryItem: View {
                     SmallLanguageIcon(language: item.fromLanguage)
                         .padding(.trailing)
                     Text(item.fromText)
-                        .foregroundColor(.lightBlue)
+                        .foregroundColor(.onSurface).opacity(0.7)
                         .font(.body)
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)

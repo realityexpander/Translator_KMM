@@ -3,7 +3,7 @@ import shared
 
 struct ContentView: View {
     
-    let appModule: AppModule
+    let appModule: AppModule  // ONLY FOR KOTLIN SHARED LIBRARIES & USE-CASES - simulates the DI from Android
     
 	var body: some View {
         ZStack {

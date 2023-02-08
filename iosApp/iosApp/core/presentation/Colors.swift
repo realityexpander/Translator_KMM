@@ -21,7 +21,7 @@ extension Color {
         )
     }
     
-    private static let colors = SharedColors()
+    private static let colors = SharedColors() // SharedColors is an object in kotlin shared module
     static let lightBlue = Color(hex: colors.LightBlue)
     static let lightBlueGrey = Color(hex: colors.LightBlueGrey)
     static let accentViolet = Color(hex: colors.AccentViolet)

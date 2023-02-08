@@ -10,7 +10,7 @@ import shared
 struct TranslateScreen: View {
     private var historyRepo: IHistoryRepository
     private var translateUseCase: TranslateUseCase
-    @ObservedObject var viewModel: TranslateViewModelIOSImpl
+    @ObservedObject var viewModel: TranslateViewModelIOSImpl  // @ObservedObject indicates it has @Published property fields
     private let parser: any IVoiceToTextParser
     
     @State var isLinkActive = true
@@ -76,7 +76,9 @@ struct TranslateScreen: View {
                 ForEach(viewModel.state.history, id: \.self.id) { item in
                     TranslateHistoryItem(
                         item: item,
-                        onClick: { viewModel.onEvent(event: TranslateEvent.SelectHistoryItem(item: item))}
+                        onClick: { viewModel.onEvent(
+                            event: TranslateEvent.SelectHistoryItem(item: item)
+                        )}
                     )
                     .listRowSeparator(.hidden)
                     .listRowBackground(Color.background)

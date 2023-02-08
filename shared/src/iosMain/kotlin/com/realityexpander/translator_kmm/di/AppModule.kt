@@ -17,7 +17,7 @@ interface AppModule {
     val voiceParser: IVoiceToTextParser
 }
 
-class AppModuleImpl(
+class AppModuleImpl( // Used in iOS (simulates dependency injection)
     parser: IVoiceToTextParser
 ): AppModule {
 

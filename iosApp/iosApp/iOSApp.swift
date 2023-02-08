@@ -4,6 +4,7 @@ import shared
 @main
 struct iOSApp: App {
     
+    // Perform DI
     private var appModule: any AppModule = AppModuleImpl(parser: VoiceToTextParserIOSImpl())
     
     #if DEBUG

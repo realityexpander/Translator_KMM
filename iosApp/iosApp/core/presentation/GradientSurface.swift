@@ -9,9 +9,10 @@
 import SwiftUI
 
 struct GradientSurface: ViewModifier {
-    @Environment(\.colorScheme) var colorScheme
+    @Environment(\.colorScheme) var colorScheme // @Environment is similar to Compose Context
     
     func body(content: Content) -> some View {
+        // Choose gradient depending on the system colorScheme
         if colorScheme == .dark {
             let gradientStart = Color(hex: 0xFF23262E)
             let gradientEnd = Color(hex: 0xFF212329)
@@ -24,7 +25,17 @@ struct GradientSurface: ViewModifier {
                     )
                 )
         } else {
-            content.background(Color.surface)
+//            content.background(Color.surface)
+            let gradientStart = Color(hex: 0xFFEEEEEE)
+            let gradientEnd = Color(hex: 0xFFCCCCCC)
+            content
+                .background(
+                    LinearGradient(
+                        gradient: Gradient(colors: [gradientStart, gradientEnd]),
+                        startPoint: .top,
+                        endPoint: .bottom
+                    )
+                )
         }
     }
 }
