@@ -36,22 +36,22 @@ extension Color {
     static let onSurface = Color(light: .textBlack, dark: .white)
 }
 
-private extension Color {
+private extension Color {  // Swift Color
     init(light: Self, dark: Self) {
         self.init(uiColor: UIColor(light: UIColor(light), dark: UIColor(dark)))
     }
 }
 
-private extension UIColor {
-    convenience init(light: UIColor, dark: UIColor) {
+private extension UIColor { // old style Color
+    convenience init(light: UIColor, dark: UIColor) { // Allows to swap out color dynamically
         self.init { traits in
             switch traits.userInterfaceStyle {
-            case .light, .unspecified:
-                return light
-            case .dark:
-                return dark
-            @unknown default:
-                return light
+                case .light, .unspecified:
+                    return light
+                case .dark:
+                    return dark
+                @unknown default:
+                    return light
             }
         }
     }
