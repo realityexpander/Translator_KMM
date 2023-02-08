@@ -60,7 +60,7 @@ class VoiceToTextParserAndroidImpl(
     }
 
     override fun reset() {
-        _state.value = VoiceToTextParserState()
+        _state.value = VoiceToTextParserState() // prevents a race condition by not using `.update{}`
     }
 
     //////////////////////////////////////////////////////////////////////
@@ -74,7 +74,7 @@ class VoiceToTextParserAndroidImpl(
 
     override fun onRmsChanged(rmsDb: Float) {
         _state.update { it.copy(
-            powerRatio = rmsDb * (1f / (12f - (-2f)))
+            powerRatio = rmsDb * (1f / (12f - (-2f))) // convert -2dB->12dB to 0.0->1.0
         ) }
     }
 
