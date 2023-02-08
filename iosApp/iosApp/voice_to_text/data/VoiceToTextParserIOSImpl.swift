@@ -12,7 +12,12 @@ import Combine
 class VoiceToTextParserIOSImpl: IVoiceToTextParser, ObservableObject {
     
     private let _state = IOSMutableStateFlow(
-        initialValue: VoiceToTextParserState(result: "", error: nil, powerRatio: 0.0, isRecognizerListening: false)
+        initialValue: VoiceToTextParserState(
+            result: "",
+            error: nil,
+            powerRatio: 0.0,
+            isRecognizerListening: false
+        )
     )
     var state: CommonStateFlow<VoiceToTextParserState> { _state }
     
@@ -26,21 +31,16 @@ class VoiceToTextParserIOSImpl: IVoiceToTextParser, ObservableObject {
     private var audioBufferRequest: SFSpeechAudioBufferRecognitionRequest?
     private var recognitionTask: SFSpeechRecognitionTask?
     private var audioSession: AVAudioSession?
-    
-    func cancel() {
-        // Not needed on iOS
-    }
-    
-    func reset() {
-        self.stopListening()
-        _state.value = VoiceToTextParserState(result: "", error: nil, powerRatio: 0.0, isRecognizerListening: false)
-    }
-    
+
+    ///////////////////////////////////////////////////////////////////////
+    ////////////////// IVoiceToTextParser Implementation //////////////////
+
     func startListening(languageCode: String) {
         updateState(error: nil)
         
         let chosenLocale = Locale.init(identifier: languageCode)
-        let supportedLocale = SFSpeechRecognizer.supportedLocales().contains(chosenLocale) ? chosenLocale : Locale.init(identifier: "en-US")
+        let supportedLocale = SFSpeechRecognizer.supportedLocales().contains(chosenLocale)
+            ? chosenLocale : Locale.init(identifier: "en-US")
         self.recognizer = SFSpeechRecognizer(locale: supportedLocale)
         
         guard recognizer?.isAvailable == true else {
@@ -114,6 +114,18 @@ class VoiceToTextParserIOSImpl: IVoiceToTextParser, ObservableObject {
         try? audioSession?.setActive(false)
         audioSession = nil
     }
+
+    func cancel() {
+        // Not needed on iOS
+    }
+
+    func reset() {
+        self.stopListening()
+        _state.value = VoiceToTextParserState(result: "", error: nil, powerRatio: 0.0, isRecognizerListening: false)
+    }
+
+    ////////////////////////////////////////////////////////////////////
+    /////////////////// iOS OS Private Methods /////////////////////////
     
     private func requestPermissions(onGranted: @escaping () -> Void) {
         audioSession?.requestRecordPermission { [weak self] wasGranted in
@@ -134,7 +146,9 @@ class VoiceToTextParserIOSImpl: IVoiceToTextParser, ObservableObject {
             }
         }
     }
-    
+
+
+    // Simulates the `_state.update {}` method from Kotlin
     private func updateState(result: String? = nil, error: String? = nil, powerRatio: CGFloat? = nil, isRecognizerListening: Bool? = nil) {
         let currentState = _state.value
         _state.value = VoiceToTextParserState(

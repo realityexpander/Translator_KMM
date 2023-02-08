@@ -37,6 +37,7 @@ struct VoiceToTextScreen: View {
                     displayState: viewModel.state.displayState ?? .waitingToListen,
                     onClick: {
                         if viewModel.state.displayState != .resultVisible {
+                            viewModel.onEvent(event: VoiceToTextEvent.Reset())
                             viewModel.onEvent(event: VoiceToTextEvent.ToggleRecording(languageCode: languageCode))
                         } else {
                             onResult(viewModel.state.spokenText)

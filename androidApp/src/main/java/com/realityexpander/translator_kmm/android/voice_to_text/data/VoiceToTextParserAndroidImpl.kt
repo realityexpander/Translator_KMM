@@ -25,6 +25,9 @@ class VoiceToTextParserAndroidImpl(
     override val state: CommonStateFlow<VoiceToTextParserState> =
         _state.toCommonStateFlow()
 
+    ///////////////////////////////////////////////////////////////////////
+    ////////////////// IVoiceToTextParser Implementation //////////////////
+
     override fun startListening(languageCode: String) {
         _state.update { VoiceToTextParserState() }
 
@@ -58,6 +61,9 @@ class VoiceToTextParserAndroidImpl(
     override fun reset() {
         _state.value = VoiceToTextParserState()
     }
+
+    //////////////////////////////////////////////////////////////////////
+    ///////////////// RecognitionListener Implementation /////////////////
 
     override fun onReadyForSpeech(p0: Bundle?) {
         _state.update { it.copy(error = null) }

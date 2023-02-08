@@ -59,11 +59,22 @@ class VoiceToTextViewModel(
     fun onEvent(event: VoiceToTextEvent) {
         when (event) {
             is VoiceToTextEvent.PermissionResult -> {
-                _state.update { it.copy(isRecordPermissionGranted = event.isGranted) }
+                _state.update {
+                    it.copy(
+                        isRecordPermissionGranted = event.isGranted,
+                        recordError = if (event.isGranted) {
+                            null
+                        } else {
+                            "Can't record without permission"
+                        }
+                    )
+                }
             }
             VoiceToTextEvent.Reset -> {
                 parser.reset()
-                _state.update { VoiceToTextState() }
+                _state.update {
+                    VoiceToTextState().copy(isRecordPermissionGranted = it.isRecordPermissionGranted)
+                }
             }
             is VoiceToTextEvent.ToggleRecording ->
                 toggleRecording(event.languageCode)
