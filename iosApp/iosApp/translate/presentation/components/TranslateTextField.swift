@@ -122,7 +122,7 @@ private extension TranslateTextField {
                 HStack {
                     Spacer()
                     
-                    // Copy from Text
+                    // • Copy from Text Button
                     Button(action: {
                         UIPasteboard.general.setValue(
                             fromText,
@@ -145,7 +145,7 @@ private extension TranslateTextField {
                 Divider()
                     .padding()
                 
-                // Show TO Language & TO Translation
+                // • Show TO Language & TO Translation
                 LanguageDisplay(language: toLanguage)
                     .padding(.bottom)
                 Text(toText)
@@ -154,7 +154,7 @@ private extension TranslateTextField {
                 HStack {
                     Spacer()  // use up empty space
                     
-                    // Copy Text button
+                    // • Copy Text button
                     Button(action: {
                         UIPasteboard.general.setValue(
                             toText,
@@ -166,7 +166,7 @@ private extension TranslateTextField {
                             .foregroundColor(.lightBlue)
                     }
                     
-                    // Speak the "To Text"
+                    // • Speak the "To Text"
                     Button(action: {
                         tts.speak(
                             text: toText,

@@ -96,6 +96,8 @@ private fun TranslatedTextField(
     Column(
         modifier = modifier
     ) {
+
+        // From Language Translation
         LanguageDisplay(language = fromLanguage)
         Spacer(modifier = Modifier.height(16.dp))
         Text(
@@ -104,6 +106,8 @@ private fun TranslatedTextField(
             color = MaterialTheme.colors.onSurface
         )
         Spacer(modifier = Modifier.height(16.dp))
+
+        // Copy and Close Buttons
         Row(
             modifier = Modifier.align(Alignment.End)
         ) {
@@ -125,8 +129,11 @@ private fun TranslatedTextField(
             }
         }
         Spacer(modifier = Modifier.height(16.dp))
+
         Divider()
         Spacer(modifier = Modifier.height(16.dp))
+
+        // To Language Translation
         LanguageDisplay(language = toLanguage)
         Spacer(modifier = Modifier.height(16.dp))
         Text(
@@ -135,6 +142,8 @@ private fun TranslatedTextField(
             color = MaterialTheme.colors.onSurface
         )
         Spacer(modifier = Modifier.height(16.dp))
+
+        // Copy and Play Translation Buttons
         Row(
             modifier = Modifier.align(Alignment.End)
         ) {

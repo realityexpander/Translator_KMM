@@ -75,10 +75,13 @@ fun TranslateScreen(
                 .padding(16.dp),
             verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
+
+            // • Query Text Entry /  Translated Text Display
             item {
                 val clipboardManager = LocalClipboardManager.current
                 val keyboardController = LocalSoftwareKeyboardController.current
                 val tts = rememberTextToSpeech()
+
                 TranslateTextField(
                     fromText = state.fromText,
                     toText = state.toText,
@@ -124,6 +127,8 @@ fun TranslateScreen(
                     modifier = Modifier.fillMaxWidth()
                 )
             }
+
+            // • Language Selection
             item {
                 Row(
                     modifier = Modifier
@@ -165,6 +170,7 @@ fun TranslateScreen(
                 }
             }
 
+            // • History
             item {
                 if (state.history.isNotEmpty()) {
                     Text(
@@ -175,7 +181,6 @@ fun TranslateScreen(
                     )
                 }
             }
-
             items(state.history) { item ->
                 TranslateHistoryItem(
                     item = item,

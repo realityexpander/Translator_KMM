@@ -27,6 +27,8 @@ struct LanguageDropDown: View {
             HStack {
                 SmallLanguageIcon(language: language)
                 Text(language.language.langName)
+                    .font(.system(size: 16))
+                    .frame(minWidth: 70, alignment: .leading)
                     .foregroundColor(.lightBlue)
                 Image(systemName: isOpen ? "chevron.up" : "chevron.down")
                     .foregroundColor(.lightBlue)
