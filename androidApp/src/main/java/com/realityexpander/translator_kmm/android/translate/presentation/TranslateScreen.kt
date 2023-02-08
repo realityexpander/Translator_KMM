@@ -76,46 +76,6 @@ fun TranslateScreen(
             verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
             item {
-                Row(
-                    modifier = Modifier
-                        .fillMaxWidth(),
-                    verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.SpaceBetween
-                ) {
-                    LanguageDropDown(
-                        language = state.fromLanguage,
-                        isOpen = state.isChoosingFromLanguage,
-                        onClick = {
-                            onEvent(TranslateEvent.OpenFromLanguageDropDown)
-                        },
-                        onDismiss = {
-                            onEvent(TranslateEvent.StopChoosingLanguage)
-                        },
-                        onSelectLanguage = {
-                            onEvent(TranslateEvent.ChooseFromLanguage(it))
-                        }
-                    )
-                    Spacer(modifier = Modifier.weight(1f))
-                    SwapLanguagesButton(onClick = {
-                        onEvent(TranslateEvent.SwapLanguages)
-                    })
-                    Spacer(modifier = Modifier.weight(1f))
-                    LanguageDropDown(
-                        language = state.toLanguage,
-                        isOpen = state.isChoosingToLanguage,
-                        onClick = {
-                            onEvent(TranslateEvent.OpenToLanguageDropDown)
-                        },
-                        onDismiss = {
-                            onEvent(TranslateEvent.StopChoosingLanguage)
-                        },
-                        onSelectLanguage = {
-                            onEvent(TranslateEvent.ChooseToLanguage(it))
-                        }
-                    )
-                }
-            }
-            item {
                 val clipboardManager = LocalClipboardManager.current
                 val keyboardController = LocalSoftwareKeyboardController.current
                 val tts = rememberTextToSpeech()
@@ -163,6 +123,46 @@ fun TranslateScreen(
                     },
                     modifier = Modifier.fillMaxWidth()
                 )
+            }
+            item {
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth(),
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.SpaceBetween
+                ) {
+                    LanguageDropDown(
+                        language = state.fromLanguage,
+                        isOpen = state.isChoosingFromLanguage,
+                        onClick = {
+                            onEvent(TranslateEvent.OpenFromLanguageDropDown)
+                        },
+                        onDismiss = {
+                            onEvent(TranslateEvent.StopChoosingLanguage)
+                        },
+                        onSelectLanguage = {
+                            onEvent(TranslateEvent.ChooseFromLanguage(it))
+                        }
+                    )
+                    Spacer(modifier = Modifier.weight(1f))
+                    SwapLanguagesButton(onClick = {
+                        onEvent(TranslateEvent.SwapLanguages)
+                    })
+                    Spacer(modifier = Modifier.weight(1f))
+                    LanguageDropDown(
+                        language = state.toLanguage,
+                        isOpen = state.isChoosingToLanguage,
+                        onClick = {
+                            onEvent(TranslateEvent.OpenToLanguageDropDown)
+                        },
+                        onDismiss = {
+                            onEvent(TranslateEvent.StopChoosingLanguage)
+                        },
+                        onSelectLanguage = {
+                            onEvent(TranslateEvent.ChooseToLanguage(it))
+                        }
+                    )
+                }
             }
 
             item {

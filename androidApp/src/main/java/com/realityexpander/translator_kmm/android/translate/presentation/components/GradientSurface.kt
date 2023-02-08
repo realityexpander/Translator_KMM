@@ -18,5 +18,16 @@ fun Modifier.gradientSurface(): Modifier = composed {
                 )
             )
         )
-    } else Modifier.background(MaterialTheme.colors.surface)
+    } else
+//        Modifier.background(MaterialTheme.colors.surface)
+    {
+        Modifier.background(
+            brush = Brush.verticalGradient(
+                colors = listOf(
+                    Color(0xFFEEEEEE),
+                    Color(0xFFCCCCCC)
+                )
+            )
+        )
+    }
 }
