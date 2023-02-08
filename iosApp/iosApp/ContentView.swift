@@ -8,7 +8,7 @@ struct ContentView: View {
 	var body: some View {
         ZStack {
             Color.background
-                .ignoresSafeArea()
+                .ignoresSafeArea() // Fills the menu/status (full bleed)
             
             TranslateScreen(
                 historyRepo: appModule.historyRepo,

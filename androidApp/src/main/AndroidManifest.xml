@@ -8,6 +8,7 @@
         android:name=".TranslateApp"
         android:allowBackup="false"
         android:supportsRtl="true"
+        android:label="Tränslåtør"
         android:theme="@style/AppTheme">
         <activity
             android:name=".MainActivity"
