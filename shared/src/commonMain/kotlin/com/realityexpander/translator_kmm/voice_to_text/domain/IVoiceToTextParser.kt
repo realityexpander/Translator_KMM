@@ -7,5 +7,5 @@ interface IVoiceToTextParser {
     fun startListening(languageCode: String)
     fun stopListening()
     fun cancel()
-    fun reset()
+    fun reset()  // only used on iOS
 }
