@@ -8,6 +8,8 @@ import com.realityexpander.translator_kmm.voice_to_text.presentation.VoiceToText
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
+// Wrapper around VoiceToTextViewModel to make it compatible with Hilt
+
 @HiltViewModel
 class AndroidVoiceToTextViewModel @Inject constructor(
     private val vttProcessor: IVoiceToTextProcessor

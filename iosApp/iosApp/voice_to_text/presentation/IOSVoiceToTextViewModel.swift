@@ -2,7 +2,7 @@
 //  IOSVoiceToTextViewModel.swift
 //  iosApp
 //
-//
+//  Wrapper around VoiceToTextViewModel to make it compatible with SwiftUI
 
 import Foundation
 import shared
@@ -20,7 +20,7 @@ import Combine
         recordError: nil,
         displayState: nil
     )
-    private var handle: DisposableHandle?
+    private var observeStateJobHandle: DisposableHandle?
     
     init(vttProcessor: IVoiceToTextProcessor, languageCode: String) {
         self.vttProcessor = vttProcessor
@@ -38,7 +38,7 @@ import Combine
     }
     
     func startObserving() {
-        handle = viewModel.state.subscribe { [weak self] state in
+        observeStateJobHandle = viewModel.state.subscribe { [weak self] state in
             if let state {
                 self?.state = state
             }
@@ -46,7 +46,7 @@ import Combine
     }
     
     func dispose() {
-        handle?.dispose()
+        observeStateJobHandle?.dispose()
         onEvent(event: VoiceToTextEvent.Reset())
     }
 }
