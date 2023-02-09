@@ -238,9 +238,7 @@ fun ConfirmDeleteItemDialog(
         },
         confirmButton = {
             TextButton(
-                onClick = {
-                    onConfirm()
-                }
+                onClick = onConfirm
             ) {
                 Text(text = context.getString(R.string.confirm))
             }
