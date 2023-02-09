@@ -6,9 +6,17 @@ Uses Kotlin for Shared logic:
 - Http Client (Ktor Client)
 - ViewModels (wrapped for iOS)
 - UseCases
+- Coroutines
+- Colors for Themes
 
-Uses wrapped Flow, StateFlow to communicate interally.
+Uses wrapped versions on iOS:
+- Flow
+- StateFlow
 
 Shows how to implement cross-platform abstractions for platform specific module:
 - Speech Recognizer - Voice-To-Text
 - Speech Synthesis - Text-To-Voice
+
+UI separate:
+- Compose for Android
+- SwiftUI for iOS
