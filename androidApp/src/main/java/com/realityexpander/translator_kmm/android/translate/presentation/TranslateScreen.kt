@@ -211,7 +211,6 @@ fun TranslateScreen(
                         onEvent(TranslateEvent.SelectHistoryItem(item))
                     },
                     onLongClick = {
-                        println("Long Clicked")
                         isConfirmDeleteDialogVisible = true
                         historyItemToDelete = item
                     },

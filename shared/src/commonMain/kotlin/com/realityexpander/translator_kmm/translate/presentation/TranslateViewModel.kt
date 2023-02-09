@@ -91,12 +91,12 @@ class TranslateViewModel(
             TranslateEvent.OnErrorSeen -> {
                 _state.update { it.copy(error = null) }
             }
-            TranslateEvent.OpenFromLanguageDropDown -> {
+            TranslateEvent.OpenFromLanguageDropDown -> {  // used only on Android
                 _state.update { it.copy(
                     isChoosingFromLanguage = true
                 ) }
             }
-            TranslateEvent.OpenToLanguageDropDown -> {
+            TranslateEvent.OpenToLanguageDropDown -> {  // used only on Android
                 _state.update { it.copy(
                     isChoosingToLanguage = true
                 ) }
@@ -116,7 +116,7 @@ class TranslateViewModel(
                     historyRepo.deleteHistoryItem(event.item.id)
                 }
             }
-            TranslateEvent.StopChoosingLanguage -> {
+            TranslateEvent.StopChoosingLanguage -> {  // used only on Android
                 _state.update { it.copy(
                     isChoosingFromLanguage = false,
                     isChoosingToLanguage = false
