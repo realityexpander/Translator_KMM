@@ -41,6 +41,8 @@ fun VoiceToTextScreen(
     onEvent: (VoiceToTextEvent) -> Unit
 ) {
     val context = LocalContext.current
+
+    // Request RECORD_AUDIO permission
     val recordAudioLauncher = rememberLauncherForActivityResult(
         contract = ActivityResultContracts.RequestPermission(),
         onResult = { isGranted ->
@@ -121,6 +123,8 @@ fun VoiceToTextScreen(
                 .fillMaxSize()
                 .padding(padding)
         ) {
+
+            // Show status of the Recognizer
             Box(modifier = Modifier.fillMaxWidth()) {
                 IconButton(
                     onClick = {
@@ -141,6 +145,8 @@ fun VoiceToTextScreen(
                     )
                 }
             }
+
+            // Show the various DisplayStates
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
