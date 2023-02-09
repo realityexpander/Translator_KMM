@@ -13,7 +13,7 @@ struct ContentView: View {
             TranslateScreen(
                 historyRepo: appModule.historyRepo,
                 translateUseCase: appModule.translateUseCase,
-                parser: appModule.voiceParser
+                vttProcessor: appModule.vttProcessor
             )
         }
 	}

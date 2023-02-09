@@ -11,16 +11,16 @@ struct VoiceToTextScreen: View {
     private let onResult: (String) -> Void
     
     @ObservedObject var viewModel: IOSVoiceToTextViewModel
-    private let parser: any IVoiceToTextParser
+    private let vttProcessor: any IVoiceToTextProcessor
     private let languageCode: String
     
     @Environment(\.presentationMode) var presentation
     
-    init(onResult: @escaping (String) -> Void, parser: any IVoiceToTextParser, languageCode: String) {
+    init(onResult: @escaping (String) -> Void, vttProcessor: any IVoiceToTextProcessor, languageCode: String) {
         self.onResult = onResult
-        self.parser = parser
+        self.vttProcessor = vttProcessor
         self.languageCode = languageCode
-        self.viewModel = IOSVoiceToTextViewModel(parser: parser, languageCode: languageCode)
+        self.viewModel = IOSVoiceToTextViewModel(vttProcessor: vttProcessor, languageCode: languageCode)
     }
     
     var body: some View {

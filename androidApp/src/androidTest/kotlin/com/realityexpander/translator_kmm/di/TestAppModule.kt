@@ -5,8 +5,8 @@ import com.realityexpander.translator_kmm.translate.data.remote.FakeTranslateCli
 import com.realityexpander.translator_kmm.translate.domain.history.IHistoryRepository
 import com.realityexpander.translator_kmm.translate.domain.translate.TranslateUseCase
 import com.realityexpander.translator_kmm.translate.domain.translate.ITranslateClient
-import com.realityexpander.translator_kmm.voice_to_text.data.FakeVoiceToTextParser
-import com.realityexpander.translator_kmm.voice_to_text.domain.IVoiceToTextParser
+import com.realityexpander.translator_kmm.voice_to_text.data.FakeVoiceToTextProcessor
+import com.realityexpander.translator_kmm.voice_to_text.domain.IVoiceToTextProcessor
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -40,7 +40,7 @@ object TestAppModule {
 
     @Provides
     @Singleton
-    fun provideFakeVoiceToTextParser(): IVoiceToTextParser {
-        return FakeVoiceToTextParser()
+    fun provideFakeVoiceToTextParser(): IVoiceToTextProcessor {
+        return FakeVoiceToTextProcessor()
     }
 }

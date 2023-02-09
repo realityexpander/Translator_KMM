@@ -5,7 +5,7 @@ import shared
 struct iOSApp: App {
     
     // Perform DI
-    private var appModule: any AppModule = AppModuleImpl(parser: VoiceToTextParserIOSImpl())
+    private var appModule: any AppModule = AppModuleImpl(vttProcessor: VoiceToTextProcessorIOSImpl())
     
     #if DEBUG
     init() {
@@ -33,7 +33,8 @@ struct iOSApp: App {
 //                }
 //            }
             NavigationView {
-                ContentView(appModule: appModule).frame(maxWidth: 500)
+                ContentView(appModule: appModule)
+                    .frame(maxWidth: 500)
             }
 		}
 	}

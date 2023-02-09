@@ -9,7 +9,7 @@ import shared
 import Combine
 
 @MainActor class IOSVoiceToTextViewModel: ObservableObject {
-    private var parser: any IVoiceToTextParser
+    private var vttProcessor: any IVoiceToTextProcessor
     private let languageCode: String
     
     private let viewModel: VoiceToTextViewModel
@@ -22,10 +22,10 @@ import Combine
     )
     private var handle: DisposableHandle?
     
-    init(parser: IVoiceToTextParser, languageCode: String) {
-        self.parser = parser
+    init(vttProcessor: IVoiceToTextProcessor, languageCode: String) {
+        self.vttProcessor = vttProcessor
         self.languageCode = languageCode
-        self.viewModel = VoiceToTextViewModel(parser: parser, coroutineScope: nil)
+        self.viewModel = VoiceToTextViewModel(vttProcessor: vttProcessor, coroutineScope: nil)
         self.viewModel.onEvent(event: VoiceToTextEvent.Reset())
         self.viewModel.onEvent(event: VoiceToTextEvent.PermissionResult(
             isGranted: true,

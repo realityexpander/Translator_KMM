@@ -26,7 +26,9 @@ fun VoiceRecorderDisplay(
     powerRatios: List<Float>,
     modifier: Modifier = Modifier
 ) {
+    // Must get this outside the `.drawBehind` canvas, needs the composition context for the values
     val primary = MaterialTheme.colors.primary
+
     Box(
         modifier = modifier
             .shadow(

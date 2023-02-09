@@ -11,15 +11,15 @@ struct TranslateScreen: View {
     private var historyRepo: IHistoryRepository
     private var translateUseCase: TranslateUseCase
     @ObservedObject var viewModel: TranslateViewModelIOSImpl  // @ObservedObject indicates it has @Published property fields
-    private let parser: any IVoiceToTextParser
+    private let vttProcessor: any IVoiceToTextProcessor
     
     @State var isLinkActive = true
     @State var selection: Int? = nil
     
-    init(historyRepo: IHistoryRepository, translateUseCase: TranslateUseCase, parser: IVoiceToTextParser) {
+    init(historyRepo: IHistoryRepository, translateUseCase: TranslateUseCase, vttProcessor: IVoiceToTextProcessor) {
         self.historyRepo = historyRepo
         self.translateUseCase = translateUseCase
-        self.parser = parser
+        self.vttProcessor = vttProcessor
         self.viewModel = TranslateViewModelIOSImpl(historyRepo: historyRepo, translateUseCase: translateUseCase)
     }
     
@@ -101,7 +101,7 @@ struct TranslateScreen: View {
                         onResult: { spokenText in
                             viewModel.onEvent(event: TranslateEvent.SubmitVoiceResult(result: spokenText))
                         },
-                        parser: parser,
+                        vttProcessor: vttProcessor,
                         languageCode: viewModel.state.fromLanguage.language.langCode
                     )
                 ) {

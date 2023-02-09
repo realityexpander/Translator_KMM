@@ -15,8 +15,8 @@ import com.realityexpander.translator_kmm.android.di.AppModule
 import com.realityexpander.translator_kmm.android.voice_to_text.di.VoiceToTextModule
 import com.realityexpander.translator_kmm.translate.data.remote.FakeTranslateClient
 import com.realityexpander.translator_kmm.translate.domain.translate.ITranslateClient
-import com.realityexpander.translator_kmm.voice_to_text.data.FakeVoiceToTextParser
-import com.realityexpander.translator_kmm.voice_to_text.domain.IVoiceToTextParser
+import com.realityexpander.translator_kmm.voice_to_text.data.FakeVoiceToTextProcessor
+import com.realityexpander.translator_kmm.voice_to_text.domain.IVoiceToTextProcessor
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
 import dagger.hilt.android.testing.UninstallModules
@@ -42,7 +42,7 @@ class VoiceToTextE2E {
     )
 
     @Inject
-    lateinit var fakeVoiceParser: IVoiceToTextParser
+    lateinit var fakeVoiceParser: IVoiceToTextProcessor
 
     @Inject
     lateinit var fakeClient: ITranslateClient
@@ -55,7 +55,7 @@ class VoiceToTextE2E {
     @Test
     fun recordAndTranslate() = runBlocking<Unit> {
         val context = ApplicationProvider.getApplicationContext<Context>()
-        val parser = fakeVoiceParser as FakeVoiceToTextParser
+        val vttProcessor = fakeVoiceParser as FakeVoiceToTextProcessor
         val client = fakeClient as FakeTranslateClient
 
         composeRule
@@ -71,7 +71,7 @@ class VoiceToTextE2E {
             .performClick()
 
         composeRule
-            .onNodeWithText(parser.voiceResult)
+            .onNodeWithText(vttProcessor.voiceResult)
             .assertIsDisplayed()
 
         composeRule
@@ -79,7 +79,7 @@ class VoiceToTextE2E {
             .performClick()
 
         composeRule
-            .onNodeWithText(parser.voiceResult)
+            .onNodeWithText(vttProcessor.voiceResult)
             .assertIsDisplayed()
 
         composeRule
@@ -87,7 +87,7 @@ class VoiceToTextE2E {
             .performClick()
 
         composeRule
-            .onNodeWithText(parser.voiceResult)
+            .onNodeWithText(vttProcessor.voiceResult)
             .assertIsDisplayed()
 
         composeRule

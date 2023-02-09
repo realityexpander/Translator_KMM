@@ -10,26 +10,26 @@ import android.speech.SpeechRecognizer.*
 import com.realityexpander.translator_kmm.android.R
 import com.realityexpander.translator_kmm.core.domain.util.CommonStateFlow
 import com.realityexpander.translator_kmm.core.domain.util.toCommonStateFlow
-import com.realityexpander.translator_kmm.voice_to_text.domain.IVoiceToTextParser
-import com.realityexpander.translator_kmm.voice_to_text.domain.VoiceToTextParserState
+import com.realityexpander.translator_kmm.voice_to_text.domain.IVoiceToTextProcessor
+import com.realityexpander.translator_kmm.voice_to_text.domain.VoiceToTextProcessorState
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.update
 
-class VoiceToTextParserAndroidImpl(
+class VoiceToTextProcessorAndroidImpl(
     private val app: Application
-): IVoiceToTextParser, RecognitionListener {
+): IVoiceToTextProcessor, RecognitionListener {
 
     private val recognizer = SpeechRecognizer.createSpeechRecognizer(app)
 
-    private val _state = MutableStateFlow(VoiceToTextParserState())
-    override val state: CommonStateFlow<VoiceToTextParserState> =
+    private val _state = MutableStateFlow(VoiceToTextProcessorState())
+    override val state: CommonStateFlow<VoiceToTextProcessorState> =
         _state.toCommonStateFlow()
 
     ///////////////////////////////////////////////////////////////////////
     ////////////////// IVoiceToTextParser Implementation //////////////////
 
     override fun startListening(languageCode: String) {
-        _state.update { VoiceToTextParserState() }
+        _state.update { VoiceToTextProcessorState() }
 
         if(!SpeechRecognizer.isRecognitionAvailable(app)) {
             _state.update { it.copy(
@@ -51,7 +51,7 @@ class VoiceToTextParserAndroidImpl(
     }
 
     override fun stopListening() {
-        _state.update { VoiceToTextParserState() }
+        _state.update { VoiceToTextProcessorState() }
         recognizer.stopListening()
     }
 
@@ -60,7 +60,7 @@ class VoiceToTextParserAndroidImpl(
     }
 
     override fun reset() {
-        _state.value = VoiceToTextParserState() // prevents a race condition by not using `.update{}`
+        _state.value = VoiceToTextProcessorState() // prevents a race condition by not using `.update{}`
     }
 
     //////////////////////////////////////////////////////////////////////

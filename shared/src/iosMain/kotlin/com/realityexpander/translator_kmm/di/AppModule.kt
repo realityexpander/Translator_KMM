@@ -8,17 +8,17 @@ import com.realityexpander.translator_kmm.translate.data.translate.TranslateClie
 import com.realityexpander.translator_kmm.translate.domain.history.IHistoryRepository
 import com.realityexpander.translator_kmm.translate.domain.translate.TranslateUseCase
 import com.realityexpander.translator_kmm.translate.domain.translate.ITranslateClient
-import com.realityexpander.translator_kmm.voice_to_text.domain.IVoiceToTextParser
+import com.realityexpander.translator_kmm.voice_to_text.domain.IVoiceToTextProcessor
 
 interface AppModule {
     val historyRepo: IHistoryRepository
     val client: ITranslateClient
     val translateUseCase: TranslateUseCase
-    val voiceParser: IVoiceToTextParser
+    val vttProcessor: IVoiceToTextProcessor
 }
 
 class AppModuleImpl( // Used in iOS (simulates dependency injection)
-    parser: IVoiceToTextParser
+    override val vttProcessor: IVoiceToTextProcessor
 ): AppModule {
 
     override val historyRepo: IHistoryRepository by lazy {
@@ -38,6 +38,4 @@ class AppModuleImpl( // Used in iOS (simulates dependency injection)
     override val translateUseCase: TranslateUseCase by lazy {
         TranslateUseCase(client, historyRepo)
     }
-
-    override val voiceParser = parser
 }

@@ -1,6 +1,6 @@
 package com.realityexpander.translator_kmm.voice_to_text.domain
 
-data class VoiceToTextParserState(
+data class VoiceToTextProcessorState(
     val result: String = "",
     val error: String? = null,
     val powerRatio: Float = 0f,  // voice volume level rmsDb (decibels)
