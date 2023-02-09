@@ -112,13 +112,6 @@ class TranslateViewModel(
                 ) }
             }
             is TranslateEvent.DeleteHistoryItem -> {
-//                _state.update { it.copy(
-//                    fromText = event.item.fromText,
-//                    toText = event.item.toText,
-//                    isTranslating = false,
-//                    fromLanguage = event.item.fromLanguage,
-//                    toLanguage = event.item.toLanguage
-//                ) }
                 viewModelScope?.launch {
                     historyRepo.deleteHistoryItem(event.item.id)
                 }
