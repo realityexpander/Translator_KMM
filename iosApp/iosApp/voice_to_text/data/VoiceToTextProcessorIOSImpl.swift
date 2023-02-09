@@ -9,17 +9,17 @@ import shared
 import Speech
 import Combine
 
-class VoiceToTextParserIOSImpl: IVoiceToTextParser, ObservableObject {
+class VoiceToTextProcessorIOSImpl: IVoiceToTextProcessor, ObservableObject {
     
     private let _state = IOSMutableStateFlow(
-        initialValue: VoiceToTextParserState(
+        initialValue: VoiceToTextProcessorState(
             result: "",
             error: nil,
             powerRatio: 0.0,
             isRecognizerListening: false
         )
     )
-    var state: CommonStateFlow<VoiceToTextParserState> { _state }
+    var state: CommonStateFlow<VoiceToTextProcessorState> { _state }
     
     private var micObserver = MicrophonePowerObserver()
     var micPowerRatio: Published<Double>.Publisher { micObserver.$micPowerRatio }
@@ -121,7 +121,7 @@ class VoiceToTextParserIOSImpl: IVoiceToTextParser, ObservableObject {
 
     func reset() {
         self.stopListening()
-        _state.value = VoiceToTextParserState(result: "", error: nil, powerRatio: 0.0, isRecognizerListening: false)
+        _state.value = VoiceToTextProcessorState(result: "", error: nil, powerRatio: 0.0, isRecognizerListening: false)
     }
 
     ////////////////////////////////////////////////////////////////////
@@ -151,7 +151,7 @@ class VoiceToTextParserIOSImpl: IVoiceToTextParser, ObservableObject {
     // Simulates the `_state.update {}` method from Kotlin
     private func updateState(result: String? = nil, error: String? = nil, powerRatio: CGFloat? = nil, isRecognizerListening: Bool? = nil) {
         let currentState = _state.value
-        _state.value = VoiceToTextParserState(
+        _state.value = VoiceToTextProcessorState(
             result: result ?? currentState?.result ?? "",
             error: error ?? currentState?.error,
             powerRatio: Float(powerRatio ?? CGFloat(currentState?.powerRatio ?? 0.0)),

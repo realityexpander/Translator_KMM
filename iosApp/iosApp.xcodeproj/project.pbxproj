@@ -32,7 +32,7 @@
 		C391A3A6294262F400225264 /* IOSTranslateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C391A3A5294262F400225264 /* IOSTranslateViewModel.swift */; };
 		C391A3A82942631100225264 /* TranslateScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C391A3A72942631100225264 /* TranslateScreen.swift */; };
 		C3F18C8C293FCB2600D2C6D3 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3F18C8B293FCB2600D2C6D3 /* Colors.swift */; };
-		D7E140BA299236F200962657 /* VoiceToTextParserIOSImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7E140B9299236F200962657 /* VoiceToTextParserIOSImpl.swift */; };
+		D7E140BA299236F200962657 /* VoiceToTextProcessorIOSImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7E140B9299236F200962657 /* VoiceToTextProcessorIOSImpl.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,7 +75,7 @@
 		C391A3A5294262F400225264 /* IOSTranslateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IOSTranslateViewModel.swift; sourceTree = "<group>"; };
 		C391A3A72942631100225264 /* TranslateScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslateScreen.swift; sourceTree = "<group>"; };
 		C3F18C8B293FCB2600D2C6D3 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
-		D7E140B9299236F200962657 /* VoiceToTextParserIOSImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VoiceToTextParserIOSImpl.swift; sourceTree = "<group>"; };
+		D7E140B9299236F200962657 /* VoiceToTextProcessorIOSImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VoiceToTextProcessorIOSImpl.swift; sourceTree = "<group>"; };
 		DEA3AF241DEB4CD3EEEA0E01 /* Pods-iosApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iosApp.release.xcconfig"; path = "Target Support Files/Pods-iosApp/Pods-iosApp.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -163,7 +163,7 @@
 			isa = PBXGroup;
 			children = (
 				C3119E6E2943BC41002FC4C6 /* MicrophonePowerObserver.swift */,
-				D7E140B9299236F200962657 /* VoiceToTextParserIOSImpl.swift */,
+				D7E140B9299236F200962657 /* VoiceToTextProcessorIOSImpl.swift */,
 			);
 			path = data;
 			sourceTree = "<group>";
@@ -420,7 +420,7 @@
 				C3119E792943D48A002FC4C6 /* VoiceRecorderButton.swift in Sources */,
 				C369F5252942768D0044D3AB /* ProgressButton.swift in Sources */,
 				C3119E7B2943D59D002FC4C6 /* VoiceToTextScreen.swift in Sources */,
-				D7E140BA299236F200962657 /* VoiceToTextParserIOSImpl.swift in Sources */,
+				D7E140BA299236F200962657 /* VoiceToTextProcessorIOSImpl.swift in Sources */,
 				C3119E742943D00B002FC4C6 /* IOSVoiceToTextViewModel.swift in Sources */,
 				C3119E6F2943BC41002FC4C6 /* MicrophonePowerObserver.swift in Sources */,
 				2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */,
