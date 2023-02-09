@@ -79,7 +79,7 @@ fun TranslateScreen(
                 .fillMaxSize()
         ) {
             if (isConfirmDeleteDialogVisible) {
-                ConfirmDeleteHistoryItemDialog(
+                ConfirmDeleteItemDialog(
                     context,
                     onConfirm = {
                         isConfirmDeleteDialogVisible = false
@@ -223,7 +223,7 @@ fun TranslateScreen(
 }
 
 @Composable
-fun ConfirmDeleteHistoryItemDialog(
+fun ConfirmDeleteItemDialog(
     context: Context,
     onConfirm: () -> Unit,
     onDismiss: () -> Unit
