@@ -46,8 +46,8 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        // user-initiated process death: adb shell am force-stop com.realityexpander.translator_kmm
-        // system process death: adb shell am kill com.realityexpander.translator_kmm
+        // USER-initiated process death: adb shell am force-stop com.realityexpander.translator_kmm
+        // SYSTEM process death: adb shell am kill com.realityexpander.translator_kmm
         // check app running: adb shell ps | grep translator_kmm
         // Wait for debugger
         if (BuildConfig.DEBUG && false) {
