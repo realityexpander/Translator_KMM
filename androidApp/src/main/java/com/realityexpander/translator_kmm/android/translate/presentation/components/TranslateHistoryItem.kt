@@ -1,6 +1,8 @@
 package com.realityexpander.translator_kmm.android.translate.presentation.components
 
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.MaterialTheme
@@ -15,10 +17,12 @@ import androidx.compose.ui.unit.dp
 import com.realityexpander.translator_kmm.android.core.theme.LightBlue
 import com.realityexpander.translator_kmm.translate.presentation.UiHistoryItem
 
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun TranslateHistoryItem(
     item: UiHistoryItem,
     onClick: () -> Unit,
+    onLongClick: () -> Unit,
     modifier: Modifier
 ) {
     Column(
@@ -29,7 +33,10 @@ fun TranslateHistoryItem(
             )
             .clip(RoundedCornerShape(20.dp))
             .gradientSurface()
-            .clickable(onClick = onClick)
+            .combinedClickable(
+                onClick = onClick,
+                onLongClick = onLongClick
+            )
             .padding(16.dp)
     ) {
         Row(

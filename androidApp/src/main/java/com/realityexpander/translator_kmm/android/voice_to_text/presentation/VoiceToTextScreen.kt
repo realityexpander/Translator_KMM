@@ -70,6 +70,7 @@ fun VoiceToTextScreen(
                         if (state.displayState != DisplayState.RESULT_VISIBLE) {
                             onEvent(VoiceToTextEvent.ToggleRecording(languageCode))
                         } else {
+                            // Send the result to the parent
                             onResult(state.spokenText)
                         }
                     },

@@ -17,4 +17,8 @@ class HistoryRepositoryFakeImpl: IHistoryRepository {
     override suspend fun insertHistoryItem(item: HistoryItem) {
         _data.value += item
     }
+
+    override suspend fun deleteHistoryItem(id: Long) {
+        _data.value = _data.value.filter { it.id != id }
+    }
 }

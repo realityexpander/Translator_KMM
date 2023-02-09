@@ -20,19 +20,19 @@ class TranslateViewModelTest {
 
     private lateinit var viewModel: TranslateViewModel
     private lateinit var client: FakeTranslateClient
-    private lateinit var dataSource: HistoryRepositoryFakeImpl
+    private lateinit var historyRepo: HistoryRepositoryFakeImpl
 
     @BeforeTest
     fun setUp() {
         client = FakeTranslateClient()
-        dataSource = HistoryRepositoryFakeImpl()
+        historyRepo = HistoryRepositoryFakeImpl()
         val translate = TranslateUseCase(
             client = client,
-            historyRepo = dataSource
+            historyRepo = historyRepo
         )
         viewModel = TranslateViewModel(
             translate = translate,
-            historyRepo = dataSource,
+            historyRepo = historyRepo,
             coroutineScope = CoroutineScope(Dispatchers.Default)
         )
     }
@@ -50,7 +50,7 @@ class TranslateViewModelTest {
                 toLanguageCode = "de",
                 toText = "to"
             )
-            dataSource.insertHistoryItem(item)
+            historyRepo.insertHistoryItem(item)
 
             val state = awaitItem()
 

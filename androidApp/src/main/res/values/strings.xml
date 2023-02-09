@@ -4,7 +4,7 @@
     <string name="open">Open</string>
     <string name="swap_languages">Swap languages</string>
     <string name="enter_a_text_to_translate">Enter text to translate</string>
-    <string name="translate">Translate</string>
+    <string name="translate">Tränslåté</string>
     <string name="copy">Copy</string>
     <string name="play_loud">Play loud</string>
     <string name="copied_to_clipboard">Text copied to clipboard</string>
@@ -22,4 +22,8 @@
     <string name="start_talking">Click record and start talking</string>
     <string name="error_speechrecognizer_network_error">Problem with network. Please check your internet status.</string>
     <string name="error_speech_no_match">No Match Found</string>
+    <string name="confirm_delete">Delete Item?</string>
+    <string name="confirm_delete_message">Are you sure you want to delete this item?</string>
+    <string name="confirm">DELETE</string>
+    <string name="cancel">CANCEL</string>
 </resources>

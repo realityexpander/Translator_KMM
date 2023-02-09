@@ -1,7 +1,6 @@
 package com.realityexpander.translator_kmm.android
 
 import android.os.Bundle
-import android.os.Debug.waitForDebugger
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.isSystemInDarkTheme
@@ -59,7 +58,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
-                    TranslateRoot()
+                    TranslatorAppRoot()
                 }
             }
         }
@@ -67,23 +66,24 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun TranslateRoot() {
+fun TranslatorAppRoot() {
     val navController = rememberNavController()
     NavHost(
         navController = navController,
         startDestination = Routes.TRANSLATE
     ) {
-        composable(route = Routes.TRANSLATE) {
+        composable(route = Routes.TRANSLATE) { navBackStackEntry ->
             val viewModel = hiltViewModel<AndroidTranslateViewModel>()
             val state by viewModel.state.collectAsState(TranslateState())
 
-            val voiceResult by it
+            // Retrieve the voiceResult (if any) from the savedStateHandle and pass it to the viewModel.
+            val voiceResult by navBackStackEntry
                 .savedStateHandle
                 .getStateFlow<String?>("voiceResult", null)
                 .collectAsState()
             LaunchedEffect(voiceResult) {
                 viewModel.onEvent(TranslateEvent.SubmitVoiceResult(voiceResult))
-                it.savedStateHandle["voiceResult"] = null
+                navBackStackEntry.savedStateHandle["voiceResult"] = null
             }
 
             TranslateScreen(
@@ -117,12 +117,14 @@ fun TranslateRoot() {
                 state = state,
                 languageCode = languageCode,
                 onResult = { spokenText ->
-                    navController.previousBackStackEntry?.savedStateHandle?.set(
-                        "voiceResult", spokenText
-                    )
+                    navController.previousBackStackEntry
+                        ?.savedStateHandle
+                        ?.set("voiceResult", spokenText)
                     navController.popBackStack()
                 },
                 onEvent = { event ->
+                    // Note: this is an "interceptor" onEvent handler.
+                    // It intercepts the Close event, and passes all other events to the viewModel.
                     when(event) {
                         is VoiceToTextEvent.Close -> {
                             navController.popBackStack()

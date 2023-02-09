@@ -2,13 +2,13 @@
 
 package com.realityexpander.translator_kmm.android.translate.presentation
 
+import android.content.Context
 import android.speech.tts.TextToSpeech
 import android.widget.Toast
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
@@ -26,15 +26,20 @@ import com.realityexpander.translator_kmm.translate.presentation.TranslateState
 import java.util.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
+import androidx.compose.runtime.*
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.vectorResource
+import com.realityexpander.translator_kmm.translate.presentation.UiHistoryItem
 
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun TranslateScreen(
     state: TranslateState,
     onEvent: (TranslateEvent) -> Unit
 ) {
     val context = LocalContext.current
+    var isConfirmDeleteDialogVisible by remember { mutableStateOf(false) }
+    var historyItemToDelete by remember { mutableStateOf<UiHistoryItem?>(null) }
 
     LaunchedEffect(key1 = state.error) {
         val message = when(state.error) {
@@ -68,6 +73,25 @@ fun TranslateScreen(
         },
         floatingActionButtonPosition = FabPosition.Center
     ) { padding ->
+
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
+        ) {
+            if (isConfirmDeleteDialogVisible) {
+                ConfirmDeleteHistoryItemDialog(
+                    context,
+                    onConfirm = {
+                        isConfirmDeleteDialogVisible = false
+                        onEvent(TranslateEvent.DeleteHistoryItem(historyItemToDelete!!))
+                    },
+                    onDismiss = {
+                        isConfirmDeleteDialogVisible = false
+                    }
+                )
+            }
+        }
+
         LazyColumn(
             modifier = Modifier
                 .fillMaxSize()
@@ -75,7 +99,6 @@ fun TranslateScreen(
                 .padding(16.dp),
             verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
-
             // • Query Text Entry /  Translated Text Display
             item {
                 val clipboardManager = LocalClipboardManager.current
@@ -187,9 +210,48 @@ fun TranslateScreen(
                     onClick = {
                         onEvent(TranslateEvent.SelectHistoryItem(item))
                     },
-                    modifier = Modifier.fillMaxWidth()
+                    onLongClick = {
+                        println("Long Clicked")
+                        isConfirmDeleteDialogVisible = true
+                        historyItemToDelete = item
+                    },
+                    modifier = Modifier
+                        .fillMaxWidth()
                 )
             }
         }
     }
+}
+
+@Composable
+fun ConfirmDeleteHistoryItemDialog(
+    context: Context,
+    onConfirm: () -> Unit,
+    onDismiss: () -> Unit
+) {
+    AlertDialog(
+        onDismissRequest = onDismiss,
+        title = {
+            Text(text = context.getString(R.string.confirm_delete))
+        },
+        text = {
+            Text(text = context.getString(R.string.confirm_delete_message))
+        },
+        confirmButton = {
+            TextButton(
+                onClick = {
+                    onConfirm()
+                }
+            ) {
+                Text(text = context.getString(R.string.confirm))
+            }
+        },
+        dismissButton = {
+            TextButton(
+                onClick = onDismiss
+            ) {
+                Text(text = context.getString(R.string.cancel))
+            }
+        }
+    )
 }

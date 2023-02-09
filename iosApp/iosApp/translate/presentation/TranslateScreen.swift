@@ -16,6 +16,8 @@ struct TranslateScreen: View {
     @State var isLinkActive = true
     @State var selection: Int? = nil
     
+    @State private var isPresentingConfirm: Bool = false
+    
     init(historyRepo: IHistoryRepository, translateUseCase: TranslateUseCase, vttProcessor: IVoiceToTextProcessor) {
         self.historyRepo = historyRepo
         self.translateUseCase = translateUseCase
@@ -78,14 +80,37 @@ struct TranslateScreen: View {
                         .listRowSeparator(.hidden)
                         .listRowBackground(Color.background)
                 }
-
+                
                 ForEach(viewModel.state.history, id: \.self.id) { item in
                     TranslateHistoryItem(
                         item: item,
-                        onClick: { viewModel.onEvent(
-                            event: TranslateEvent.SelectHistoryItem(item: item)
-                        )}
+                        onClick: {
+                            // Left for reference. (responds to simple tap)
+                            //    viewModel.onEvent(
+                            //        event: TranslateEvent.SelectHistoryItem(item: item)
+                            //    )
+                        }
                     )
+                    .simultaneousGesture(
+                        LongPressGesture()
+                            .onEnded { _ in
+                                isPresentingConfirm = true
+                            }
+                    )
+                    .highPriorityGesture(
+                        TapGesture()
+                        .onEnded { _ in
+                            viewModel.onEvent(
+                                event: TranslateEvent.SelectHistoryItem(item: item)
+                            )
+                        })
+                    .confirmationDialog("Are you sure?", isPresented: $isPresentingConfirm) {
+                        Button("Delete item?", role: .destructive) {
+                             viewModel.onEvent(
+                                event: TranslateEvent.DeleteHistoryItem(item: item)
+                             )
+                        }
+                    }
                     .listRowSeparator(.hidden)
                     .listRowBackground(Color.background)
                 }

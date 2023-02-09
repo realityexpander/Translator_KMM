@@ -15,29 +15,30 @@ class VoiceToTextViewModel(
     private val viewModelScope = coroutineScope ?: CoroutineScope(Dispatchers.Main)
 
     private val _state = MutableStateFlow(VoiceToTextState())
-    val state = _state.combine(vttProcessor.state) { state, voiceResult ->
+    val state =
+        _state.combine(vttProcessor.state) { state, voiceResult ->
+            val isError = !state.isRecordPermissionGranted || voiceResult.error != null
+            val isResultVisible = voiceResult.result.isNotBlank() && !voiceResult.isRecognizerListening
 
-        val isError = !state.isRecordPermissionGranted || voiceResult.error != null
-        val isResultVisible = voiceResult.result.isNotBlank() && !voiceResult.isRecognizerListening
-        state.copy(
-            spokenText = voiceResult.result,
-            recordError = if (state.isRecordPermissionGranted) {
-                    voiceResult.error
-                } else {
-                    "Can't record without permission"
-                },
-            displayState = when {
-                isError ->
-                    DisplayState.ERROR
-                isResultVisible ->
-                    DisplayState.RESULT_VISIBLE
-                voiceResult.isRecognizerListening ->
-                    DisplayState.LISTENING
-                else ->
-                    DisplayState.WAITING_TO_LISTEN
-            }
-        )
-    }
+            state.copy(
+                spokenText = voiceResult.result,
+                recordError = if (state.isRecordPermissionGranted) {
+                        voiceResult.error
+                    } else {
+                        "Can't record without permission"
+                    },
+                displayState = when {
+                    isError ->
+                        DisplayState.ERROR
+                    isResultVisible ->
+                        DisplayState.RESULT_VISIBLE
+                    voiceResult.isRecognizerListening ->
+                        DisplayState.LISTENING
+                    else ->
+                        DisplayState.WAITING_TO_LISTEN
+                }
+            )
+        }
         .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), VoiceToTextState())
         .toCommonStateFlow()
 

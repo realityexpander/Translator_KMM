@@ -37,4 +37,8 @@ class HistoryRepositorySqlDelightImpl(  // was SqlDelightHistoryDataSource
             timestamp = Clock.System.now().toEpochMilliseconds()
         )
     }
+
+    override suspend fun deleteHistoryItem(id: Long) {
+        queries.deleteHistoryEntity(id)
+    }
 }

@@ -57,7 +57,7 @@ fun TranslateTextField(
             targetState = toText
         ) { toText ->
             if(toText == null || isTranslating) {
-                IdleTranslateTextField(
+                TranslateQueryTextField(
                     fromText = fromText,
                     isTranslating = isTranslating,
                     onTextChange = onTextChange,
@@ -168,7 +168,7 @@ private fun TranslatedTextField(
 }
 
 @Composable
-private fun IdleTranslateTextField(
+private fun TranslateQueryTextField(
     fromText: String,
     isTranslating: Boolean,
     onTextChange: (String) -> Unit,

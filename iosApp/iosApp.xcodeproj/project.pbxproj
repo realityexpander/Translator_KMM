@@ -369,7 +369,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\ncd \"$SRCROOT/..\"\n./gradlew :shared:embedAndSignAppleFrameworkForXcode\n";
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\ncd \"$SRCROOT/..\"\n./gradlew :shared:embedAndSignPodAppleFrameworkForXcode\n";
 		};
 		C7B2D673951F957005824541 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;

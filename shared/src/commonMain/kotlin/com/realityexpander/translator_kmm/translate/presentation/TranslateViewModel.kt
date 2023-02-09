@@ -111,6 +111,18 @@ class TranslateViewModel(
                     toLanguage = event.item.toLanguage
                 ) }
             }
+            is TranslateEvent.DeleteHistoryItem -> {
+//                _state.update { it.copy(
+//                    fromText = event.item.fromText,
+//                    toText = event.item.toText,
+//                    isTranslating = false,
+//                    fromLanguage = event.item.fromLanguage,
+//                    toLanguage = event.item.toLanguage
+//                ) }
+                viewModelScope?.launch {
+                    historyRepo.deleteHistoryItem(event.item.id)
+                }
+            }
             TranslateEvent.StopChoosingLanguage -> {
                 _state.update { it.copy(
                     isChoosingFromLanguage = false,
@@ -123,6 +135,7 @@ class TranslateViewModel(
                     isTranslating = if(event.result != null) false else it.isTranslating,
                     toText = if(event.result != null) null else it.toText
                 ) }
+                translate(_state.value)
             }
             TranslateEvent.SwapLanguages -> {
                 _state.update { it.copy(

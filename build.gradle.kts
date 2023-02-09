@@ -1,4 +1,6 @@
 buildscript {
+//    val kotlin_version by extra("1.7.10")
+
     repositories {
         gradlePluginPortal()
         google()
@@ -9,7 +11,7 @@ buildscript {
         classpath(Deps.androidBuildTools)
         classpath(Deps.sqlDelightGradlePlugin)
         classpath(Deps.hiltGradlePlugin)
-        classpath("com.android.tools.build:gradle:7.4.0")
+        classpath("com.android.tools.build:gradle:7.3.1")
     }
 }
 

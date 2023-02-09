@@ -5,4 +5,5 @@ import com.realityexpander.translator_kmm.core.domain.util.CommonFlow
 interface IHistoryRepository {
     fun getHistory(): CommonFlow<List<HistoryItem>>
     suspend fun insertHistoryItem(item: HistoryItem)
+    suspend fun deleteHistoryItem(id: Long)
 }
