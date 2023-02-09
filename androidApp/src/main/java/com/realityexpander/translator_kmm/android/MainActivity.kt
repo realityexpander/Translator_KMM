@@ -24,7 +24,9 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import com.realityexpander.translator_kmm.android.core.presentation.NavArguments
 import com.realityexpander.translator_kmm.android.core.presentation.Routes
+import com.realityexpander.translator_kmm.android.core.presentation.SavedStateHandleKeys
 import com.realityexpander.translator_kmm.android.core.theme.darkColors
 import com.realityexpander.translator_kmm.android.core.theme.lightColors
 import com.realityexpander.translator_kmm.android.translate.presentation.AndroidTranslateViewModel
@@ -76,14 +78,15 @@ fun TranslatorAppRoot() {
             val viewModel = hiltViewModel<AndroidTranslateViewModel>()
             val state by viewModel.state.collectAsState(TranslateState())
 
-            // Retrieve the voiceResult (if any) from the savedStateHandle and pass it to the viewModel.
+            // Retrieve the Speech Recognizer `voiceResult` (if any) from the savedStateHandle and
+            //   pass it to the viewModel.
             val voiceResult by navBackStackEntry
                 .savedStateHandle
-                .getStateFlow<String?>("voiceResult", null)
+                .getStateFlow<String?>(SavedStateHandleKeys.SPEECH_RECOGNIZER_RESULT, null)
                 .collectAsState()
             LaunchedEffect(voiceResult) {
                 viewModel.onEvent(TranslateEvent.SubmitVoiceResult(voiceResult))
-                navBackStackEntry.savedStateHandle["voiceResult"] = null
+                navBackStackEntry.savedStateHandle[SavedStateHandleKeys.SPEECH_RECOGNIZER_RESULT] = null
             }
 
             TranslateScreen(
@@ -92,7 +95,8 @@ fun TranslatorAppRoot() {
                     when(event) {
                         is TranslateEvent.RecordAudio -> {
                             navController.navigate(
-                                Routes.VOICE_TO_TEXT + "/${state.fromLanguage.language.langCode}"
+                                Routes.VOICE_TO_TEXT +
+                                        "/${state.fromLanguage.language.langCode}"
                             )
                         }
                         else -> viewModel.onEvent(event)
@@ -101,15 +105,17 @@ fun TranslatorAppRoot() {
             )
         }
         composable(
-            route = Routes.VOICE_TO_TEXT + "/{languageCode}",
+            route = Routes.VOICE_TO_TEXT + "/{${NavArguments.LANGUAGE_CODE}}",
             arguments = listOf(
-                navArgument("languageCode") {
+                navArgument(NavArguments.LANGUAGE_CODE) {
                     type = NavType.StringType
                     defaultValue = "en"
                 }
             )
         ) { backStackEntry ->
-            val languageCode = backStackEntry.arguments?.getString("languageCode") ?: "en"
+            val languageCode = backStackEntry
+                .arguments
+                ?.getString("languageCode") ?: "en"
             val viewModel = hiltViewModel<AndroidVoiceToTextViewModel>()
             val state by viewModel.state.collectAsState()
 
