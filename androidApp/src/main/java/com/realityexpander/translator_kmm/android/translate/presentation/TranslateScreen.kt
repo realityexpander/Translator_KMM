@@ -74,6 +74,7 @@ fun TranslateScreen(
         floatingActionButtonPosition = FabPosition.Center
     ) { padding ->
 
+        // Show Dialogs
         Box(
             modifier = Modifier
                 .fillMaxSize()
