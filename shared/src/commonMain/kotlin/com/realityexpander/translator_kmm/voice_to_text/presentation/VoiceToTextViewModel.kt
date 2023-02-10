@@ -44,7 +44,7 @@ class VoiceToTextViewModel(
 
     init {
 
-        // Update the power ratio every 50ms for the "waveform" animation
+        // Update the power ratio every 50ms for the "waveform" audio-level animation
         viewModelScope.launch {
             while (true) {
                 if (state.value.displayState == DisplayState.LISTENING_ACTIVE) {

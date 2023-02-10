@@ -14,7 +14,7 @@ struct VoiceToTextScreen: View {
     private let vttProcessor: any IVoiceToTextProcessor
     private let languageCode: String
     
-    @Environment(\.presentationMode) var presentation
+    @Environment(\.presentationMode) var presentation // holds state to "pop" back
     
     init(onResult: @escaping (String) -> Void, vttProcessor: any IVoiceToTextProcessor, languageCode: String) {
         self.onResult = onResult
@@ -37,14 +37,18 @@ struct VoiceToTextScreen: View {
                     displayState: viewModel.state.displayState ?? .waitingToListen,
                     onClick: {
                         if viewModel.state.displayState != .resultVisible {
+                            // No results showing, so record new audio.
                             viewModel.onEvent(event: VoiceToTextEvent.Reset())
                             viewModel.onEvent(event: VoiceToTextEvent.ToggleRecording(languageCode: languageCode))
                         } else {
+                            // Return the Recognized Text results
                             onResult(viewModel.state.spokenText)
-                            self.presentation.wrappedValue.dismiss()
+                            self.presentation.wrappedValue.dismiss()  // Pops back
                         }
                     }
                 )
+                
+                // Re-record a new Audio for recognition.
                 if viewModel.state.displayState == .resultVisible {
                     Button(action: {
                         viewModel.onEvent(event: VoiceToTextEvent.ToggleRecording(languageCode: languageCode))

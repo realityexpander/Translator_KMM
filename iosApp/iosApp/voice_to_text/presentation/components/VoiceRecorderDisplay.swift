@@ -12,11 +12,12 @@ struct VoiceRecorderDisplay: View {
     
     var body: some View {
         Canvas { context, size in
+            // Clips content inside a Rect path same size as our content
             context.clip(to: Path(CGRect(origin: .zero, size: size)))
             
             let barWidth = 3.0
             let barCount = Int(size.width / Double(2 * barWidth))
-            let defaultLevel = 0.05
+            let defaultLevel = 0.05 // To have audio level 0 still show a tiny bar (not just blank)
             let reversedRatios = powerRatios
                 .map { ratio in
                     min(max(defaultLevel, ratio), 1.0)
