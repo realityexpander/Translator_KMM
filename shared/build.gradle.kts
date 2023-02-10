@@ -86,9 +86,10 @@ android {
     }
 }
 
+// Defines where the SQLDelight schema and generated code will be placed
 sqldelight {
     database("TranslateDatabase") {
         packageName = "com.realityexpander.translator_kmm.database"
-        sourceFolders = listOf("sqldelight")
+        sourceFolders = listOf("sqldelight") // folder name in shared module /src/commonMain
     }
 }
