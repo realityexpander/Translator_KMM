@@ -60,6 +60,16 @@ class TranslateViewModel(
                     fromText = event.text
                 ) }
             }
+            TranslateEvent.OpenFromLanguageDropDown -> {  // used only on Android
+                _state.update { it.copy(
+                    isChoosingFromLanguage = true
+                ) }
+            }
+            TranslateEvent.OpenToLanguageDropDown -> {  // used only on Android
+                _state.update { it.copy(
+                    isChoosingToLanguage = true
+                ) }
+            }
             is TranslateEvent.ChooseFromLanguage -> {
                 _state.update { it.copy(
                     isChoosingFromLanguage = false,
@@ -73,11 +83,18 @@ class TranslateViewModel(
                 ) }
                 translate(newState)
             }
-            TranslateEvent.CloseTranslation -> {
+            TranslateEvent.StopChoosingLanguage -> {  // used only on Android
                 _state.update { it.copy(
-                    isTranslating = false,
-                    fromText = "",
-                    toText = null
+                    isChoosingFromLanguage = false,
+                    isChoosingToLanguage = false
+                ) }
+            }
+            TranslateEvent.SwapLanguages -> {
+                _state.update { it.copy(
+                    fromLanguage = it.toLanguage,
+                    toLanguage = it.fromLanguage,
+                    fromText = it.toText ?: "",
+                    toText = if(it.toText != null) it.fromText else null
                 ) }
             }
             TranslateEvent.EditTranslation -> {
@@ -88,18 +105,20 @@ class TranslateViewModel(
                     ) }
                 }
             }
-            TranslateEvent.OnErrorSeen -> {
-                _state.update { it.copy(error = null) }
-            }
-            TranslateEvent.OpenFromLanguageDropDown -> {  // used only on Android
+            TranslateEvent.CloseTranslation -> {
                 _state.update { it.copy(
-                    isChoosingFromLanguage = true
+                    isTranslating = false,
+                    fromText = "",
+                    toText = null
                 ) }
             }
-            TranslateEvent.OpenToLanguageDropDown -> {  // used only on Android
-                _state.update { it.copy(
-                    isChoosingToLanguage = true
+            is TranslateEvent.SubmitVoiceResult -> {
+                val newState = _state.updateAndGet { it.copy(
+                    fromText = event.result ?: it.fromText,
+                    isTranslating = if(event.result != null) false else it.isTranslating,
+                    toText = if(event.result != null) null else it.toText
                 ) }
+                translate(newState)
             }
             is TranslateEvent.SelectHistoryItem -> {
                 translateJob?.cancel()
@@ -116,27 +135,8 @@ class TranslateViewModel(
                     historyRepo.deleteHistoryItem(event.item.id)
                 }
             }
-            TranslateEvent.StopChoosingLanguage -> {  // used only on Android
-                _state.update { it.copy(
-                    isChoosingFromLanguage = false,
-                    isChoosingToLanguage = false
-                ) }
-            }
-            is TranslateEvent.SubmitVoiceResult -> {
-                val newState = _state.updateAndGet { it.copy(
-                    fromText = event.result ?: it.fromText,
-                    isTranslating = if(event.result != null) false else it.isTranslating,
-                    toText = if(event.result != null) null else it.toText
-                ) }
-                translate(newState)
-            }
-            TranslateEvent.SwapLanguages -> {
-                _state.update { it.copy(
-                    fromLanguage = it.toLanguage,
-                    toLanguage = it.fromLanguage,
-                    fromText = it.toText ?: "",
-                    toText = if(it.toText != null) it.fromText else null
-                ) }
+            TranslateEvent.OnErrorSeen -> {
+                _state.update { it.copy(error = null) }
             }
             TranslateEvent.Translate -> translate(state.value)
             else -> Unit
