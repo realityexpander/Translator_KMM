@@ -66,10 +66,10 @@ class VoiceToTextViewModel(
                     it.copy(
                         isRecordPermissionGranted = event.isGranted,
                         recordError = if (event.isGranted) {
-                            null
-                        } else {
-                            "Can't record without permission"
-                        }
+                                null
+                            } else {
+                                "Can't record without permission"
+                            }
                     )
                 }
             }

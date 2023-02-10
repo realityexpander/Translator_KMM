@@ -38,7 +38,7 @@
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 	<key>NSMicrophoneUsageDescription</key>
-	<string>Microphone permission is used to determine your voice&apos;s power level</string>
+	<string>Microphone permission is used to determine your voice&apos;s audio level</string>
 	<key>NSSpeechRecognitionUsageDescription</key>
 	<string>Needed to transcribe audio for your translation</string>
 	<key>UISupportedInterfaceOrientations~ipad</key>

@@ -27,9 +27,15 @@ import Combine
         self.languageCode = languageCode
         self.viewModel = VoiceToTextViewModel(vttProcessor: vttProcessor, coroutineScope: nil)
         self.viewModel.onEvent(event: VoiceToTextEvent.Reset())
-        self.viewModel.onEvent(event: VoiceToTextEvent.PermissionResult(
-            isGranted: true,
-            isPermanentlyDeclined: false)
+        
+        // On Android, permissions are requested upon initial app launch / ViewModel init.
+        // On iOS, permissions are requested from the user when the feature is first accessed.
+        // This call sets the initial viewmodel permissions state as GRANTED, and ACTUAL permissions will be requested when the app starts audio recording.
+        self.viewModel.onEvent(
+            event: VoiceToTextEvent.PermissionResult(
+                isGranted: true,
+                isPermanentlyDeclined: false
+            )
         )
     }
     

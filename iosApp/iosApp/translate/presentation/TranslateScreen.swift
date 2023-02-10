@@ -118,13 +118,15 @@ struct TranslateScreen: View {
             .listStyle(.plain)
             .buttonStyle(.plain)
             
-            // Listen for Speech to Translate
+            // Navigate to VoiceToText Screen and process result of recognizer
             VStack {
                 Spacer()
                 NavigationLink(
                     destination: VoiceToTextScreen(
                         onResult: { spokenText in
-                            viewModel.onEvent(event: TranslateEvent.SubmitVoiceResult(result: spokenText))
+                            viewModel.onEvent(
+                                event: TranslateEvent.SubmitVoiceResult(result: spokenText)
+                            )
                         },
                         vttProcessor: vttProcessor,
                         languageCode: viewModel.state.fromLanguage.language.langCode

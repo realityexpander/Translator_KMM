@@ -16,7 +16,11 @@ struct VoiceToTextScreen: View {
     
     @Environment(\.presentationMode) var presentation // holds state to "pop" back
     
-    init(onResult: @escaping (String) -> Void, vttProcessor: any IVoiceToTextProcessor, languageCode: String) {
+    init(
+        onResult: @escaping (String) -> Void,
+        vttProcessor: any IVoiceToTextProcessor,
+        languageCode: String
+    ) {
         self.onResult = onResult
         self.vttProcessor = vttProcessor
         self.languageCode = languageCode
@@ -41,7 +45,7 @@ struct VoiceToTextScreen: View {
                             viewModel.onEvent(event: VoiceToTextEvent.Reset())
                             viewModel.onEvent(event: VoiceToTextEvent.ToggleRecording(languageCode: languageCode))
                         } else {
-                            // Return the Recognized Text results
+                            // Return the Recognized Text results.
                             onResult(viewModel.state.spokenText)
                             self.presentation.wrappedValue.dismiss()  // Pops back
                         }
@@ -70,33 +74,35 @@ struct VoiceToTextScreen: View {
     }
     
     var mainView: some View {
-        if let displayState = viewModel.state.displayState {
+        if let displayState = viewModel.state.displayState { // does a nil check
             switch displayState {
-            case .waitingToListen:
-                return AnyView(
-                    Text("Click record and start talking.")
-                        .font(.title2)
-                )
-            case .resultVisible:
-                return AnyView(
-                    Text(viewModel.state.spokenText)
-                        .font(.title2)
-                )
-            case .error:
-                return AnyView(
-                    Text(viewModel.state.recordError ?? "Unknown error")
-                        .font(.title2)
-                        .foregroundColor(.red)
-                )
-            case .listeningActive:
-                return AnyView(
-                    VoiceRecorderDisplay(
-                        powerRatios: viewModel.state.powerRatios.map { Double(truncating: $0) }
+                case .waitingToListen:
+                    return AnyView(  // "re-types" the enclosed View as a Generic View (return type is View)
+                        Text("Click record and start talking.")
+                            .font(.title2)
                     )
-                    .frame(maxHeight: 100)
-                    .padding()
-                )
-            default: return AnyView(EmptyView())
+                case .resultVisible:
+                    return AnyView(
+                        Text(viewModel.state.spokenText)
+                            .font(.title2)
+                    )
+                case .error:
+                    return AnyView(
+                        Text(viewModel.state.recordError ?? "Unknown error")
+                            .font(.title2)
+                            .foregroundColor(.red)
+                    )
+                case .listeningActive:
+                    return AnyView(
+                        VoiceRecorderDisplay(
+                            powerRatios: viewModel.state.powerRatios.map {
+                                Double(truncating: $0)
+                            }
+                        )
+                        .frame(maxHeight: 100)
+                        .padding()
+                    )
+                default: return AnyView(EmptyView())
             }
         } else {
             return AnyView(EmptyView())
