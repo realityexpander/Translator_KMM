@@ -7,7 +7,7 @@ import assertk.assertions.isFalse
 import assertk.assertions.isTrue
 import com.realityexpander.translator_kmm.core.presentation.UiLanguage
 import com.realityexpander.translator_kmm.translate.data.local.HistoryRepositoryFakeImpl
-import com.realityexpander.translator_kmm.translate.data.remote.FakeTranslateClient
+import com.realityexpander.translator_kmm.translate.data.remote.TranslateClientFakeImpl
 import com.realityexpander.translator_kmm.translate.domain.history.HistoryItem
 import com.realityexpander.translator_kmm.translate.domain.translate.TranslateUseCase
 import kotlinx.coroutines.CoroutineScope
@@ -19,12 +19,12 @@ import kotlin.test.Test
 class TranslateViewModelTest {
 
     private lateinit var viewModel: TranslateViewModel
-    private lateinit var client: FakeTranslateClient
+    private lateinit var client: TranslateClientFakeImpl
     private lateinit var historyRepo: HistoryRepositoryFakeImpl
 
     @BeforeTest
     fun setUp() {
-        client = FakeTranslateClient()
+        client = TranslateClientFakeImpl()
         historyRepo = HistoryRepositoryFakeImpl()
         val translate = TranslateUseCase(
             client = client,

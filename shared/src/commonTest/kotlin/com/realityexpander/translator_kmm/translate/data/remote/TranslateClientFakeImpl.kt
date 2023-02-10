@@ -3,7 +3,7 @@ package com.realityexpander.translator_kmm.translate.data.remote
 import com.realityexpander.translator_kmm.core.domain.language.Language
 import com.realityexpander.translator_kmm.translate.domain.translate.ITranslateClient
 
-class FakeTranslateClient: ITranslateClient {
+class TranslateClientFakeImpl: ITranslateClient {
 
     var translatedText = "test translation"
 
