@@ -9,7 +9,7 @@ import shared
 import Combine
 
 @MainActor class IOSVoiceToTextViewModel: ObservableObject {
-    private var vttProcessor: any IVoiceToTextProcessor
+    private var vttProcessor: any IVoiceToTextProcessor  // `any` means any implementation of IVoiceToTextProcessor is ok
     private let languageCode: String
     
     private let viewModel: VoiceToTextViewModel
@@ -33,6 +33,7 @@ import Combine
         )
     }
     
+    // Passes Events to the inner ViewModel
     func onEvent(event: VoiceToTextEvent) {
         viewModel.onEvent(event: event)
     }

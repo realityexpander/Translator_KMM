@@ -112,7 +112,7 @@ class TranslateViewModel(
                 ) }
             }
             is TranslateEvent.DeleteHistoryItem -> {
-                viewModelScope?.launch {
+                viewModelScope.launch {
                     historyRepo.deleteHistoryItem(event.item.id)
                 }
             }

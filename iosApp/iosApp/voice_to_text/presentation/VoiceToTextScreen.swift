@@ -84,7 +84,7 @@ struct VoiceToTextScreen: View {
                         .font(.title2)
                         .foregroundColor(.red)
                 )
-            case .listening:
+            case .listeningActive:
                 return AnyView(
                     VoiceRecorderDisplay(
                         powerRatios: viewModel.state.powerRatios.map { Double(truncating: $0) }

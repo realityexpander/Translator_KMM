@@ -21,8 +21,9 @@ struct VoiceRecorderDisplay: View {
                 .map { ratio in
                     min(max(defaultLevel, ratio), 1.0)
                 }
-                .suffix(barCount)
+                .suffix(barCount) // like kotlin .takeLast(barCount)
                 .reversed()
+            
             for (i, powerRatio) in reversedRatios.enumerated() {
                 let centerY = CGFloat(size.height / 2.0)
                 let yTopStart = CGFloat(centerY - centerY * powerRatio)

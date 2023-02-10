@@ -81,7 +81,7 @@ fun VoiceToTextScreen(
                 ) {
                     AnimatedContent(targetState = state.displayState) { displayState ->
                         when (displayState) {
-                            DisplayState.LISTENING -> {
+                            DisplayState.LISTENING_ACTIVE -> {
                                 Icon(
                                     imageVector = Icons.Rounded.Close,
                                     contentDescription = stringResource(id = R.string.stop_recording),
@@ -138,7 +138,7 @@ fun VoiceToTextScreen(
                         contentDescription = stringResource(id = R.string.close)
                     )
                 }
-                if(state.displayState == DisplayState.LISTENING) {
+                if(state.displayState == DisplayState.LISTENING_ACTIVE) {
                     Text(
                         text = stringResource(id = R.string.listening),
                         color = LightBlue,
@@ -167,7 +167,7 @@ fun VoiceToTextScreen(
                                 textAlign = TextAlign.Center
                             )
                         }
-                        DisplayState.LISTENING -> {
+                        DisplayState.LISTENING_ACTIVE -> {
                             VoiceRecorderDisplay(
                                 powerRatios = state.powerRatios,
                                 modifier = Modifier

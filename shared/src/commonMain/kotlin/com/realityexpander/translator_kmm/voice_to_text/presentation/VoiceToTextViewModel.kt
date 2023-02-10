@@ -33,7 +33,7 @@ class VoiceToTextViewModel(
                     isResultVisible ->
                         DisplayState.RESULT_VISIBLE
                     voiceResult.isRecognizerListening ->
-                        DisplayState.LISTENING
+                        DisplayState.LISTENING_ACTIVE
                     else ->
                         DisplayState.WAITING_TO_LISTEN
                 }
@@ -43,10 +43,11 @@ class VoiceToTextViewModel(
         .toCommonStateFlow()
 
     init {
+
+        // Update the power ratio every 50ms for the "waveform" animation
         viewModelScope.launch {
             while (true) {
-                // Update the power ratio every 50ms for the "waveform" animation
-                if (state.value.displayState == DisplayState.LISTENING) {
+                if (state.value.displayState == DisplayState.LISTENING_ACTIVE) {
                     _state.update {
                         it.copy(
                             powerRatios = it.powerRatios + vttProcessor.state.value.powerRatio
@@ -75,7 +76,8 @@ class VoiceToTextViewModel(
             VoiceToTextEvent.Reset -> {
                 vttProcessor.reset()
                 _state.update {
-                    VoiceToTextState().copy(isRecordPermissionGranted = it.isRecordPermissionGranted)
+                    VoiceToTextState()
+                        .copy(isRecordPermissionGranted = it.isRecordPermissionGranted) // keep the permission state
                 }
             }
             is VoiceToTextEvent.ToggleRecording ->
@@ -88,7 +90,7 @@ class VoiceToTextViewModel(
         _state.update { it.copy(powerRatios = emptyList()) }
 
         vttProcessor.cancel()
-        if (state.value.displayState == DisplayState.LISTENING) {
+        if (state.value.displayState == DisplayState.LISTENING_ACTIVE) {
             vttProcessor.stopListening()
         } else {
             vttProcessor.startListening(languageCode)

@@ -22,7 +22,9 @@ class VoiceToTextProcessorIOSImpl: IVoiceToTextProcessor, ObservableObject {
     var state: CommonStateFlow<VoiceToTextProcessorState> { _state }
     
     private var micObserver = MicrophonePowerObserver()
-    var micPowerRatio: Published<Double>.Publisher { micObserver.$micPowerRatio }
+    var micPowerRatio: Published<Double>.Publisher { // Observes the micObserver.micPowerRatio -> normal var
+        micObserver.$micPowerRatio  // this is a Double
+    }
     private var micPowerCancellable: AnyCancellable?
     
     private var recognizer: SFSpeechRecognizer?
@@ -33,11 +35,13 @@ class VoiceToTextProcessorIOSImpl: IVoiceToTextProcessor, ObservableObject {
     private var audioSession: AVAudioSession?
 
     ///////////////////////////////////////////////////////////////////////
-    ////////////////// IVoiceToTextParser Implementation //////////////////
+    ////////////////// IVoiceToTextProcessor Implementation //////////////////
 
     func startListening(languageCode: String) {
+        // Clear errors>
         updateState(error: nil)
         
+        // Setup Speech Recognizer
         let chosenLocale = Locale.init(identifier: languageCode)
         let supportedLocale = SFSpeechRecognizer.supportedLocales().contains(chosenLocale)
             ? chosenLocale : Locale.init(identifier: "en-US")
@@ -52,48 +56,65 @@ class VoiceToTextProcessorIOSImpl: IVoiceToTextProcessor, ObservableObject {
         
         self.requestPermissions { [weak self] in
             self?.audioBufferRequest = SFSpeechAudioBufferRecognitionRequest()
-            
             guard let audioBufferRequest = self?.audioBufferRequest else {
                 return
             }
             
-            self?.recognitionTask = self?.recognizer?.recognitionTask(with: audioBufferRequest) { [weak self] (result, error) in
-                guard let result = result else {
-                    self?.updateState(error: error?.localizedDescription)
-                    return
+            self?.recognitionTask = self?.recognizer?
+                .recognitionTask(with: audioBufferRequest) { [weak self] (result, error) in
+                    guard let result = result else {
+                        self?.updateState(error: error?.localizedDescription)
+                        return
+                    }
+                    
+                    if result.isFinal {
+                        self?.updateState(result: result.bestTranscription.formattedString)
+                    }
                 }
-                
-                if result.isFinal {
-                    self?.updateState(result: result.bestTranscription.formattedString)
-                }
-            }
             
             self?.audioEngine = AVAudioEngine()
             self?.inputNode = self?.audioEngine?.inputNode
             
-            let recordingFormat = self?.inputNode?.outputFormat(forBus: 0)
-            self?.inputNode?.installTap(onBus: 0, bufferSize: 1024, format: recordingFormat) { buffer, _ in
-                self?.audioBufferRequest?.append(buffer)
+            // Setup recording to be saved in the `audioBufferRequest`
+            let recordingFormat = self?.inputNode?.outputFormat(forBus: 0) // 0 because we have only one input
+            self?.inputNode?.installTap(
+                onBus: 0,
+                bufferSize: 1024,
+                format: recordingFormat
+            ) { buffer, _ in
+                self?.audioBufferRequest?.append(buffer) // `buffer` gets added to the `audioBufferRequest`
             }
             
             self?.audioEngine?.prepare()
             
             do {
-                try self?.audioSession?.setCategory(.playAndRecord, mode: .spokenAudio, options: .duckOthers)
-                try self?.audioSession?.setActive(true, options: .notifyOthersOnDeactivation)
+                try self?.audioSession?
+                    .setCategory(
+                        .playAndRecord,
+                        mode: .spokenAudio,   // Allow other apps to pause for audio prompts.
+                        options: .duckOthers  // Turn down the volume of other apps while recording.
+                    )
+                try self?.audioSession?
+                    .setActive(
+                        true,
+                        options: .notifyOthersOnDeactivation  // let other apps turn their volume back to normal.
+                    )
                 
                 self?.micObserver.startObserving()
-                
                 try self?.audioEngine?.start()
-                
                 self?.updateState(isRecognizerListening: true)
                 
-                self?.micPowerCancellable = self?.micPowerRatio
-                    .sink { [weak self] ratio in
-                        self?.updateState(powerRatio: ratio)
-                    }
+                // Observe the micPowerRatio changes and update the ViewModel state for "Audio Levels" UI
+                self?.micPowerCancellable =  // If still observing...
+                    self?.micPowerRatio      // Listen for changes to `micPowerRatio`...
+                        .sink { [weak self] ratio in
+                            self?.updateState(powerRatio: ratio)  // Update the current audio level
+                        }
             } catch {
-                self?.updateState(error: error.localizedDescription, isRecognizerListening: false)
+                self?.updateState(
+                    error: error.localizedDescription,
+                    isRecognizerListening: false
+                )
             }
         }
     }
@@ -101,17 +122,21 @@ class VoiceToTextProcessorIOSImpl: IVoiceToTextProcessor, ObservableObject {
     func stopListening() {
         self.updateState(isRecognizerListening: false)
         
+        // Turn off mic audio levels monitoring
         micPowerCancellable = nil
         micObserver.release()
         
+        // End the recording
         audioBufferRequest?.endAudio()
         audioBufferRequest = nil
         
+        // Stop the Audio Engine
         audioEngine?.stop()
         
+        // Remove the input tap
         inputNode?.removeTap(onBus: 0)
         
-        try? audioSession?.setActive(false)
+        try? audioSession?.setActive(false)  // `try?` means ignore result if it fails, requires `try` bc a `throw` is possibly called.
         audioSession = nil
     }
 
@@ -121,22 +146,28 @@ class VoiceToTextProcessorIOSImpl: IVoiceToTextProcessor, ObservableObject {
 
     func reset() {
         self.stopListening()
-        _state.value = VoiceToTextProcessorState(result: "", error: nil, powerRatio: 0.0, isRecognizerListening: false)
+        _state.value = VoiceToTextProcessorState(
+            result: "",
+            error: nil,
+            powerRatio: 0.0,
+            isRecognizerListening: false
+        )
     }
 
     ////////////////////////////////////////////////////////////////////
     /////////////////// iOS OS Private Methods /////////////////////////
     
-    private func requestPermissions(onGranted: @escaping () -> Void) {
-        audioSession?.requestRecordPermission { [weak self] wasGranted in
-            if !wasGranted {
+    private func requestPermissions(onGranted: @escaping () -> Void) {  // @escaping means its coming back from a different thread
+        audioSession?.requestRecordPermission { [weak self] isPermissionGranted in
+            guard isPermissionGranted else {
                 self?.updateState(error: "You need to grant permission to record your voice.")
                 self?.stopListening()
                 return
             }
+            
             SFSpeechRecognizer.requestAuthorization { [weak self] status in
-                DispatchQueue.main.async {
-                    if status != .authorized {
+                DispatchQueue.main.async {  // runs this on the main thread, similar to main dispatcher
+                    guard status == .authorized else {
                         self?.updateState(error: "You need to grant permission to transcribe audio.")
                         self?.stopListening()
                         return
@@ -148,9 +179,16 @@ class VoiceToTextProcessorIOSImpl: IVoiceToTextProcessor, ObservableObject {
     }
 
 
-    // Simulates the `_state.update {}` method from Kotlin
-    private func updateState(result: String? = nil, error: String? = nil, powerRatio: CGFloat? = nil, isRecognizerListening: Bool? = nil) {
+    // Simulates the `_state.update {}` method like MutableStateFlow in Kotlin
+    private func updateState(
+        result: String? = nil,
+        error: String? = nil,
+        powerRatio: CGFloat? = nil,
+        isRecognizerListening: Bool? = nil
+    ) {
         let currentState = _state.value
+    
+        // Replicate the `.copy(xxx=yyy)` feature in Kotlin
         _state.value = VoiceToTextProcessorState(
             result: result ?? currentState?.result ?? "",
             error: error ?? currentState?.error,
