@@ -17,7 +17,7 @@ Shows how to implement cross-platform abstractions for platform specific module:
 - Speech Recognizer - Voice-To-Text
 - Speech Synthesis - Text-To-Voice
 
-UI separate:
+UI implemented separately, but using common ViewModels:
 - Compose for Android
 - SwiftUI for iOS
 
