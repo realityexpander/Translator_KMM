@@ -123,12 +123,12 @@ class TranslateViewModel(
                 ) }
             }
             is TranslateEvent.SubmitVoiceResult -> {
-                _state.update { it.copy(
+                val newState = _state.updateAndGet { it.copy(
                     fromText = event.result ?: it.fromText,
                     isTranslating = if(event.result != null) false else it.isTranslating,
                     toText = if(event.result != null) null else it.toText
                 ) }
-                translate(_state.value)
+                translate(newState)
             }
             TranslateEvent.SwapLanguages -> {
                 _state.update { it.copy(

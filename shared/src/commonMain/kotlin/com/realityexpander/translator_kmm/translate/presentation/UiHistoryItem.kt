@@ -2,6 +2,7 @@ package com.realityexpander.translator_kmm.translate.presentation
 
 import com.realityexpander.translator_kmm.core.domain.language.Language
 import com.realityexpander.translator_kmm.core.presentation.UiLanguage
+import com.realityexpander.translator_kmm.translate.domain.history.HistoryItem
 
 data class UiHistoryItem(
     val id: Long,
@@ -42,5 +43,4 @@ data class UiHistoryItem(
             )
         }
     }
-
 }

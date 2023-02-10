@@ -5,13 +5,13 @@ import com.realityexpander.translator_kmm.translate.domain.translate.ITranslateC
 
 class TranslateClientFakeImpl: ITranslateClient {
 
-    var translatedText = "test translation"
+    var expectedTranslatedText = "test translation"
 
     override suspend fun translate(
         fromLanguage: Language,
         fromText: String,
         toLanguage: Language
     ): String {
-        return translatedText
+        return expectedTranslatedText
     }
 }

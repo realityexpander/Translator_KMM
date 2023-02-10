@@ -157,7 +157,7 @@ class VoiceToTextProcessorIOSImpl: IVoiceToTextProcessor, ObservableObject {
     ////////////////////////////////////////////////////////////////////
     /////////////////// iOS OS Private Methods /////////////////////////
     
-    private func requestPermissions(onGranted: @escaping () -> Void) {  // @escaping means its coming back from a different thread
+    private func requestPermissions(onGranted: @escaping () -> Void) {  // @escaping means execution may come back from a different thread
         audioSession?.requestRecordPermission { [weak self] isPermissionGranted in
             guard isPermissionGranted else {
                 self?.updateState(error: "You need to grant permission to record your voice.")
