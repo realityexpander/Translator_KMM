@@ -2,20 +2,14 @@ package com.realityexpander.translator_kmm.translate.presentation
 
 import app.cash.turbine.test
 import assertk.assertThat
-import assertk.assertions.isEmpty
-import assertk.assertions.isEqualTo
-import assertk.assertions.isFalse
-import assertk.assertions.isTrue
+import assertk.assertions.*
 import com.realityexpander.translator_kmm.core.presentation.UiLanguage
 import com.realityexpander.translator_kmm.translate.data.local.HistoryRepositoryFakeImpl
 import com.realityexpander.translator_kmm.translate.data.remote.TranslateClientFakeImpl
 import com.realityexpander.translator_kmm.translate.domain.history.HistoryItem
 import com.realityexpander.translator_kmm.translate.domain.translate.TranslateUseCase
 import com.realityexpander.translator_kmm.translate.mappers.toHistoryItem
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.runBlocking
-import kotlinx.coroutines.yield
+import kotlinx.coroutines.*
 import kotlin.test.BeforeTest
 import kotlin.test.Test
 
@@ -98,35 +92,43 @@ class TranslateViewModelTest {
             assertThat(resultState.isTranslating).isFalse()
             assertThat(resultState.toText).isEqualTo(client.expectedTranslatedText)
 
-            cancelAndIgnoreRemainingEvents()
+            cancelAndConsumeRemainingEvents()
         }
     }
 
     @Test
-    fun `Translate success - state properly updated2`() = runBlocking {
+    fun `Translate failure - state properly updated`() = runBlocking {
+
+//        assertThat { 1 + 1 }.isSuccess().isPositive()
+//
+//        assertThat {
+//            throw Exception("error")
+//        }.isFailure().hasMessage("error")
+
+        client.expectedTranslatedText = ""
+
         viewModel.state.test {
             // Receive the initial state
-            awaitItem()
+            val item = awaitItem()
+            println("expect: $item")
+            assertThat { item.isTranslating.equals(false) }.isSuccess()
 
             // Arrange
             viewModel.onEvent(TranslateEvent.ChangeTranslationText("test"))
-            awaitItem()
+            val item2 = awaitItem()
+            assertThat { item2.isTranslating.equals(false) }.isSuccess()
 
             // Act
             viewModel.onEvent(TranslateEvent.Translate)
+            val loadingState = awaitItem()
+            assertThat { loadingState.isTranslating.equals(true) }.isSuccess()
 
             // Assert
-
-            // Check for loading state
-            val loadingState = awaitItem()
-            assertThat(loadingState.isTranslating).isTrue()
-
-            // Check for correct result state
             val resultState = awaitItem()
             assertThat(resultState.isTranslating).isFalse()
             assertThat(resultState.toText).isEqualTo(client.expectedTranslatedText)
 
-            cancelAndIgnoreRemainingEvents()
+            cancelAndConsumeRemainingEvents()
         }
     }
 

@@ -33,10 +33,13 @@ import com.realityexpander.translator_kmm.android.translate.presentation.Android
 import com.realityexpander.translator_kmm.android.translate.presentation.TranslateScreen
 import com.realityexpander.translator_kmm.android.voice_to_text.presentation.AndroidVoiceToTextViewModel
 import com.realityexpander.translator_kmm.android.voice_to_text.presentation.VoiceToTextScreen
+import com.realityexpander.translator_kmm.core.domain.language.Language
 import com.realityexpander.translator_kmm.translate.presentation.TranslateEvent
 import com.realityexpander.translator_kmm.translate.presentation.TranslateState
 import com.realityexpander.translator_kmm.voice_to_text.presentation.VoiceToTextEvent
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.runBlocking
 
 // Mind Map
 // https://www.mindmeister.com/map/2590156097
@@ -207,4 +210,3 @@ fun TranslatorTheme(
         content = content
     )
 }
-

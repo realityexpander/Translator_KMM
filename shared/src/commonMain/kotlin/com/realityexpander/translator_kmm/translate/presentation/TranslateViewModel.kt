@@ -148,10 +148,11 @@ class TranslateViewModel(
             return
         }
 
+        _state.update { it.copy(
+            isTranslating = true
+        ) }
+
         translateJob = viewModelScope.launch {
-            _state.update { it.copy(
-                isTranslating = true
-            ) }
 
             val result = translate.execute(
                 fromLanguage = state.fromLanguage.language,
