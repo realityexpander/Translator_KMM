@@ -110,7 +110,6 @@ class TranslateViewModelTest {
         viewModel.state.test {
             // Receive the initial state
             val item = awaitItem()
-            println("expect: $item")
             assertThat { item.isTranslating.equals(false) }.isSuccess()
 
             // Arrange
