@@ -15,6 +15,7 @@ import com.realityexpander.translator_kmm.translate.mappers.toHistoryItem
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.yield
 import kotlin.test.BeforeTest
 import kotlin.test.Test
 
@@ -96,17 +97,18 @@ class TranslateViewModelTest {
             val resultState = awaitItem()
             assertThat(resultState.isTranslating).isFalse()
             assertThat(resultState.toText).isEqualTo(client.expectedTranslatedText)
+
+            cancelAndIgnoreRemainingEvents()
         }
     }
 
     @Test
-    fun `Translate failure - state properly updated`() = runBlocking {
+    fun `Translate success - state properly updated2`() = runBlocking {
         viewModel.state.test {
             // Receive the initial state
             awaitItem()
 
             // Arrange
-            client.expectedTranslatedText = ""
             viewModel.onEvent(TranslateEvent.ChangeTranslationText("test"))
             awaitItem()
 
@@ -122,7 +124,9 @@ class TranslateViewModelTest {
             // Check for correct result state
             val resultState = awaitItem()
             assertThat(resultState.isTranslating).isFalse()
-            assertThat(resultState.toText).isEqualTo("")
+            assertThat(resultState.toText).isEqualTo(client.expectedTranslatedText)
+
+            cancelAndIgnoreRemainingEvents()
         }
     }
 

@@ -69,7 +69,8 @@ object Deps {
     private const val assertKVersion = "0.25"
     const val assertK = "com.willowtreeapps.assertk:assertk:$assertKVersion"
 
-    private const val turbineVersion = "0.7.0"
+//    private const val turbineVersion = "0.7.0"
+    private const val turbineVersion = "0.12.1"
     const val turbine = "app.cash.turbine:turbine:$turbineVersion"
 
     private const val jUnitVersion = "4.13.2"
