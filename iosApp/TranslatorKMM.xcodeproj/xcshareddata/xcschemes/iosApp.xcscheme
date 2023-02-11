@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "7555FF7A242A565900829871"
-               BuildableName = "iosApp.app"
-               BlueprintName = "iosApp"
-               ReferencedContainer = "container:iosApp.xcodeproj">
+               BuildableName = "TranslatorKMM.app"
+               BlueprintName = "TranslatorKMM"
+               ReferencedContainer = "container:TranslatorKMM.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -36,7 +36,7 @@
                BlueprintIdentifier = "C364541E29453AD400C0453A"
                BuildableName = "iosAppUITests.xctest"
                BlueprintName = "iosAppUITests"
-               ReferencedContainer = "container:iosApp.xcodeproj">
+               ReferencedContainer = "container:TranslatorKMM.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -56,9 +56,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "7555FF7A242A565900829871"
-            BuildableName = "iosApp.app"
-            BlueprintName = "iosApp"
-            ReferencedContainer = "container:iosApp.xcodeproj">
+            BuildableName = "TranslatorKMM.app"
+            BlueprintName = "TranslatorKMM"
+            ReferencedContainer = "container:TranslatorKMM.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -73,9 +73,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "7555FF7A242A565900829871"
-            BuildableName = "iosApp.app"
-            BlueprintName = "iosApp"
-            ReferencedContainer = "container:iosApp.xcodeproj">
+            BuildableName = "TranslatorKMM.app"
+            BlueprintName = "TranslatorKMM"
+            ReferencedContainer = "container:TranslatorKMM.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
