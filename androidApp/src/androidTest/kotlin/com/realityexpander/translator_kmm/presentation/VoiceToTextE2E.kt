@@ -82,9 +82,10 @@ class VoiceToTextE2E {
             .onNodeWithText(vttProcessor.voiceResult)
             .assertIsDisplayed()
 
-        composeRule
-            .onNodeWithText(context.getString(R.string.translate), ignoreCase = true)
-            .performClick()
+        // Not needed bc it automatically translates after returning from the voice to text screen
+//        composeRule
+//            .onNodeWithText(context.getString(R.string.translate), ignoreCase = true)
+//            .performClick()
 
         composeRule
             .onNodeWithText(vttProcessor.voiceResult)

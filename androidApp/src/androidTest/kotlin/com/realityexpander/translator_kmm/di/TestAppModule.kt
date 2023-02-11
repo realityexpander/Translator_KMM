@@ -40,7 +40,7 @@ object TestAppModule {
 
     @Provides
     @Singleton
-    fun provideFakeVoiceToTextParser(): IVoiceToTextProcessor {
+    fun provideFakeVoiceToTextProcessor(): IVoiceToTextProcessor {
         return FakeVoiceToTextProcessor()
     }
 }
