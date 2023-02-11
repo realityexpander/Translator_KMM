@@ -1,4 +1,6 @@
-# KMM Translator
+[<img src="https://user-images.githubusercontent.com/5157474/218233986-0d42e2be-669e-4948-835a-a15c02179510.png" width=150 />](https://user-images.githubusercontent.com/5157474/218233986-0d42e2be-669e-4948-835a-a15c02179510.png)
+# KMM Translator 
+
 Android &amp; iOS App cross-platform KMM application for translating languages
 
 [<img src="https://user-images.githubusercontent.com/5157474/218233438-99c84e55-f835-4076-976b-868ed5d19e8a.png" width=250 />](https://user-images.githubusercontent.com/5157474/218233438-99c84e55-f835-4076-976b-868ed5d19e8a.png)
