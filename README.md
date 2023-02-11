@@ -4,6 +4,8 @@
 Android &amp; iOS App cross-platform KMM application for translating languages
 
 [<img src="https://user-images.githubusercontent.com/5157474/218233438-99c84e55-f835-4076-976b-868ed5d19e8a.png" width=250 />](https://user-images.githubusercontent.com/5157474/218233438-99c84e55-f835-4076-976b-868ed5d19e8a.png)
+[<img src="https://user-images.githubusercontent.com/5157474/218236851-de783ba5-4dc9-40e6-885e-03889e9131db.png" width=250 />](https://user-images.githubusercontent.com/5157474/218236851-de783ba5-4dc9-40e6-885e-03889e9131db.png)
+
 
 Uses Kotlin for Shared logic:
 - Database (SQLDelight)
