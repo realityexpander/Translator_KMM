@@ -17,7 +17,7 @@
                BlueprintIdentifier = "7555FF7A242A565900829871"
                BuildableName = "TranslatorKMM.app"
                BlueprintName = "TranslatorKMM"
-               ReferencedContainer = "container:Translator_KMM.xcodeproj">
+               ReferencedContainer = "container:TranslatorKMM.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -28,17 +28,6 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
-         <TestableReference
-            skipped = "NO"
-            parallelizable = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "C364541E29453AD400C0453A"
-               BuildableName = "iosAppUITests.xctest"
-               BlueprintName = "iosAppUITests"
-               ReferencedContainer = "container:Translator_KMM.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction
@@ -58,7 +47,7 @@
             BlueprintIdentifier = "7555FF7A242A565900829871"
             BuildableName = "TranslatorKMM.app"
             BlueprintName = "TranslatorKMM"
-            ReferencedContainer = "container:Translator_KMM.xcodeproj">
+            ReferencedContainer = "container:TranslatorKMM.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -75,7 +64,7 @@
             BlueprintIdentifier = "7555FF7A242A565900829871"
             BuildableName = "TranslatorKMM.app"
             BlueprintName = "TranslatorKMM"
-            ReferencedContainer = "container:Translator_KMM.xcodeproj">
+            ReferencedContainer = "container:TranslatorKMM.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

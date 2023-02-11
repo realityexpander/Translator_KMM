@@ -59,7 +59,7 @@
 		C3119E762943D1F5002FC4C6 /* VoiceRecorderDisplay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceRecorderDisplay.swift; sourceTree = "<group>"; };
 		C3119E782943D48A002FC4C6 /* VoiceRecorderButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceRecorderButton.swift; sourceTree = "<group>"; };
 		C3119E7A2943D59D002FC4C6 /* VoiceToTextScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceToTextScreen.swift; sourceTree = "<group>"; };
-		C364541F29453AD400C0453A /* iosAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iosAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		C364541F29453AD400C0453A /* TranslatorKMMUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TranslatorKMMUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C364542129453AD400C0453A /* iosAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iosAppUITests.swift; sourceTree = "<group>"; };
 		C364542329453AD400C0453A /* iosAppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iosAppUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		C369F520294274AB0044D3AB /* GradientSurface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientSurface.swift; sourceTree = "<group>"; };
@@ -130,7 +130,7 @@
 			isa = PBXGroup;
 			children = (
 				7555FF7B242A565900829871 /* TranslatorKMM.app */,
-				C364541F29453AD400C0453A /* iosAppUITests.xctest */,
+				C364541F29453AD400C0453A /* TranslatorKMMUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -278,9 +278,9 @@
 			productReference = 7555FF7B242A565900829871 /* TranslatorKMM.app */;
 			productType = "com.apple.product-type.application";
 		};
-		C364541E29453AD400C0453A /* iosAppUITests */ = {
+		C364541E29453AD400C0453A /* TranslatorKMMUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C364542929453AD400C0453A /* Build configuration list for PBXNativeTarget "iosAppUITests" */;
+			buildConfigurationList = C364542929453AD400C0453A /* Build configuration list for PBXNativeTarget "TranslatorKMMUITests" */;
 			buildPhases = (
 				C364541B29453AD400C0453A /* Sources */,
 				C364541C29453AD400C0453A /* Frameworks */,
@@ -291,9 +291,9 @@
 			dependencies = (
 				C364542629453AD400C0453A /* PBXTargetDependency */,
 			);
-			name = iosAppUITests;
+			name = TranslatorKMMUITests;
 			productName = iosAppUITests;
-			productReference = C364541F29453AD400C0453A /* iosAppUITests.xctest */;
+			productReference = C364541F29453AD400C0453A /* TranslatorKMMUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -329,7 +329,7 @@
 			projectRoot = "";
 			targets = (
 				7555FF7A242A565900829871 /* TranslatorKMM */,
-				C364541E29453AD400C0453A /* iosAppUITests */,
+				C364541E29453AD400C0453A /* TranslatorKMMUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -516,6 +516,7 @@
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = TranslatorKMM;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -570,6 +571,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = TranslatorKMM;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
@@ -717,7 +719,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C364542929453AD400C0453A /* Build configuration list for PBXNativeTarget "iosAppUITests" */ = {
+		C364542929453AD400C0453A /* Build configuration list for PBXNativeTarget "TranslatorKMMUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C364542729453AD400C0453A /* Debug */,
