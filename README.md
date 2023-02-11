@@ -1,6 +1,9 @@
 # KMM Translator
 Android &amp; iOS App cross-platform KMM application for translating languages
 
+[<img src="https://user-images.githubusercontent.com/5157474/218233438-99c84e55-f835-4076-976b-868ed5d19e8a.png" width=250 />](https://user-images.githubusercontent.com/5157474/218233438-99c84e55-f835-4076-976b-868ed5d19e8a.png)
+
+
 Uses Kotlin for Shared logic:
 - Database (SQLDelight)
 - Http Client (Ktor Client)
