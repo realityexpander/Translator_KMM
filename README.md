@@ -39,3 +39,5 @@ UI implemented separately, but using common ViewModels:
 
 
 ![image](https://user-images.githubusercontent.com/5157474/218234141-233daac6-2c4d-4cb8-be7a-ec16968ec231.png)
+
+
