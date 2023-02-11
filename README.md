@@ -33,4 +33,9 @@ UI implemented separately, but using common ViewModels:
 
 [<img src="https://user-images.githubusercontent.com/5157474/218219624-371b1ead-54d5-43e8-975a-12956e1c7bd6.png" width=650 />](https://mm.tt/map/2590156097)
 
+[<img src="https://user-images.githubusercontent.com/5157474/218237123-64141f91-edc6-4943-85af-7d96704c51af.png" width=325 />](https://user-images.githubusercontent.com/5157474/218237123-64141f91-edc6-4943-85af-7d96704c51af.png)
+[<img src="https://user-images.githubusercontent.com/5157474/218237980-1c7bf06a-c8b8-4012-b821-ddc16bb4ffe3.png" width=325 />](https://user-images.githubusercontent.com/5157474/218237980-1c7bf06a-c8b8-4012-b821-ddc16bb4ffe3.png)
+
+
+
 ![image](https://user-images.githubusercontent.com/5157474/218234141-233daac6-2c4d-4cb8-be7a-ec16968ec231.png)
