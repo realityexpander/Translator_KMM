@@ -93,6 +93,10 @@ fun TranslateScreen(
             }
         }
 
+        val clipboardManager = LocalClipboardManager.current
+        val keyboardController = LocalSoftwareKeyboardController.current
+        val tts = rememberTextToSpeech()
+
         LazyColumn(
             modifier = Modifier
                 .fillMaxSize()
@@ -100,11 +104,9 @@ fun TranslateScreen(
                 .padding(16.dp),
             verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
+
             // • Query Text Entry /  Translated Text Display
             item {
-                val clipboardManager = LocalClipboardManager.current
-                val keyboardController = LocalSoftwareKeyboardController.current
-                val tts = rememberTextToSpeech()
 
                 TranslateTextField(
                     fromText = state.fromText,
