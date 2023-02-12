@@ -15,6 +15,6 @@ struct ContentView: View {
                 translateUseCase: appModule.translateUseCase,
                 vttProcessor: appModule.vttProcessor
             )
-        }
+        }//.frame(maxWidth: 800)
 	}
 }

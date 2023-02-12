@@ -1,13 +1,11 @@
-package com.realityexpander.translator_kmm.voice_to_text.data
+package com.realityexpander.translator_kmm.voice_to_text.domain
 
 import com.realityexpander.translator_kmm.core.domain.util.CommonStateFlow
 import com.realityexpander.translator_kmm.core.domain.util.toCommonStateFlow
-import com.realityexpander.translator_kmm.voice_to_text.domain.IVoiceToTextProcessor
-import com.realityexpander.translator_kmm.voice_to_text.domain.VoiceToTextProcessorState
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.update
 
-class FakeVoiceToTextProcessor: IVoiceToTextProcessor {
+class VoiceToTextProcessorFakeImpl: IVoiceToTextProcessor {
 
     private val _state = MutableStateFlow(VoiceToTextProcessorState())
     override val state: CommonStateFlow<VoiceToTextProcessorState>
