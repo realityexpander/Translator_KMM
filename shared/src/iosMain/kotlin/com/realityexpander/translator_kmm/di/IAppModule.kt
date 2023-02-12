@@ -10,32 +10,9 @@ import com.realityexpander.translator_kmm.translate.domain.translate.TranslateUs
 import com.realityexpander.translator_kmm.translate.domain.translate.ITranslateClient
 import com.realityexpander.translator_kmm.voice_to_text.domain.IVoiceToTextProcessor
 
-interface AppModule {
+interface IAppModule {
     val historyRepo: IHistoryRepository
     val client: ITranslateClient
     val translateUseCase: TranslateUseCase
     val vttProcessor: IVoiceToTextProcessor
-}
-
-class AppModuleImpl( // Used in iOS (simulates dependency injection)
-    override val vttProcessor: IVoiceToTextProcessor
-): AppModule {
-
-    override val historyRepo: IHistoryRepository by lazy {
-        HistoryRepositorySqlDelightImpl(
-            TranslateDatabase(
-                DatabaseDriverFactory().create()
-            )
-        )
-    }
-
-    override val client: ITranslateClient by lazy {
-        TranslateClientKtorImpl(
-            HttpClientFactory().create()
-        )
-    }
-
-    override val translateUseCase: TranslateUseCase by lazy {
-        TranslateUseCase(client, historyRepo)
-    }
 }

@@ -5,7 +5,7 @@ import com.realityexpander.translator_kmm.translate.domain.translate.TranslateCl
 import com.realityexpander.translator_kmm.translate.domain.translate.TranslateUseCase
 import com.realityexpander.translator_kmm.voice_to_text.domain.VoiceToTextProcessorFakeImpl
 
-class TestAppModule: AppModule {
+class AppModuleTestImpl: IAppModule {
     override val historyRepo = HistoryRepositoryFakeImpl()
     override val client = TranslateClientFakeImpl()
     override val translateUseCase = TranslateUseCase(client, historyRepo)
