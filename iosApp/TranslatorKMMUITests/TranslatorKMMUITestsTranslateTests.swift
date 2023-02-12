@@ -8,7 +8,7 @@
 
 import XCTest
 
-final class iosAppUITests: XCTestCase {
+final class TranslatorKMMAppUITests: XCTestCase {
 
     private var app: XCUIApplication!
     

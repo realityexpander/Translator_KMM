@@ -21,10 +21,13 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 object AppModule {
 
+    ////////////////////////
+    // data/remote
+
     @Provides
     @Singleton
     fun provideHttpClient(): HttpClient {
-        return HttpClientFactory().create()
+        return HttpClientFactory().create() // uses Android native networking
     }
 
     @Provides
@@ -32,6 +35,9 @@ object AppModule {
     fun provideTranslateClient(httpClient: HttpClient): ITranslateClient {
         return TranslateClientKtorImpl(httpClient)
     }
+
+    ////////////////////////
+    // data/local
 
     @Provides
     @Singleton
@@ -44,6 +50,9 @@ object AppModule {
     fun provideHistoryRepository(driver: SqlDriver): IHistoryRepository {
         return HistoryRepositorySqlDelightImpl(TranslateDatabase(driver))
     }
+
+    ////////////////////////
+    // domain
 
     @Provides
     @Singleton

@@ -11,8 +11,20 @@ import com.realityexpander.translator_kmm.translate.domain.translate.TranslateUs
 import com.realityexpander.translator_kmm.voice_to_text.domain.IVoiceToTextProcessor
 
 class AppModuleProdImpl( // Used in iOS (simulates dependency injection)
-    override val vttProcessor: IVoiceToTextProcessor
+    override val vttProcessor: IVoiceToTextProcessor // passed in from iOS when creating the app.
 ): IAppModule {
+
+    ////////////////////////
+    // data/remote
+
+    override val client: ITranslateClient by lazy {
+        TranslateClientKtorImpl(
+            HttpClientFactory().create()  // uses iOS's native networking
+        )
+    }
+
+    ////////////////////////
+    // data/local
 
     override val historyRepo: IHistoryRepository by lazy {
         HistoryRepositorySqlDelightImpl(
@@ -22,11 +34,8 @@ class AppModuleProdImpl( // Used in iOS (simulates dependency injection)
         )
     }
 
-    override val client: ITranslateClient by lazy {
-        TranslateClientKtorImpl(
-            HttpClientFactory().create()
-        )
-    }
+    ////////////////////////
+    // domain
 
     override val translateUseCase: TranslateUseCase by lazy {
         TranslateUseCase(client, historyRepo)

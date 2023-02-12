@@ -12,7 +12,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class AndroidVoiceToTextViewModel @Inject constructor(
-    private val vttProcessor: IVoiceToTextProcessor
+    private val vttProcessor: IVoiceToTextProcessor  // Injected by Hilt, scoped for this ViewModel
 ): ViewModel() {
 
     private val viewModel by lazy {
