@@ -30,19 +30,13 @@
 		C391A3A6294262F400225264 /* IOSTranslateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C391A3A5294262F400225264 /* IOSTranslateViewModel.swift */; };
 		C391A3A82942631100225264 /* TranslateScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C391A3A72942631100225264 /* TranslateScreen.swift */; };
 		C3F18C8C293FCB2600D2C6D3 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3F18C8B293FCB2600D2C6D3 /* Colors.swift */; };
+		D78F238C2998D16200D1A723 /* TranslatorKMMUITestsTranslateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D78F238B2998D16200D1A723 /* TranslatorKMMUITestsTranslateTests.swift */; };
 		D7B6156D2997A51F00187DD6 /* TranslatorKMMUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7B6156C2997A51F00187DD6 /* TranslatorKMMUITests.swift */; };
 		D7B6156F2997A51F00187DD6 /* TranslatorKMMUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7B6156E2997A51F00187DD6 /* TranslatorKMMUITestsLaunchTests.swift */; };
 		D7E140BA299236F200962657 /* VoiceToTextProcessorIOSImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7E140B9299236F200962657 /* VoiceToTextProcessorIOSImpl.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		C364542529453AD400C0453A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 7555FF73242A565900829871 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 7555FF7A242A565900829871;
-			remoteInfo = iosApp;
-		};
 		D7B615702997A51F00187DD6 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 7555FF73242A565900829871 /* Project object */;
@@ -67,7 +61,6 @@
 		C3119E762943D1F5002FC4C6 /* VoiceRecorderDisplay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceRecorderDisplay.swift; sourceTree = "<group>"; };
 		C3119E782943D48A002FC4C6 /* VoiceRecorderButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceRecorderButton.swift; sourceTree = "<group>"; };
 		C3119E7A2943D59D002FC4C6 /* VoiceToTextScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceToTextScreen.swift; sourceTree = "<group>"; };
-		C364541F29453AD400C0453A /* TranslatorKMMUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TranslatorKMMUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C369F520294274AB0044D3AB /* GradientSurface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientSurface.swift; sourceTree = "<group>"; };
 		C369F5222942762B0044D3AB /* LanguageDisplay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageDisplay.swift; sourceTree = "<group>"; };
 		C369F5242942768D0044D3AB /* ProgressButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressButton.swift; sourceTree = "<group>"; };
@@ -82,7 +75,8 @@
 		C391A3A72942631100225264 /* TranslateScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslateScreen.swift; sourceTree = "<group>"; };
 		C3F18C8B293FCB2600D2C6D3 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		D35F09B0B36973044E97E5FF /* Pods-TranslatorKMM.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TranslatorKMM.debug.xcconfig"; path = "Target Support Files/Pods-TranslatorKMM/Pods-TranslatorKMM.debug.xcconfig"; sourceTree = "<group>"; };
-		D7B6156A2997A51F00187DD6 /* TranslatorKMMUITests2.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TranslatorKMMUITests2.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D78F238B2998D16200D1A723 /* TranslatorKMMUITestsTranslateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslatorKMMUITestsTranslateTests.swift; sourceTree = "<group>"; };
+		D7B6156A2997A51F00187DD6 /* TranslatorKMMUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TranslatorKMMUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D7B6156C2997A51F00187DD6 /* TranslatorKMMUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslatorKMMUITests.swift; sourceTree = "<group>"; };
 		D7B6156E2997A51F00187DD6 /* TranslatorKMMUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslatorKMMUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		D7E140B9299236F200962657 /* VoiceToTextProcessorIOSImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VoiceToTextProcessorIOSImpl.swift; sourceTree = "<group>"; };
@@ -91,13 +85,6 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		C364541C29453AD400C0453A /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		D7B615672997A51F00187DD6 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -151,8 +138,7 @@
 			isa = PBXGroup;
 			children = (
 				7555FF7B242A565900829871 /* TranslatorKMM.app */,
-				C364541F29453AD400C0453A /* TranslatorKMMUITests.xctest */,
-				D7B6156A2997A51F00187DD6 /* TranslatorKMMUITests2.xctest */,
+				D7B6156A2997A51F00187DD6 /* TranslatorKMMUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -265,6 +251,7 @@
 			children = (
 				D7B6156C2997A51F00187DD6 /* TranslatorKMMUITests.swift */,
 				D7B6156E2997A51F00187DD6 /* TranslatorKMMUITestsLaunchTests.swift */,
+				D78F238B2998D16200D1A723 /* TranslatorKMMUITestsTranslateTests.swift */,
 			);
 			path = TranslatorKMMUITests;
 			sourceTree = "<group>";
@@ -300,27 +287,9 @@
 			productReference = 7555FF7B242A565900829871 /* TranslatorKMM.app */;
 			productType = "com.apple.product-type.application";
 		};
-		C364541E29453AD400C0453A /* TranslatorKMMUITests */ = {
+		D7B615692997A51F00187DD6 /* TranslatorKMMUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C364542929453AD400C0453A /* Build configuration list for PBXNativeTarget "TranslatorKMMUITests" */;
-			buildPhases = (
-				C364541B29453AD400C0453A /* Sources */,
-				C364541C29453AD400C0453A /* Frameworks */,
-				C364541D29453AD400C0453A /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				C364542629453AD400C0453A /* PBXTargetDependency */,
-			);
-			name = TranslatorKMMUITests;
-			productName = iosAppUITests;
-			productReference = C364541F29453AD400C0453A /* TranslatorKMMUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
-		D7B615692997A51F00187DD6 /* TranslatorKMMUITests2 */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = D7B615742997A51F00187DD6 /* Build configuration list for PBXNativeTarget "TranslatorKMMUITests2" */;
+			buildConfigurationList = D7B615742997A51F00187DD6 /* Build configuration list for PBXNativeTarget "TranslatorKMMUITests" */;
 			buildPhases = (
 				D7B615662997A51F00187DD6 /* Sources */,
 				D7B615672997A51F00187DD6 /* Frameworks */,
@@ -331,9 +300,9 @@
 			dependencies = (
 				D7B615712997A51F00187DD6 /* PBXTargetDependency */,
 			);
-			name = TranslatorKMMUITests2;
+			name = TranslatorKMMUITests;
 			productName = TranslatorKMMUITests2;
-			productReference = D7B6156A2997A51F00187DD6 /* TranslatorKMMUITests2.xctest */;
+			productReference = D7B6156A2997A51F00187DD6 /* TranslatorKMMUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -348,10 +317,6 @@
 				TargetAttributes = {
 					7555FF7A242A565900829871 = {
 						CreatedOnToolsVersion = 11.3.1;
-					};
-					C364541E29453AD400C0453A = {
-						CreatedOnToolsVersion = 14.1;
-						TestTargetID = 7555FF7A242A565900829871;
 					};
 					D7B615692997A51F00187DD6 = {
 						CreatedOnToolsVersion = 14.2;
@@ -373,8 +338,7 @@
 			projectRoot = "";
 			targets = (
 				7555FF7A242A565900829871 /* TranslatorKMM */,
-				C364541E29453AD400C0453A /* TranslatorKMMUITests */,
-				D7B615692997A51F00187DD6 /* TranslatorKMMUITests2 */,
+				D7B615692997A51F00187DD6 /* TranslatorKMMUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -386,13 +350,6 @@
 			files = (
 				058557D9273AAEEB004C7B11 /* Preview Assets.xcassets in Resources */,
 				058557BB273AAA24004C7B11 /* Assets.xcassets in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		C364541D29453AD400C0453A /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -493,30 +450,19 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		C364541B29453AD400C0453A /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		D7B615662997A51F00187DD6 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				D7B6156D2997A51F00187DD6 /* TranslatorKMMUITests.swift in Sources */,
 				D7B6156F2997A51F00187DD6 /* TranslatorKMMUITestsLaunchTests.swift in Sources */,
+				D78F238C2998D16200D1A723 /* TranslatorKMMUITestsTranslateTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		C364542629453AD400C0453A /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 7555FF7A242A565900829871 /* TranslatorKMM */;
-			targetProxy = C364542529453AD400C0453A /* PBXContainerItemProxy */;
-		};
 		D7B615712997A51F00187DD6 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 7555FF7A242A565900829871 /* TranslatorKMM */;
@@ -733,45 +679,6 @@
 			};
 			name = Release;
 		};
-		C364542729453AD400C0453A /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_LSApplicationCategoryType = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.realityexpander.iosAppUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = iosApp;
-			};
-			name = Debug;
-		};
-		C364542829453AD400C0453A /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_LSApplicationCategoryType = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.realityexpander.iosAppUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = iosApp;
-			};
-			name = Release;
-		};
 		D7B615722997A51F00187DD6 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -832,16 +739,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C364542929453AD400C0453A /* Build configuration list for PBXNativeTarget "TranslatorKMMUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				C364542729453AD400C0453A /* Debug */,
-				C364542829453AD400C0453A /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		D7B615742997A51F00187DD6 /* Build configuration list for PBXNativeTarget "TranslatorKMMUITests2" */ = {
+		D7B615742997A51F00187DD6 /* Build configuration list for PBXNativeTarget "TranslatorKMMUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D7B615722997A51F00187DD6 /* Debug */,

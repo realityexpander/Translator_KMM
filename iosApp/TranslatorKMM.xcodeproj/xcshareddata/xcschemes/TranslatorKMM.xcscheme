@@ -34,8 +34,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "D7B615692997A51F00187DD6"
-               BuildableName = "TranslatorKMMUITests2.xctest"
-               BlueprintName = "TranslatorKMMUITests2"
+               BuildableName = "TranslatorKMMUITests.xctest"
+               BlueprintName = "TranslatorKMMUITests"
                ReferencedContainer = "container:TranslatorKMM.xcodeproj">
             </BuildableReference>
          </TestableReference>
