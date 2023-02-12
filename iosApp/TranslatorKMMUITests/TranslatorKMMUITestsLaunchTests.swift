@@ -1,14 +1,14 @@
 //
-//  iosAppUITestsLaunchTests.swift
-//  iosAppUITests
+//  TranslatorKMMUITests2LaunchTests.swift
+//  TranslatorKMMUITests2
 //
-//  Created by Philipp Lackner on 10.12.22.
-//  Copyright © 2022 orgName. All rights reserved.
+//  Created by Chris Athanas on 2/11/23.
+//  Copyright © 2023 orgName. All rights reserved.
 //
 
 import XCTest
 
-final class iosAppUITestsLaunchTests: XCTestCase {
+final class TranslatorKMMUITests2LaunchTests: XCTestCase {
 
     override class var runsForEachTargetApplicationUIConfiguration: Bool {
         true

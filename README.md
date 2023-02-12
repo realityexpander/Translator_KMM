@@ -37,6 +37,7 @@ UI implemented separately, but using common ViewModels:
 
 
 
+[Privacy Policy](https://www.freeprivacypolicy.com/live/71a70ce3-b22c-4847-bd57-062505eba83a)
 ![image](https://user-images.githubusercontent.com/5157474/218234141-233daac6-2c4d-4cb8-be7a-ec16968ec231.png)
 
 Support: realityexpanderdev@gmail.com

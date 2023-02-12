@@ -1,4 +1,4 @@
-package com.realityexpander.translator_kmm.translate.data.remote
+package com.realityexpander.translator_kmm.translate.domain.translate
 
 import com.realityexpander.translator_kmm.core.domain.language.Language
 import com.realityexpander.translator_kmm.translate.domain.translate.ITranslateClient

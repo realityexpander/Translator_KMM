@@ -13,10 +13,10 @@ import com.realityexpander.translator_kmm.android.MainActivity
 import com.realityexpander.translator_kmm.android.R
 import com.realityexpander.translator_kmm.android.di.AppModule
 import com.realityexpander.translator_kmm.android.voice_to_text.di.VoiceToTextModule
-import com.realityexpander.translator_kmm.translate.data.remote.FakeTranslateClient
 import com.realityexpander.translator_kmm.translate.domain.translate.ITranslateClient
-import com.realityexpander.translator_kmm.voice_to_text.data.FakeVoiceToTextProcessor
+import com.realityexpander.translator_kmm.translate.domain.translate.TranslateClientFakeImpl
 import com.realityexpander.translator_kmm.voice_to_text.domain.IVoiceToTextProcessor
+import com.realityexpander.translator_kmm.voice_to_text.domain.VoiceToTextProcessorFakeImpl
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
 import dagger.hilt.android.testing.UninstallModules
@@ -55,8 +55,8 @@ class VoiceToTextE2E {
     @Test
     fun recordAndTranslate() = runBlocking<Unit> {
         val context = ApplicationProvider.getApplicationContext<Context>()
-        val vttProcessor = fakeVoiceParser as FakeVoiceToTextProcessor
-        val client = fakeClient as FakeTranslateClient
+        val vttProcessor = fakeVoiceParser as VoiceToTextProcessorFakeImpl
+        val client = fakeClient as TranslateClientFakeImpl
 
         composeRule
             .onNodeWithContentDescription(context.getString(R.string.record_audio))
@@ -92,7 +92,7 @@ class VoiceToTextE2E {
             .assertIsDisplayed()
 
         composeRule
-            .onNodeWithText(client.translatedText)
+            .onNodeWithText(client.expectedTranslatedText)
             .assertIsDisplayed()
     }
 }

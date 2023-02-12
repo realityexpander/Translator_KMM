@@ -1,10 +1,8 @@
-package com.realityexpander.translator_kmm.translate.data.local
+package com.realityexpander.translator_kmm.translate.domain.history
 
 import com.realityexpander.translator_kmm.core.domain.util.CommonFlow
 import com.realityexpander.translator_kmm.core.domain.util.toCommonFlow
 import com.realityexpander.translator_kmm.core.domain.util.toCommonMutableStateFlow
-import com.realityexpander.translator_kmm.translate.domain.history.IHistoryRepository
-import com.realityexpander.translator_kmm.translate.domain.history.HistoryItem
 import kotlinx.coroutines.flow.MutableStateFlow
 
 class HistoryRepositoryFakeImpl: IHistoryRepository {

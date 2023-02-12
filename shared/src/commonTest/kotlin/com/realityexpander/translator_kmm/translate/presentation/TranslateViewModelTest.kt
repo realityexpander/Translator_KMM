@@ -4,9 +4,9 @@ import app.cash.turbine.test
 import assertk.assertThat
 import assertk.assertions.*
 import com.realityexpander.translator_kmm.core.presentation.UiLanguage
-import com.realityexpander.translator_kmm.translate.data.local.HistoryRepositoryFakeImpl
-import com.realityexpander.translator_kmm.translate.data.remote.TranslateClientFakeImpl
+import com.realityexpander.translator_kmm.translate.domain.history.HistoryRepositoryFakeImpl
 import com.realityexpander.translator_kmm.translate.domain.history.HistoryItem
+import com.realityexpander.translator_kmm.translate.domain.translate.TranslateClientFakeImpl
 import com.realityexpander.translator_kmm.translate.domain.translate.TranslateUseCase
 import com.realityexpander.translator_kmm.translate.mappers.toHistoryItem
 import kotlinx.coroutines.*
