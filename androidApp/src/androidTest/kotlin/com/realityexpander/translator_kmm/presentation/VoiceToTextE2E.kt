@@ -42,7 +42,7 @@ class VoiceToTextE2E {
     )
 
     @Inject
-    lateinit var fakeVoiceParser: IVoiceToTextProcessor
+    lateinit var fakeVoiceProcessor: IVoiceToTextProcessor
 
     @Inject
     lateinit var fakeClient: ITranslateClient
@@ -55,7 +55,7 @@ class VoiceToTextE2E {
     @Test
     fun recordAndTranslate() = runBlocking<Unit> {
         val context = ApplicationProvider.getApplicationContext<Context>()
-        val vttProcessor = fakeVoiceParser as VoiceToTextProcessorFakeImpl
+        val vttProcessor = fakeVoiceProcessor as VoiceToTextProcessorFakeImpl
         val client = fakeClient as TranslateClientFakeImpl
 
         composeRule
