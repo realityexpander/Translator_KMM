@@ -8,7 +8,7 @@
 
 import XCTest
 
-final class TranslatorKMMUITests2LaunchTests: XCTestCase {
+final class TranslatorKMMUITestsLaunchTests: XCTestCase {
 
     override class var runsForEachTargetApplicationUIConfiguration: Bool {
         true
