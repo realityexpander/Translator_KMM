@@ -85,7 +85,7 @@ private extension TranslateTextField {
                     .foregroundColor(Color.onSurface)
                     .overlay(alignment: .bottomTrailing) {  // sets a layer above the TextEditor
                         ProgressButton(
-                            text: "Tränslåté",
+                            text: "TRÄNSLÅTÉ",
                             isLoading: isTranslating,
                             onClick: {
                                 onTranslateEvent(TranslateEvent.Translate())
