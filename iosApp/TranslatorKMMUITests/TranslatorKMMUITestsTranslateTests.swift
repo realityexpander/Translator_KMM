@@ -28,10 +28,10 @@ final class TranslatorKMMAppUITests: XCTestCase {
     }
 
     func testRecordAndTranslate() {
-        app.buttons["Record audio"].tap()
+        app.buttons["Record audio"].tap() // nav to VTT screen
         
-        app.buttons["Voice recorder button"].tap()
-        app.buttons["Voice recorder button"].tap()
+        app.buttons["Voice recorder button"].tap() // start recording
+        app.buttons["Voice recorder button"].tap() // stop recording
         
         XCTAssert(app.staticTexts["test result"].waitForExistence(timeout: 2))
         
