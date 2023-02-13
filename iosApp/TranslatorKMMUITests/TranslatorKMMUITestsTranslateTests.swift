@@ -37,6 +37,7 @@ final class TranslatorKMMAppUITests: XCTestCase {
         
         app.buttons["Voice recorder button"].tap()
         
+        // Current implementation automatically translates. Left for reference.
 //        XCTAssert(app.buttons["TRÄNSLÅTÉ"].waitForExistence(timeout: 2))
 //        app.buttons["TRÄNSLÅTÉ"].tap()
         
