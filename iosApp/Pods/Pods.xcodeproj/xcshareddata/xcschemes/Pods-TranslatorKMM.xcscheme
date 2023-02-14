@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "1300"
+   LastUpgradeVersion = "1420"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "ED39C638569286489CD697A6C8964146"
-               BuildableName = "Pods_iosApp.framework"
-               BlueprintName = "Pods-iosApp"
+               BlueprintIdentifier = "656EAD9E3CC3CC53D71847884F509C11"
+               BuildableName = "Pods_TranslatorKMM.framework"
+               BlueprintName = "Pods-TranslatorKMM"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -47,6 +47,15 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "656EAD9E3CC3CC53D71847884F509C11"
+            BuildableName = "Pods_TranslatorKMM.framework"
+            BlueprintName = "Pods-TranslatorKMM"
+            ReferencedContainer = "container:Pods.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">
