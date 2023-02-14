@@ -22,6 +22,11 @@ class TranslateClientKtorImpl(  // was KtorTranslateClient
     ): String {
         val result = try {
             httpClient.post {
+
+                println("TranslateClientKtorImpl.translate() - fromLanguage: $fromLanguage")
+                println("TranslateClientKtorImpl.translate() - fromText: $fromText")
+                println("TranslateClientKtorImpl.translate() - toLanguage: $toLanguage")
+
                 url(NetworkConstants.BASE_URL + "/translate")
                 contentType(ContentType.Application.Json)
                 setBody(
@@ -44,7 +49,9 @@ class TranslateClientKtorImpl(  // was KtorTranslateClient
         }
 
         return try {
-            result.body<TranslateResponseDto>().translatedText
+            val res = result.body<TranslateResponseDto>().translatedText
+            println("TranslateClientKtorImpl.translate() - res: $res")
+            res
         } catch(e: Exception) {
             throw TranslateException(TranslateErrorEnum.SERVER_ERROR)
         }

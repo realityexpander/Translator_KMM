@@ -41,7 +41,9 @@ struct TranslateScreen: View {
                     isTranslating: viewModel.state.isTranslating,
                     fromLanguage: viewModel.state.fromLanguage,
                     toLanguage: viewModel.state.toLanguage,
-                    onTranslateEvent: { viewModel.onEvent(event: $0) }
+                    onTranslateEvent: {
+                        viewModel.onEvent(event: $0)
+                    }
                 )
                 .listRowSeparator(.hidden)
                 .listRowBackground(Color.background)

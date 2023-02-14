@@ -18,6 +18,7 @@ actual open class CommonFlow<T> actual constructor(
         return DisposableHandle { job.cancel() }
     }
 
+    @OptIn(DelicateCoroutinesApi::class)
     fun subscribe(
         onCollect: (T) -> Unit
     ): DisposableHandle {
