@@ -187,8 +187,9 @@ private fun TranslateQueryTextField(
                 .fillMaxSize()
                 .onFocusChanged { isFocused = it.isFocused },
             textStyle = TextStyle(
-                color = MaterialTheme.colors.onSurface
-            )
+                color = MaterialTheme.colors.onSurface,
+                fontSize = MaterialTheme.typography.h2.fontSize,
+            ),
         )
         if (fromText.isEmpty() && !isFocused) {
             Text(

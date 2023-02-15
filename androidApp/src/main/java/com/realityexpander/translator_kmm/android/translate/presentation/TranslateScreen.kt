@@ -82,6 +82,7 @@ fun TranslateScreen(
             if (isConfirmDeleteDialogVisible) {
                 ConfirmDeleteItemDialog(
                     context,
+                    historyItemToDelete!!,
                     onConfirm = {
                         isConfirmDeleteDialogVisible = false
                         onEvent(TranslateEvent.DeleteHistoryItem(historyItemToDelete!!))
@@ -228,13 +229,14 @@ fun TranslateScreen(
 @Composable
 fun ConfirmDeleteItemDialog(
     context: Context,
+    item: UiHistoryItem,
     onConfirm: () -> Unit,
     onDismiss: () -> Unit
 ) {
     AlertDialog(
         onDismissRequest = onDismiss,
         title = {
-            Text(text = context.getString(R.string.confirm_delete))
+            Text(text =  context.getString(R.string.confirm_delete) + " '${item.fromText}'" )
         },
         text = {
             Text(text = context.getString(R.string.confirm_delete_message))
