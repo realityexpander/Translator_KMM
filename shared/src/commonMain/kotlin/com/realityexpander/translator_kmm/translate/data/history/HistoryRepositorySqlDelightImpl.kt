@@ -39,9 +39,6 @@ class HistoryRepositorySqlDelightImpl(  // was SqlDelightHistoryDataSource
     }
 
     override suspend fun deleteHistoryItem(id: Long) {
-        val item = queries.getHistory().executeAsList()
-        println("HistoryRepositorySqlDelightImpl.deleteHistoryItem(): item = $item")
-
         queries.deleteHistoryEntity(id)
     }
 }
