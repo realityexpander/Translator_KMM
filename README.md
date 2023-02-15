@@ -26,6 +26,9 @@ UI implemented separately, but using common ViewModels:
 - Compose for Android
 - SwiftUI for iOS
 
+## Mini-site
+https://realityexpander.github.io/translator-kmm-website/
+
 ## Architecture
 
 #### Click on image for Interactive Mind-Map Overview
