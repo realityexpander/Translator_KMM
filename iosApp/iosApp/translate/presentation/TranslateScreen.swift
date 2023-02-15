@@ -16,7 +16,8 @@ struct TranslateScreen: View {
     @State var isLinkActive = true
     @State var selection: Int? = nil
     
-    @State private var isPresentingConfirm: Bool = false
+    @State private var isConfirmDeleteDialogVisible: Bool = false
+    @State private var historyItemToDelete: UiHistoryItem? = nil
     
     init(historyRepo: IHistoryRepository, translateUseCase: TranslateUseCase, vttProcessor: IVoiceToTextProcessor) {
         self.historyRepo = historyRepo
@@ -96,7 +97,8 @@ struct TranslateScreen: View {
                     .simultaneousGesture(
                         LongPressGesture()
                             .onEnded { _ in
-                                isPresentingConfirm = true
+                                isConfirmDeleteDialogVisible = true
+                                historyItemToDelete = item
                             }
                     )
                     .highPriorityGesture(
@@ -106,11 +108,11 @@ struct TranslateScreen: View {
                                 event: TranslateEvent.SelectHistoryItem(item: item)
                             )
                         })
-                    .confirmationDialog("Are you sure?", isPresented: $isPresentingConfirm) {
-                        Button("Delete item?", role: .destructive) {
-                             viewModel.onEvent(
-                                event: TranslateEvent.DeleteHistoryItem(item: item)
-                             )
+                    .confirmationDialog("Are you sure?", isPresented: $isConfirmDeleteDialogVisible) {
+                        Button("Delete item '" + ((historyItemToDelete?.fromText ?? "UNKNOWN")) + "'?", role: .destructive) {
+                            viewModel.onEvent(
+                                event: TranslateEvent.DeleteHistoryItem(item: historyItemToDelete!)
+                            )
                         }
                     }
                     .listRowSeparator(.hidden)

@@ -7,7 +7,9 @@ import kotlinx.coroutines.flow.MutableStateFlow
 
 class HistoryRepositoryFakeImpl: IHistoryRepository {
 
-    private val _data = MutableStateFlow<List<HistoryItem>>(emptyList()).toCommonMutableStateFlow()
+    private val _data =
+        MutableStateFlow<List<HistoryItem>>(emptyList())
+            .toCommonMutableStateFlow()
 
     override fun getHistory(): CommonFlow<List<HistoryItem>> {
         return _data.toCommonFlow()
