@@ -82,6 +82,7 @@ private extension TranslateTextField {
                         alignment: .topLeading
                     )
                     .padding()
+                    .font(.system( size: 24))
                     .foregroundColor(Color.onSurface)
                     .overlay(alignment: .bottomTrailing) {  // sets a layer above the TextEditor
                         ProgressButton(
@@ -117,6 +118,7 @@ private extension TranslateTextField {
                 // Show FROM Language & FROM Translation
                 LanguageDisplay(language: fromLanguage)
                 Text(fromText)
+                    .font(.system( size: 24))
                     .foregroundColor(.onSurface)
                 
                 HStack {
@@ -149,6 +151,7 @@ private extension TranslateTextField {
                 LanguageDisplay(language: toLanguage)
                     .padding(.bottom)
                 Text(toText)
+                    .font(.system( size: 24))
                     .foregroundColor(.onSurface)
                 
                 HStack {
