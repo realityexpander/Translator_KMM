@@ -8,8 +8,8 @@
         android:name=".TranslateApp"
         android:allowBackup="false"
         android:supportsRtl="true"
-        android:label="Tränslåtør"
         android:icon="@mipmap/ic_launcher"
+        android:label="Tränslåtør"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:theme="@style/AppTheme">
         <activity
