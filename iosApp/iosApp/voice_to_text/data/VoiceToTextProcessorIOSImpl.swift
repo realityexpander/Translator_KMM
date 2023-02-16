@@ -53,10 +53,44 @@ class VoiceToTextProcessorIOSImpl: IVoiceToTextProcessor, ObservableObject {
         }
         
         audioSession = AVAudioSession.sharedInstance()
+        do {
+            try audioSession?.setActive(true)
+            try audioSession?.setPreferredInputNumberOfChannels(1)
+        } catch {
+            updateState(error: "Audio cant be set active")
+            return
+        }
+        print("audioSession?.availableInputs: \(String(describing: audioSession?.availableInputs))")
+        print("audioSession?.inputNumberOfChannels: \(String(describing: audioSession?.inputNumberOfChannels))")
+        print("audioSession?.currentRoute.inputs: \(String(describing: audioSession?.currentRoute.inputs))")
+        
         
         self.requestPermissions { [weak self] in
             self?.audioBufferRequest = SFSpeechAudioBufferRecognitionRequest()
             guard let audioBufferRequest = self?.audioBufferRequest else {
+                self?.updateState(error: "Audio buffer request error")
+                return
+            }
+            
+            self?.audioEngine = AVAudioEngine()
+            self?.audioEngine?.reset()
+            self?.inputNode = self?.audioEngine?.inputNode
+            
+            // Setup recording to be saved in the `audioBufferRequest`
+            let recordingFormat = self?.inputNode?
+                .outputFormat(forBus: 0) // 0 because we have only one input
+            //             .inputFormat(forBus: 0)
+            
+
+            func audioInputIsBusy(recordingFormat: AVAudioFormat) -> Bool {
+                guard recordingFormat.sampleRate == 0 || recordingFormat.channelCount == 0 else {
+                    return false
+                }
+                return true
+            }
+            
+            guard !audioInputIsBusy(recordingFormat: recordingFormat!) else {
+                self?.updateState(error: "Audio Input Is Busy")
                 return
             }
             
@@ -72,11 +106,6 @@ class VoiceToTextProcessorIOSImpl: IVoiceToTextProcessor, ObservableObject {
                     }
                 }
             
-            self?.audioEngine = AVAudioEngine()
-            self?.inputNode = self?.audioEngine?.inputNode
-            
-            // Setup recording to be saved in the `audioBufferRequest`
-            let recordingFormat = self?.inputNode?.outputFormat(forBus: 0) // 0 because we have only one input
             self?.inputNode?.installTap(
                 onBus: 0,
                 bufferSize: 1024,
@@ -92,7 +121,7 @@ class VoiceToTextProcessorIOSImpl: IVoiceToTextProcessor, ObservableObject {
                     .setCategory(
                         .playAndRecord,
                         mode: .spokenAudio,   // Allow other apps to pause for audio prompts.
-                        options: .duckOthers  // Turn down the volume of other apps while recording.
+                        options: [.duckOthers, .defaultToSpeaker]  // Turn down the volume of other apps while recording.
                     )
                 try self?.audioSession?
                     .setActive(
@@ -121,6 +150,9 @@ class VoiceToTextProcessorIOSImpl: IVoiceToTextProcessor, ObservableObject {
     
     func stopListening() {
         self.updateState(isRecognizerListening: false)
+        
+        recognitionTask?.finish()
+        recognitionTask = nil
         
         // Turn off mic audio levels monitoring
         micPowerCancellable = nil
