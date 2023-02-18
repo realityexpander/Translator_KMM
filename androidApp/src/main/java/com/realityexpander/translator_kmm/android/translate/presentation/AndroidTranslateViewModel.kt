@@ -9,7 +9,7 @@ import com.realityexpander.translator_kmm.translate.domain.translate.TranslateUs
 import com.realityexpander.translator_kmm.translate.presentation.TranslateEvent
 import com.realityexpander.translator_kmm.translate.presentation.TranslateViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 import javax.inject.Inject
 
 @HiltViewModel

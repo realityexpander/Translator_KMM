@@ -15,6 +15,12 @@ struct TextToSpeech {
         let utterance = AVSpeechUtterance(string: text)
         utterance.voice = AVSpeechSynthesisVoice(language: language)
         utterance.volume = 1
-        synthesizer.speak(utterance)
+        
+        do {
+            try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playAndRecord)
+            synthesizer.speak(utterance)
+        } catch {
+            print("error")
+        }
     }
 }
