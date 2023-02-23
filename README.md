@@ -1,7 +1,10 @@
-[<img src="https://user-images.githubusercontent.com/5157474/218233986-0d42e2be-669e-4948-835a-a15c02179510.png" width=150 />](https://user-images.githubusercontent.com/5157474/218233986-0d42e2be-669e-4948-835a-a15c02179510.png)
 # KMM Translator 
 
 Android &amp; iOS App cross-platform KMM application for translating languages
+
+https://user-images.githubusercontent.com/5157474/220805027-4ebb3a0c-63d4-4d78-9c8b-95e9cc64740d.mp4
+
+<!-- [<img src="https://user-images.githubusercontent.com/5157474/218233986-0d42e2be-669e-4948-835a-a15c02179510.png" width=150 />](https://user-images.githubusercontent.com/5157474/218233986-0d42e2be-669e-4948-835a-a15c02179510.png) -->
 
 [<img src="https://user-images.githubusercontent.com/5157474/218233438-99c84e55-f835-4076-976b-868ed5d19e8a.png" width=250 />](https://user-images.githubusercontent.com/5157474/218233438-99c84e55-f835-4076-976b-868ed5d19e8a.png)
 [<img src="https://user-images.githubusercontent.com/5157474/218236851-de783ba5-4dc9-40e6-885e-03889e9131db.png" width=250 />](https://user-images.githubusercontent.com/5157474/218236851-de783ba5-4dc9-40e6-885e-03889e9131db.png)
