@@ -3,7 +3,7 @@
 Android &amp; iOS App cross-platform KMM application for translating languages 
 (also known as "Translator Private")
 
-[Google Play Store Presence - Tasky App](https://play.google.com/store/apps/details?id=com.realityexpander.tasky)
+[Google Play Store Presence - Translator Private App](https://play.google.com/store/apps/details?id=com.realityexpander.translator_kmm.android)
 
 https://user-images.githubusercontent.com/5157474/220805027-4ebb3a0c-63d4-4d78-9c8b-95e9cc64740d.mp4
 
